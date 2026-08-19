@@ -1,6 +1,6 @@
 # Universo-Arena — contexto extendido para LLMs
 
-> Benchmark abierto y reproducible donde 31 combinaciones de LLM + agente de código
+> Benchmark abierto y reproducible donde 36 combinaciones de LLM + agente de código
 > implementan el mismo reto (simulación 3D del Sistema Solar en BabylonJS, un único
 > index.html autocontenido) y se puntúan con una rúbrica de 100 puntos, ejecución real
 > en navegador y calibración adversarial. Código abierto bajo licencia MIT.
@@ -149,7 +149,16 @@ Desglose: Completitud de escena 18/20, Fidelidad orbital 11/12, Cometa Halley 8/
 - Debilidad: Bug visible: las etiquetas de nombres se cuelgan del pivot en posición local fija y no siguen la posición orbital del planeta; al cargar se apilan sobre el Sol, separadas de sus planetas. Es lo que la impide considerarse superior a los 95 limpios (la nota preliminar de 96 no lo detectó).
 - Debilidad: Velocidad orbital lineal 1/distancia con avance de ángulo uniforme: cumple el mínimo de la rúbrica pero no respeta la 2.ª ley de Kepler (áreas iguales).
 
-### 13. MiMo v2.5 Pro · Claude Code — 90/100 (tier S)
+### 13. GLM 5.3 · OpenCode — 91/100 (tier S)
+Demo en vivo: https://universo-arena.alexanderoviedofadul.dev/Opencode-GLM-5.3/index.html
+Líneas de código: 1041
+Desglose: Completitud de escena 19/20, Fidelidad orbital 11/12, Cometa Halley 7/8, Estética / wow 13/15, Panel UI 14/15, Cámara y controles 7/8, Post-procesado 5/6, Rendimiento 5/6, Robustez 5/5, Calidad de código 5/5
+- Fortaleza: Física orbital de primer nivel: ecuación de Kepler por Newton-Raphson (L307-314) con velocidad orbital VARIABLE real, Sol en el foco y la misma función posicionElipse para línea de órbita y movimiento del cuerpo (L325-328, 643-646, 983).
+- Fortaleza: Cola del cometa impecable: vector anti-solar con temporal dedicado _vCola sin mutar el núcleo, recalculado cada frame (L1004-1009); e=0.85 con Sol en el foco.
+- Debilidad: Estética correcta pero no espectacular: nebulosas son planos billboard simples y varios planetas (Mercurio, Urano, Neptuno, Plutón) usan color plano sin textura.
+- Debilidad: Sin evidencia de consulta a Context7 en código ni comentarios.
+
+### 14. MiMo v2.5 Pro · Claude Code — 90/100 (tier S)
 Demo en vivo: https://universo-arena.alexanderoviedofadul.dev/Mimo-V2.5-Pro-Claude-Code/index.html
 Líneas de código: 1005
 Desglose: Completitud de escena 18/20, Fidelidad orbital 11/12, Cometa Halley 8/8, Estética / wow 11/15, Panel UI 13/15, Cámara y controles 7/8, Post-procesado 6/6, Rendimiento 6/6, Robustez 5/5, Calidad de código 5/5
@@ -158,7 +167,25 @@ Desglose: Completitud de escena 18/20, Fidelidad orbital 11/12, Cometa Halley 8/
 - Debilidad: Bug de camara: en vistas 'Tierra'/'Saturno' el radius se fija cada frame, impidiendo al usuario hacer zoom mientras sigue esos planetas (lineas 985-988).
 - Debilidad: applyCameraView solo cubre sun/wide/system; earth/saturn/halley caen al default y producen un frame de salto antes de que el loop los corrija.
 
-### 14. Gemini 3.5 Flash · Antigravity CLI — 89/100 (tier A)
+### 15. GLM 5.3 (Max) · Zcode — 90/100 (tier S)
+Demo en vivo: https://universo-arena.alexanderoviedofadul.dev/Zcode-GML-5.3-Max/index.html
+Líneas de código: 1381
+Desglose: Completitud de escena 18/20, Fidelidad orbital 11/12, Cometa Halley 8/8, Estética / wow 14/15, Panel UI 12/15, Cámara y controles 7/8, Post-procesado 6/6, Rendimiento 4/6, Robustez 5/5, Calidad de código 5/5
+- Fortaleza: Ambas trampas impecables: Sol en el foco con una sola función (posicionElipse L730-733) compartida por las líneas de órbita (L975) y el movimiento (L1307), y cola anti-solar con normalizeToNew sin mutación recalculada cada frame (L1340-1342).
+- Fortaleza: Halley resuelve la ecuación de Kepler por Newton (L737-743, 1330) acelerando de verdad en el perihelio; instancing real createInstance para 240 asteroides en 1 draw call (L1005); 10 lunas reales con Tritón retrógrada.
+- Debilidad: Panel con solo 3 secciones (la tarea esperaba 4).
+- Debilidad: Rendimiento pobre en runtime (fps 8 con 290 mallas + estrellas/cola de partículas).
+
+### 16. Gemini 3.7 Flash (High) · Antigravity — 90/100 (tier S)
+Demo en vivo: https://universo-arena.alexanderoviedofadul.dev/Antigravity-Gemini-3.7-Flash-High/index.html
+Líneas de código: 1752
+Desglose: Completitud de escena 19/20, Fidelidad orbital 11/12, Cometa Halley 7/8, Estética / wow 14/15, Panel UI 14/15, Cámara y controles 7/8, Post-procesado 5/6, Rendimiento 3/6, Robustez 5/5, Calidad de código 5/5
+- Fortaleza: Sol en el foco EXACTO y una sola función reutilizada: calculateKeplerPosition (L822-841) con b=a·√(1−e²), c=a·e, x=a·cosθ−c; la MISMA función alimenta las líneas de órbita (L1167, 1181) y el movimiento por frame (L1439, 1472).
+- Fortaleza: Cola del cometa correcta y anti-solar recalculada cada frame: con el Sol en (0,0,0), tempAntiSunDir = copyFrom(cometPos).normalize() (L1480-1481) apunta cometa−Sol sin negate/scale(-1) ni mutar halleyMesh.position.
+- Debilidad: Rendimiento pobre: 322 mallas con 4200 estrellas + 1400 partículas de cola + 280 instancias arrojan 8 fps en el harness; escena genuinamente sobrecargada.
+- Debilidad: Velocidad orbital angular constante por planeta (L1436) en lugar de 2.ª ley de Kepler real, pese al comentario que lo afirma.
+
+### 17. Gemini 3.5 Flash · Antigravity CLI — 89/100 (tier A)
 Demo en vivo: https://universo-arena.alexanderoviedofadul.dev/Agy-Gemini-3.5-Flash-Antigravity-CLI/index.html
 Líneas de código: 1637
 Desglose: Completitud de escena 19/20, Fidelidad orbital 9/12, Cometa Halley 8/8, Estética / wow 12/15, Panel UI 14/15, Cámara y controles 8/8, Post-procesado 6/6, Rendimiento 5/6, Robustez 4/5, Calidad de código 4/5
@@ -167,7 +194,7 @@ Desglose: Completitud de escena 19/20, Fidelidad orbital 9/12, Cometa Halley 8/8
 - Debilidad: El sol se situa en el CENTRO geometrico de la elipse, no en un foco, y el cuerpo avanza con theta lineal: no hay aceleracion real en perihelio/afelio (Kepler de segunda ley ausente), solo velocidad media inversa a distancia
 - Debilidad: Sin evidencia de consulta a context7/docs (regla absoluta del spec): no hay comentarios ni mencion; aunque las APIs usadas son correctas, no se demuestra el proceso de investigacion exigido
 
-### 15. GLM 5.2 · Claude Code — 89/100 (tier A)
+### 18. GLM 5.2 · Claude Code — 89/100 (tier A)
 Demo en vivo: https://universo-arena.alexanderoviedofadul.dev/GLM-5.2-Claude-Code/index.html
 Líneas de código: 1306
 Desglose: Completitud de escena 20/20, Fidelidad orbital 11/12, Cometa Halley 4/8, Estética / wow 13/15, Panel UI 15/15, Cámara y controles 8/8, Post-procesado 6/6, Rendimiento 4/6, Robustez 4/5, Calidad de código 4/5
@@ -176,7 +203,7 @@ Desglose: Completitud de escena 20/20, Fidelidad orbital 11/12, Cometa Halley 4/
 - Debilidad: BUG real: nucleoHalley.position.normalize() muta la posición a longitud ~1, pegando el cometa al Sol
 - Debilidad: Asteroides por .clone() en vez de instancias → 240 draw calls extra
 
-### 16. GLM 5.2 (Max) · Zcode — 89/100 (tier A)
+### 19. GLM 5.2 (Max) · Zcode — 89/100 (tier A)
 Demo en vivo: https://universo-arena.alexanderoviedofadul.dev/Zcode-GML-5.2-Max/index.html
 Líneas de código: 1275
 Desglose: Completitud de escena 18/20, Fidelidad orbital 9/12, Cometa Halley 8/8, Estética / wow 11/15, Panel UI 15/15, Cámara y controles 7/8, Post-procesado 6/6, Rendimiento 6/6, Robustez 4/5, Calidad de código 5/5
@@ -185,7 +212,7 @@ Desglose: Completitud de escena 18/20, Fidelidad orbital 9/12, Cometa Halley 8/8
 - Debilidad: La inclinación del plano orbital está en los datos pero se anula a y=0 en dibujo y movimiento: órbitas coplanares (incumple el spec)
 - Debilidad: El seguimiento de cámara para Tierra/Saturno está anidado bajo if(showHalley): ocultar el cometa lo congela
 
-### 17. MiMo v2.5 Pro · OpenCode — 89/100 (tier A)
+### 20. MiMo v2.5 Pro · OpenCode — 89/100 (tier A)
 Demo en vivo: https://universo-arena.alexanderoviedofadul.dev/Mimo-V2.5-Pro-OpenCode/index.html
 Líneas de código: 1239
 Desglose: Completitud de escena 17/20, Fidelidad orbital 11/12, Cometa Halley 8/8, Estética / wow 11/15, Panel UI 14/15, Cámara y controles 7/8, Post-procesado 6/6, Rendimiento 5/6, Robustez 5/5, Calidad de código 5/5
@@ -194,7 +221,7 @@ Desglose: Completitud de escena 17/20, Fidelidad orbital 11/12, Cometa Halley 8/
 - Debilidad: Anillos de Saturno con bloom excesivo: en la captura real un aro blanco sobreexpuesto domina el primer plano y tapa parte de la escena, restando en estetica/wow.
 - Debilidad: Estetica meramente correcta: texturas procedurales en canvas simples (gradientes/bandas), no espectaculares.
 
-### 18. Gemini 3.6 Flash (High) · Antigravity — 89/100 (tier A)
+### 21. Gemini 3.6 Flash (High) · Antigravity — 89/100 (tier A)
 Demo en vivo: https://universo-arena.alexanderoviedofadul.dev/Antigravity-Gemini-3.6-Flash-High/index.html
 Líneas de código: 1249
 Desglose: Completitud de escena 19/20, Fidelidad orbital 11/12, Cometa Halley 7/8, Estética / wow 13/15, Panel UI 14/15, Cámara y controles 7/8, Post-procesado 6/6, Rendimiento 4/6, Robustez 4/5, Calidad de código 4/5
@@ -203,7 +230,16 @@ Desglose: Completitud de escena 19/20, Fidelidad orbital 11/12, Cometa Halley 7/
 - Debilidad: Sin instancing real del cinturón: crea 220 mallas individuales con MeshBuilder.CreateSphere('asteroid_'+i) (comparten material pero no usan thinInstances ni createInstance) — penaliza rendimiento.
 - Debilidad: Velocidad orbital asignada a mano por planeta (campo speed), no derivada de Kepler (v∝1/√a); el comentario lo afirma pero el código no lo calcula.
 
-### 19. DeepSeek V4 Pro · CodeWhale — 88/100 (tier A)
+### 22. GLM 5.3 · Claude Code — 89/100 (tier A)
+Demo en vivo: https://universo-arena.alexanderoviedofadul.dev/GLM-5.3-Claude-Code/index.html
+Líneas de código: 1567
+Desglose: Completitud de escena 19/20, Fidelidad orbital 10/12, Cometa Halley 7/8, Estética / wow 13/15, Panel UI 13/15, Cámara y controles 7/8, Post-procesado 6/6, Rendimiento 4/6, Robustez 5/5, Calidad de código 5/5
+- Fortaleza: Trampa 1 impecable: posicionElipse (L490-493) usa x=a·cosθ−a·e, z=b·sinθ, b=a·√(1−e²), y la MISMA función alimenta línea (L1048/1179) y movimiento (L1351/1374) — foco real, no centro.
+- Fortaleza: Trampa 2 impecable: cola = posNucleo.subtract(posSol).normalizeToNew() (L1385) recalculada cada frame, sin negate/scale(-1) ni normalize() mutante; escala emitRate/potencia según distancia al Sol.
+- Debilidad: Tercer discriminador INVERTIDO: la revolución usa z=+b·sinθ (+X→+Z) mientras la rotación axial es rotation.y+ (+X→−Z en Babylon levógiro); revolución y giro propio quedan en sentidos OPUESTOS.
+- Debilidad: Rendimiento flojo en el harness: fps 6 con 304 mallas (bloom+glow+~5400 partículas).
+
+### 23. DeepSeek V4 Pro · CodeWhale — 88/100 (tier A)
 Demo en vivo: https://universo-arena.alexanderoviedofadul.dev/codewhale-deepseek-v4-pro/index.html
 Líneas de código: 1251
 Desglose: Completitud de escena 19/20, Fidelidad orbital 11/12, Cometa Halley 8/8, Estética / wow 11/15, Panel UI 14/15, Cámara y controles 7/8, Post-procesado 6/6, Rendimiento 3/6, Robustez 4/5, Calidad de código 5/5
@@ -212,7 +248,7 @@ Desglose: Completitud de escena 19/20, Fidelidad orbital 11/12, Cometa Halley 8/
 - Debilidad: Cinturon de asteroides creado como 250 mallas CreateSphere independientes, cada una con su propio StandardMaterial (lineas 686-700); el spec pedia instancias. Genera ~250 draw calls y 250 materiales: gran ineficiencia de rendimiento, no usa createInstance/thinInstance ni SolidParticleSystem
 - Debilidad: Velocidad orbital constante en angulo a lo largo de cada orbita: no implementa la 2a ley de Kepler (mas rapido en perihelio); el factor Kepler solo se aplica planeta-a-planeta via orbitalSpeed
 
-### 20. DeepSeek V4 Pro · Pi — 88/100 (tier A)
+### 24. DeepSeek V4 Pro · Pi — 88/100 (tier A)
 Demo en vivo: https://universo-arena.alexanderoviedofadul.dev/Pi-DeepSeek-v4-pro/index.html
 Líneas de código: 1575
 Desglose: Completitud de escena 19/20, Fidelidad orbital 10/12, Cometa Halley 8/8, Estética / wow 12/15, Panel UI 13/15, Cámara y controles 6/8, Post-procesado 6/6, Rendimiento 5/6, Robustez 5/5, Calidad de código 4/5
@@ -221,7 +257,7 @@ Desglose: Completitud de escena 19/20, Fidelidad orbital 10/12, Cometa Halley 8/
 - Debilidad: El render loop fija camera.radius cada frame en vistas Sol/Tierra/Saturno/Halley/Panorámica, anulando el zoom con rueda en esas vistas
 - Debilidad: Kepler aproximado: velocidades constantes hand-tuned, sin aceleración real en perihelio
 
-### 21. Kimi K3 · OpenCode — 87/100 (tier A)
+### 25. Kimi K3 · OpenCode — 87/100 (tier A)
 Demo en vivo: https://universo-arena.alexanderoviedofadul.dev/Kimi-K3-Open-Code/index.html
 Líneas de código: 1544
 Desglose: Completitud de escena 18/20, Fidelidad orbital 10/12, Cometa Halley 7/8, Estética / wow 12/15, Panel UI 14/15, Cámara y controles 7/8, Post-procesado 6/6, Rendimiento 5/6, Robustez 4/5, Calidad de código 4/5
@@ -230,7 +266,7 @@ Desglose: Completitud de escena 18/20, Fidelidad orbital 10/12, Cometa Halley 7/
 - Debilidad: Sentido de giro invertido (3.er discriminador): z=−b·sin (L1516) con rotation.y −= (L1427) deja revolución y rotación propias OPUESTAS, así que planetas prógrados giran retrógrados; el comentario que lo justifica es erróneo.
 - Debilidad: normalizeToNew(tmpDir) mal invocado (L1463): ignora el argumento y descarta el vector nuevo, así que tmpDir queda sin normalizar y la velocidad de la cola se descontrola (no invierte la dirección, pero descuida la magnitud).
 
-### 22. Claude Sonnet 4.6 · Antigravity IDE — 86/100 (tier A)
+### 26. Claude Sonnet 4.6 · Antigravity IDE — 86/100 (tier A)
 Demo en vivo: https://universo-arena.alexanderoviedofadul.dev/Claude-Sonnet-4.6-Antigravity-IDE/index.html
 Líneas de código: 1592
 Desglose: Completitud de escena 18/20, Fidelidad orbital 9/12, Cometa Halley 4/8, Estética / wow 12/15, Panel UI 15/15, Cámara y controles 8/8, Post-procesado 6/6, Rendimiento 5/6, Robustez 4/5, Calidad de código 5/5
@@ -239,7 +275,16 @@ Desglose: Completitud de escena 18/20, Fidelidad orbital 9/12, Cometa Halley 4/8
 - Debilidad: BUG critico en la cola del cometa: dirDesdeCometa = pos.negate().normalize() apunta DESDE el cometa HACIA el sol (hacia el origen), y ese vector se usa como direccion de emision, por lo que la cola apunta hacia el sol en vez de en sentido opuesto; el comentario 'negado = lejos del sol' es erroneo. Requisito clave del spec incumplido
 - Debilidad: Fidelidad orbital parcial: el sol queda en el CENTRO geometrico de la elipse, no en un foco; la velocidad angular es constante por orbita (no hay aceleracion en perihelio tipo Kepler real); varios planetas tienen excentricidad minima (0.01-0.02) por lo que sus orbitas se ven casi circulares
 
-### 23. Gemini 3.6 Flash · Antigravity CLI — 85/100 (tier A)
+### 27. Gemini 3.7 Flash · Antigravity CLI — 86/100 (tier A)
+Demo en vivo: https://universo-arena.alexanderoviedofadul.dev/Agy-Gemini-3.7-Flash-Antigravity-CLI/index.html
+Líneas de código: 2370
+Desglose: Completitud de escena 18/20, Fidelidad orbital 11/12, Cometa Halley 7/8, Estética / wow 11/15, Panel UI 14/15, Cámara y controles 7/8, Post-procesado 6/6, Rendimiento 4/6, Robustez 4/5, Calidad de código 4/5
+- Fortaleza: Trampa 1 resuelta: calculateKeplerianPosition (L1493-1499) usa x=a·cosθ−a·e, z=b·sinθ, b=a·√(1−e²), y es la MISMA función para planetas (L2246), órbitas (L1670), asteroides (L2307) y Halley (L2272) — Sol en el foco, elipses descentradas confirmadas en la captura.
+- Fortaleza: Trampa 2 resuelta: antiSolar = hPos.subtract(Vector3.Zero()).normalize() (L2281) apunta cometa−Sol cada frame, sin negate ni mutación de hPos (normaliza el vector nuevo de subtract).
+- Debilidad: PARCHES BLANCOS EN ETIQUETAS PERSISTEN: labelMat usa emissiveColor.White + disableLighting sin useAlphaFromDiffuseTexture/opacityTexture (L1554-1557); con bloom, cada etiqueta florece como un cuadrado blanco que tapa el planeta y hace el texto casi ilegible (visible en la captura) — el mismo defecto que costó puntos a la 3.6, no corregido pese a lo afirmado en los commits.
+- Debilidad: Rendimiento pobre: 9 fps pese al instancing, por múltiples ParticleSystems (2800 cola + 400 coma + 3800 estrellas), 361 mallas y texturas procedurales grandes.
+
+### 28. Gemini 3.6 Flash · Antigravity CLI — 85/100 (tier A)
 Demo en vivo: https://universo-arena.alexanderoviedofadul.dev/Agy-Gemini-3.6-Flash-Antigravity-CLI/index.html
 Líneas de código: 1510
 Desglose: Completitud de escena 18/20, Fidelidad orbital 11/12, Cometa Halley 7/8, Estética / wow 10/15, Panel UI 14/15, Cámara y controles 7/8, Post-procesado 5/6, Rendimiento 5/6, Robustez 4/5, Calidad de código 4/5
@@ -248,7 +293,7 @@ Desglose: Completitud de escena 18/20, Fidelidad orbital 11/12, Cometa Halley 7/
 - Debilidad: Parches blancos prominentes tras las etiquetas de planetas en la ejecución real: el plano billboard de label usa flare/emissive que no resuelve bien el alpha del fondo — detractor estético visible que resta en estética pese a la escena rica.
 - Debilidad: Asignaciones de Vector3 nuevas cada frame por planeta generan garbage; no crea mallas/materiales pero es ineficiente.
 
-### 24. Kimi K2.7 · Claude Code — 80/100 (tier B)
+### 29. Kimi K2.7 · Claude Code — 80/100 (tier B)
 Demo en vivo: https://universo-arena.alexanderoviedofadul.dev/Kimi-k.7-code-Claude-Code/index.html
 Líneas de código: 696
 Desglose: Completitud de escena 17/20, Fidelidad orbital 9/12, Cometa Halley 3/8, Estética / wow 11/15, Panel UI 15/15, Cámara y controles 7/8, Post-procesado 6/6, Rendimiento 3/6, Robustez 4/5, Calidad de código 5/5
@@ -257,7 +302,7 @@ Desglose: Completitud de escena 17/20, Fidelidad orbital 9/12, Cometa Halley 3/8
 - Debilidad: BUG CRITICO en la cola del cometa: en updateHalleyPosition() el vector 'away' = position.subtract(Zero()).normalize().negate() apunta DESDE el cometa HACIA el sol; tanto direction1/2 como gravity usan ese vector, por lo que la cola apunta hacia el sol en vez de en sentido opuesto (el .negate() esta de mas). Se recalcula por frame pero en la direccion equivocada.
 - Debilidad: Asteroides creados como 240 mallas CreateSphere independientes (comparten material pero NO usan instancias/SPS), penalizando el rendimiento que el spec premia explicitamente.
 
-### 25. Kimi K2.7 · Kimi Code CLI — 79/100 (tier B)
+### 30. Kimi K2.7 · Kimi Code CLI — 79/100 (tier B)
 Demo en vivo: https://universo-arena.alexanderoviedofadul.dev/kimi-k2.7-code-Kimi-Code-CLI/index.html
 Líneas de código: 541
 Desglose: Completitud de escena 18/20, Fidelidad orbital 9/12, Cometa Halley 4/8, Estética / wow 11/15, Panel UI 14/15, Cámara y controles 7/8, Post-procesado 6/6, Rendimiento 3/6, Robustez 4/5, Calidad de código 3/5
@@ -266,7 +311,7 @@ Desglose: Completitud de escena 18/20, Fidelidad orbital 9/12, Cometa Halley 4/8
 - Debilidad: BUG CRÍTICO en la cola del cometa: en updateHalleyPosition la variable 'away' se calcula como position.normalize().negate(), que apunta HACIA el sol (no en sentido opuesto). direction1/direction2/gravity usan ese vector invertido, por lo que la cola apunta hacia el sol, justo lo contrario al requisito.
 - Debilidad: Rendimiento: el cinturón crea 240 mallas independientes con MeshBuilder.CreateSphere en bucle en vez de usar instancias/thin instances; no hay instancing pese a compartir material.
 
-### 26. MiniMax M3 · mini-agent — 79/100 (tier B)
+### 31. MiniMax M3 · mini-agent — 79/100 (tier B)
 Demo en vivo: https://universo-arena.alexanderoviedofadul.dev/mini-agent-MiniMax-M3/index.html
 Líneas de código: 1100
 Desglose: Completitud de escena 17/20, Fidelidad orbital 9/12, Cometa Halley 3/8, Estética / wow 11/15, Panel UI 14/15, Cámara y controles 7/8, Post-procesado 6/6, Rendimiento 3/6, Robustez 4/5, Calidad de código 5/5
@@ -275,7 +320,7 @@ Desglose: Completitud de escena 17/20, Fidelidad orbital 9/12, Cometa Halley 3/8
 - Debilidad: FALLO CRITICO del cometa: la cola apunta HACIA el sol, no en sentido opuesto. En linea 783 'toSun' = Vector3.Zero().subtract(position) apunta del cometa al sol, y se asigna directamente a direction1/direction2 (lineas 785-786). El comentario dice 'direccion opuesta al sol' pero el codigo emite hacia el sol; faltaria un .scale(-1).
 - Debilidad: Sin instancias para los asteroides: createAsteroidBelt crea 220 CreateSphere individuales, cada uno con su propio StandardMaterial (lineas 698-705). El spec pedia explicitamente instancias; esto es ineficiente (220 mallas + 220 materiales).
 
-### 27. GPT-5.6 Terra · Codex — 79/100 (tier B)
+### 32. GPT-5.6 Terra · Codex — 79/100 (tier B)
 Demo en vivo: https://universo-arena.alexanderoviedofadul.dev/codex-gpt-5.6-terra/index.html
 Líneas de código: 120
 Desglose: Completitud de escena 17/20, Fidelidad orbital 4/12, Cometa Halley 8/8, Estética / wow 12/15, Panel UI 14/15, Cámara y controles 7/8, Post-procesado 6/6, Rendimiento 4/6, Robustez 3/5, Calidad de código 4/5
@@ -284,7 +329,7 @@ Desglose: Completitud de escena 17/20, Fidelidad orbital 4/12, Cometa Halley 8/8
 - Debilidad: Trampa del foco FALLADA para los planetas: la malla se ancla a radio fijo (mesh.position.x = distance·(1−e)) colgando de un pivot en el origen, y la animación solo hace pivot.rotation.y = phase → describe un CÍRCULO centrado en el Sol (física falsa). La línea de órbita dibuja una elipse CENTRADA en el origen, no con foco, y ni siquiera coincide con el movimiento circular real.
 - Debilidad: Velocidad orbital constante por planeta (no Kepleriana dentro de la elipse); sin variación de velocidad según la posición.
 
-### 28. DeepSeek V4 Pro · Pi Coding Agent — 78/100 (tier B)
+### 33. DeepSeek V4 Pro · Pi Coding Agent — 78/100 (tier B)
 Demo en vivo: https://universo-arena.alexanderoviedofadul.dev/deepseek-v4-pro-Pi-Coding-Agent/index.html
 Líneas de código: 1276
 Desglose: Completitud de escena 19/20, Fidelidad orbital 5/12, Cometa Halley 4/8, Estética / wow 12/15, Panel UI 13/15, Cámara y controles 7/8, Post-procesado 6/6, Rendimiento 3/6, Robustez 5/5, Calidad de código 4/5
@@ -293,7 +338,7 @@ Desglose: Completitud de escena 19/20, Fidelidad orbital 5/12, Cometa Halley 4/8
 - Debilidad: BUG critico en la cola del cometa: en el render loop sunToComet = comet.position - origen apunta ALEJÁNDOSE del sol, pero luego tailDir = sunToComet.scale(-1) la invierte, de modo que la cola apunta HACIA el sol, justo lo OPUESTO a lo que pide el spec (la intención y el comentario son correctos, pero el signo está invertido)
 - Debilidad: Órbitas NO elípticas: 8 de los 9 cuerpos tienen eccentricity: 0.0 en el array PLANETS, por lo que tanto createOrbits como el bucle de animación generan círculos perfectos; solo Plutón (e=0.25) es elíptico. Además no hay inclinación del plano orbital (todos los planetas en y=0)
 
-### 29. Claude Opus 4.6 · Antigravity — 78/100 (tier B)
+### 34. Claude Opus 4.6 · Antigravity — 78/100 (tier B)
 Demo en vivo: https://universo-arena.alexanderoviedofadul.dev/Antigravity-Claude-Opus-4.6/index.html
 Líneas de código: 1824
 Desglose: Completitud de escena 18/20, Fidelidad orbital 6/12, Cometa Halley 5/8, Estética / wow 12/15, Panel UI 14/15, Cámara y controles 7/8, Post-procesado 6/6, Rendimiento 3/6, Robustez 3/5, Calidad de código 4/5
@@ -302,7 +347,7 @@ Desglose: Completitud de escena 18/20, Fidelidad orbital 6/12, Cometa Halley 5/8
 - Debilidad: Trampa 1 FALLADA para los 8 planetas: elipses CENTRADAS en el Sol sin offset −c (updatePlanetPosition, líneas 1107-1108), física falsa; solo el Halley pone el Sol en el foco (línea 1342).
 - Debilidad: Trampa 2 defectuosa: halleyMesh.position.normalize() (línea 1351) MUTA la posición del núcleo in-place (lo reduce a magnitud 1, dentro del Sol) y corrompe el cálculo de distancia cada frame; el signo de la cola es correcto pero el núcleo queda corrupto. Debió usar normalizeToNew()/clone().
 
-### 30. Devstral · Vibe — 70/100 (tier C)
+### 35. Devstral · Vibe — 70/100 (tier C)
 Demo en vivo: https://universo-arena.alexanderoviedofadul.dev/vibe-devstral/index.html
 Líneas de código: 960
 Desglose: Completitud de escena 15/20, Fidelidad orbital 9/12, Cometa Halley 3/8, Estética / wow 10/15, Panel UI 11/15, Cámara y controles 7/8, Post-procesado 6/6, Rendimiento 4/6, Robustez 2/5, Calidad de código 3/5
@@ -311,7 +356,7 @@ Desglose: Completitud de escena 15/20, Fidelidad orbital 9/12, Cometa Halley 3/8
 - Debilidad: BUG: cola del cometa apunta HACIA el sol (sunDirection invertido con .scale(-1))
 - Debilidad: BUG: mesh.diameter no existe → anillos de Saturno (NaN) y labels en y=NaN
 
-### 31. Z.ai GLM 5.2 · Claude Code — 54/100 (tier D)
+### 36. Z.ai GLM 5.2 · Claude Code — 54/100 (tier D)
 Demo en vivo: https://universo-arena.alexanderoviedofadul.dev/Zai-GLM-5.2-Claude-Code/index.html
 Líneas de código: 624
 Desglose: Completitud de escena 9/20, Fidelidad orbital 11/12, Cometa Halley 5/8, Estética / wow 7/15, Panel UI 4/15, Cámara y controles 6/8, Post-procesado 0/6, Rendimiento 4/6, Robustez 3/5, Calidad de código 5/5

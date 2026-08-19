@@ -308,5 +308,55 @@
   "consoleErrors": 0,
   "pageErrors": 0,
   "errorsSample": []
+ },
+ {
+  "folder": "Opencode-GLM-5.3",
+  "webgl": true,
+  "babylon": true,
+  "meshes": 324,
+  "fps": 5,
+  "consoleErrors": 0,
+  "pageErrors": 0,
+  "errorsSample": []
+ },
+ {
+  "folder": "Zcode-GML-5.3-Max",
+  "webgl": true,
+  "babylon": true,
+  "meshes": 290,
+  "fps": 8,
+  "consoleErrors": 0,
+  "pageErrors": 0,
+  "errorsSample": []
+ },
+ {
+  "folder": "Antigravity-Gemini-3.7-Flash-High",
+  "webgl": true,
+  "babylon": true,
+  "meshes": 322,
+  "fps": 8,
+  "consoleErrors": 0,
+  "pageErrors": 0,
+  "errorsSample": []
+ },
+ {
+  "folder": "GLM-5.3-Claude-Code",
+  "webgl": true,
+  "babylon": true,
+  "meshes": 304,
+  "fps": 6,
+  "consoleErrors": 0,
+  "pageErrors": 0,
+  "errorsSample": []
+ },
+ {
+  "folder": "Agy-Gemini-3.7-Flash-Antigravity-CLI",
+  "webgl": true,
+  "babylon": true,
+  "meshes": 361,
+  "fps": 9,
+  "consoleErrors": 0,
+  "pageErrors": 0,
+  "errorsSample": []
  }
 ]

@@ -1,6 +1,6 @@
 # Universo-Arena
 
-> Benchmark abierto y reproducible: 31 combinaciones de **LLM + agente de código** implementan el *mismo* reto —una simulación 3D del Sistema Solar en BabylonJS, como un único `index.html` autocontenido— y se puntúan y rankean. Licencia MIT.
+> Benchmark abierto y reproducible: 36 combinaciones de **LLM + agente de código** implementan el *mismo* reto —una simulación 3D del Sistema Solar en BabylonJS, como un único `index.html` autocontenido— y se puntúan y rankean. Licencia MIT.
 
 Sitio: https://universo-arena.alexanderoviedofadul.dev/
 Repositorio: https://github.com/bladealex9848/Universo-Arena
@@ -32,28 +32,33 @@ Las dos trampas de correctitud que más discriminan el ranking:
 10. 92/100 (tier S) — MiniMax M3 · Claude Code — https://universo-arena.alexanderoviedofadul.dev/Minimax-M3-Claude-Code/index.html
 11. 92/100 (tier S) — Kimi K3 · Claude Code — https://universo-arena.alexanderoviedofadul.dev/Kimi-K3-Claude-Code/index.html
 12. 92/100 (tier S) — DeepSeek V4 Flash · OpenCode — https://universo-arena.alexanderoviedofadul.dev/Opencode-DeepSeek-V4-Flash/index.html
-13. 90/100 (tier S) — MiMo v2.5 Pro · Claude Code — https://universo-arena.alexanderoviedofadul.dev/Mimo-V2.5-Pro-Claude-Code/index.html
-14. 89/100 (tier A) — Gemini 3.5 Flash · Antigravity CLI — https://universo-arena.alexanderoviedofadul.dev/Agy-Gemini-3.5-Flash-Antigravity-CLI/index.html
-15. 89/100 (tier A) — GLM 5.2 · Claude Code — https://universo-arena.alexanderoviedofadul.dev/GLM-5.2-Claude-Code/index.html
-16. 89/100 (tier A) — GLM 5.2 (Max) · Zcode — https://universo-arena.alexanderoviedofadul.dev/Zcode-GML-5.2-Max/index.html
-17. 89/100 (tier A) — MiMo v2.5 Pro · OpenCode — https://universo-arena.alexanderoviedofadul.dev/Mimo-V2.5-Pro-OpenCode/index.html
-18. 89/100 (tier A) — Gemini 3.6 Flash (High) · Antigravity — https://universo-arena.alexanderoviedofadul.dev/Antigravity-Gemini-3.6-Flash-High/index.html
-19. 88/100 (tier A) — DeepSeek V4 Pro · CodeWhale — https://universo-arena.alexanderoviedofadul.dev/codewhale-deepseek-v4-pro/index.html
-20. 88/100 (tier A) — DeepSeek V4 Pro · Pi — https://universo-arena.alexanderoviedofadul.dev/Pi-DeepSeek-v4-pro/index.html
-21. 87/100 (tier A) — Kimi K3 · OpenCode — https://universo-arena.alexanderoviedofadul.dev/Kimi-K3-Open-Code/index.html
-22. 86/100 (tier A) — Claude Sonnet 4.6 · Antigravity IDE — https://universo-arena.alexanderoviedofadul.dev/Claude-Sonnet-4.6-Antigravity-IDE/index.html
-23. 85/100 (tier A) — Gemini 3.6 Flash · Antigravity CLI — https://universo-arena.alexanderoviedofadul.dev/Agy-Gemini-3.6-Flash-Antigravity-CLI/index.html
-24. 80/100 (tier B) — Kimi K2.7 · Claude Code — https://universo-arena.alexanderoviedofadul.dev/Kimi-k.7-code-Claude-Code/index.html
-25. 79/100 (tier B) — Kimi K2.7 · Kimi Code CLI — https://universo-arena.alexanderoviedofadul.dev/kimi-k2.7-code-Kimi-Code-CLI/index.html
-26. 79/100 (tier B) — MiniMax M3 · mini-agent — https://universo-arena.alexanderoviedofadul.dev/mini-agent-MiniMax-M3/index.html
-27. 79/100 (tier B) — GPT-5.6 Terra · Codex — https://universo-arena.alexanderoviedofadul.dev/codex-gpt-5.6-terra/index.html
-28. 78/100 (tier B) — DeepSeek V4 Pro · Pi Coding Agent — https://universo-arena.alexanderoviedofadul.dev/deepseek-v4-pro-Pi-Coding-Agent/index.html
-29. 78/100 (tier B) — Claude Opus 4.6 · Antigravity — https://universo-arena.alexanderoviedofadul.dev/Antigravity-Claude-Opus-4.6/index.html
-30. 70/100 (tier C) — Devstral · Vibe — https://universo-arena.alexanderoviedofadul.dev/vibe-devstral/index.html
-31. 54/100 (tier D) — Z.ai GLM 5.2 · Claude Code — https://universo-arena.alexanderoviedofadul.dev/Zai-GLM-5.2-Claude-Code/index.html
+13. 91/100 (tier S) — GLM 5.3 · OpenCode — https://universo-arena.alexanderoviedofadul.dev/Opencode-GLM-5.3/index.html
+14. 90/100 (tier S) — MiMo v2.5 Pro · Claude Code — https://universo-arena.alexanderoviedofadul.dev/Mimo-V2.5-Pro-Claude-Code/index.html
+15. 90/100 (tier S) — GLM 5.3 (Max) · Zcode — https://universo-arena.alexanderoviedofadul.dev/Zcode-GML-5.3-Max/index.html
+16. 90/100 (tier S) — Gemini 3.7 Flash (High) · Antigravity — https://universo-arena.alexanderoviedofadul.dev/Antigravity-Gemini-3.7-Flash-High/index.html
+17. 89/100 (tier A) — Gemini 3.5 Flash · Antigravity CLI — https://universo-arena.alexanderoviedofadul.dev/Agy-Gemini-3.5-Flash-Antigravity-CLI/index.html
+18. 89/100 (tier A) — GLM 5.2 · Claude Code — https://universo-arena.alexanderoviedofadul.dev/GLM-5.2-Claude-Code/index.html
+19. 89/100 (tier A) — GLM 5.2 (Max) · Zcode — https://universo-arena.alexanderoviedofadul.dev/Zcode-GML-5.2-Max/index.html
+20. 89/100 (tier A) — MiMo v2.5 Pro · OpenCode — https://universo-arena.alexanderoviedofadul.dev/Mimo-V2.5-Pro-OpenCode/index.html
+21. 89/100 (tier A) — Gemini 3.6 Flash (High) · Antigravity — https://universo-arena.alexanderoviedofadul.dev/Antigravity-Gemini-3.6-Flash-High/index.html
+22. 89/100 (tier A) — GLM 5.3 · Claude Code — https://universo-arena.alexanderoviedofadul.dev/GLM-5.3-Claude-Code/index.html
+23. 88/100 (tier A) — DeepSeek V4 Pro · CodeWhale — https://universo-arena.alexanderoviedofadul.dev/codewhale-deepseek-v4-pro/index.html
+24. 88/100 (tier A) — DeepSeek V4 Pro · Pi — https://universo-arena.alexanderoviedofadul.dev/Pi-DeepSeek-v4-pro/index.html
+25. 87/100 (tier A) — Kimi K3 · OpenCode — https://universo-arena.alexanderoviedofadul.dev/Kimi-K3-Open-Code/index.html
+26. 86/100 (tier A) — Claude Sonnet 4.6 · Antigravity IDE — https://universo-arena.alexanderoviedofadul.dev/Claude-Sonnet-4.6-Antigravity-IDE/index.html
+27. 86/100 (tier A) — Gemini 3.7 Flash · Antigravity CLI — https://universo-arena.alexanderoviedofadul.dev/Agy-Gemini-3.7-Flash-Antigravity-CLI/index.html
+28. 85/100 (tier A) — Gemini 3.6 Flash · Antigravity CLI — https://universo-arena.alexanderoviedofadul.dev/Agy-Gemini-3.6-Flash-Antigravity-CLI/index.html
+29. 80/100 (tier B) — Kimi K2.7 · Claude Code — https://universo-arena.alexanderoviedofadul.dev/Kimi-k.7-code-Claude-Code/index.html
+30. 79/100 (tier B) — Kimi K2.7 · Kimi Code CLI — https://universo-arena.alexanderoviedofadul.dev/kimi-k2.7-code-Kimi-Code-CLI/index.html
+31. 79/100 (tier B) — MiniMax M3 · mini-agent — https://universo-arena.alexanderoviedofadul.dev/mini-agent-MiniMax-M3/index.html
+32. 79/100 (tier B) — GPT-5.6 Terra · Codex — https://universo-arena.alexanderoviedofadul.dev/codex-gpt-5.6-terra/index.html
+33. 78/100 (tier B) — DeepSeek V4 Pro · Pi Coding Agent — https://universo-arena.alexanderoviedofadul.dev/deepseek-v4-pro-Pi-Coding-Agent/index.html
+34. 78/100 (tier B) — Claude Opus 4.6 · Antigravity — https://universo-arena.alexanderoviedofadul.dev/Antigravity-Claude-Opus-4.6/index.html
+35. 70/100 (tier C) — Devstral · Vibe — https://universo-arena.alexanderoviedofadul.dev/vibe-devstral/index.html
+36. 54/100 (tier D) — Z.ai GLM 5.2 · Claude Code — https://universo-arena.alexanderoviedofadul.dev/Zai-GLM-5.2-Claude-Code/index.html
 
 GPT-5.5 · Codex, Claude Opus 4.8 · Ultracode + Claude Code y Claude Opus 5 · Ultracode + Claude Code empatan en cabeza con 97/100.
-31/31 entregas arrancan y renderizan; 29/31 sin un solo error de consola.
+36/36 entregas arrancan y renderizan; 34/36 sin un solo error de consola.
 
 ## Datos y documentación
 

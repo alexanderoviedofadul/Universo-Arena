@@ -19,7 +19,7 @@ Un jurado-LLM por implementación lee el `index.html` **completo** y el spec, y 
 
 ### 2. Ejecución real (verdad de campo)
 
-Cada una de las 31 entregas se **abre en Chrome headless** (WebGL por SwiftShader) y se mide objetivamente:
+Cada una de las 36 entregas se **abre en Chrome headless** (WebGL por SwiftShader) y se mide objetivamente:
 
 - **Captura de pantalla** real (las que ves en la galería y los `assets/previews/`).
 - Número de **mallas en escena** (`scene.meshes.length`) — delata escenas incompletas.

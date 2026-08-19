@@ -6,7 +6,7 @@ Documentación completa del benchmark, su metodología y cómo reproducirlo o am
 |:--|:--|
 | **[methodology.md](methodology.md)** | Cómo se evaluó: las tres señales (rúbrica, ejecución real, calibración), por qué y sus límites. |
 | **[rubric.md](rubric.md)** | La rúbrica de 100 puntos: las 10 categorías, sus máximos y criterios de puntuación. |
-| **[results.md](results.md)** | Ficha detallada de las 31 entregas: desglose, runtime, fortalezas, debilidades y veredicto. |
+| **[results.md](results.md)** | Ficha detallada de las 36 entregas: desglose, runtime, fortalezas, debilidades y veredicto. |
 | **[harness.md](harness.md)** | El arnés técnico: pipeline multi-agente, capturas con Chrome headless y reproducibilidad. |
 | **[conclusions.md](conclusions.md)** | Análisis comparativo, conclusiones y estado del arte (versión extendida). |
 | **[contributing.md](contributing.md)** | Cómo añadir una nueva entrada y regenerar el benchmark y la galería. |
@@ -18,6 +18,7 @@ Documentación completa del benchmark, su metodología y cómo reproducirlo o am
 | **[septima-tanda-2026-07-29.md](septima-tanda-2026-07-29.md)** | Ampliación 26→28: 2 entradas Kimi K3 (Claude Code y OpenCode) y el salto generacional de Kimi (K2.7 tier B → K3 tier S/A). |
 | **[octava-tanda-2026-08-07.md](octava-tanda-2026-08-07.md)** | Ampliación 28→29: GPT-5.6 Terra · Codex (79, tier B) — regresión frente a GPT-5.5 (97) por fallar el foco pese a acertar la cola. |
 | **[novena-tanda-2026-08-07.md](novena-tanda-2026-08-07.md)** | Ampliación 29→31: DeepSeek V4 Flash · OpenCode (92, tier S, re-verificado de 96) y Claude Opus 4.6 · Antigravity (78, tier B, falla ambas trampas). |
+| **[decima-tanda-2026-08-07.md](decima-tanda-2026-08-07.md)** | Ampliación 31→36: 3× GLM 5.3 (OpenCode 91, Zcode 90, Claude Code 89) y 2× Gemini 3.7 Flash (High 90, CLI 86); ninguna alcanza a las hermanas 5.2/podio. |
 | **[deployment.md](deployment.md)** | Infraestructura de despliegue en producción y webhook de auto-despliegue continuo (CD). |
 | **[seo-geo-2026-06-15.md](seo-geo-2026-06-15.md)** | Auditoría y mejora SEO + GEO/AEO: Open Graph/Twitter por red social, `llms.txt`, `sitemap.xml`, `robots.txt` y JSON-LD. |
 | **[security-audit-2026-06-15.md](security-audit-2026-06-15.md)** | Auditoría de ciberseguridad (websec-100): redirect HTTP→HTTPS, bloqueo de paths sensibles, headers OWASP, CSP y `security.txt`. |

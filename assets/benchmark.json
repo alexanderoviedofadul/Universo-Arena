@@ -736,6 +736,66 @@
   "rank": 12
  },
  {
+  "folder": "Opencode-GLM-5.3",
+  "modelo": "GLM 5.3",
+  "agente": "OpenCode",
+  "color": "#5eead4",
+  "total": 91,
+  "tier": "S",
+  "scores": {
+   "completitudEscena": 19,
+   "fidelidadOrbital": 11,
+   "cometaHalley": 7,
+   "esteticaWow": 13,
+   "panelUI": 14,
+   "camaraControles": 7,
+   "postProcesado": 5,
+   "rendimiento": 5,
+   "robustez": 5,
+   "calidadCodigo": 5
+  },
+  "lineas": 1041,
+  "features": {
+   "sol": true,
+   "planetas8": true,
+   "plutonEnano": true,
+   "cinturonAsteroides": true,
+   "saturnoAnillos": true,
+   "halleyCola": true,
+   "colaOpuestaAlSol": true,
+   "estrellas3000": true,
+   "nebulosas": true,
+   "orbitasElipticas": true,
+   "bloomGlow": true,
+   "panelCompleto": true,
+   "vistasCamara": true,
+   "deltaTime": true,
+   "instanciasAsteroides": true,
+   "consultaContext7": false
+  },
+  "fortalezas": [
+   "Física orbital de primer nivel: ecuación de Kepler por Newton-Raphson (L307-314) con velocidad orbital VARIABLE real, Sol en el foco y la misma función posicionElipse para línea de órbita y movimiento del cuerpo (L325-328, 643-646, 983).",
+   "Cola del cometa impecable: vector anti-solar con temporal dedicado _vCola sin mutar el núcleo, recalculado cada frame (L1004-1009); e=0.85 con Sol en el foco.",
+   "Tercer discriminador correcto (levógiro): revolución +X→−Z coherente con rotación axial +Y; instancing real de 280 asteroides (createInstance, base deshabilitada), deltaTime en todo el loop.",
+   "Robustez ejemplar: try/catch en arranque, fallback ParticleHelper→corona propia (L533-555), fallback de post-proceso, banner de error; código limpio, seccionado, JSDoc, 'use strict'."
+  ],
+  "debilidades": [
+   "Estética correcta pero no espectacular: nebulosas son planos billboard simples y varios planetas (Mercurio, Urano, Neptuno, Plutón) usan color plano sin textura.",
+   "Sin evidencia de consulta a Context7 en código ni comentarios.",
+   "Rendimiento no destaca frente a los líderes (fps 5 en runtime headless)."
+  ],
+  "riesgo": "medio",
+  "veredicto": "Tier S por mérito (91). Acierta las dos trampas con rigor —Sol en el foco con misma función para órbita y cuerpo (posicionElipse L325-328 usada en L983 y L643-646), y cola anti-solar vía temporal _vCola normalizado sin mutar el núcleo (L1004-1009)— e incluso el tercer discriminador levógiro, con instancing real (createInstance L673) y solver de Kepler que da velocidad variable auténtica (L307-314). Queda por debajo del pelotón de 95 (y de su hermana GLM 5.2 · OpenCode, 95) porque el acabado estético (nebulosas planas, planetas sin textura) y el rendimiento no la superan.",
+  "runtime": {
+   "meshes": 324,
+   "fps": 5,
+   "consoleErrors": 0,
+   "webgl": true
+  },
+  "preview": "assets/previews/Opencode-GLM-5.3.png",
+  "rank": 13
+ },
+ {
   "folder": "Mimo-V2.5-Pro-Claude-Code",
   "modelo": "MiMo v2.5 Pro",
   "agente": "Claude Code",
@@ -794,7 +854,125 @@
    "webgl": true
   },
   "preview": "assets/previews/Mimo-V2.5-Pro-Claude-Code.png",
-  "rank": 13
+  "rank": 14
+ },
+ {
+  "folder": "Zcode-GML-5.3-Max",
+  "modelo": "GLM 5.3 (Max)",
+  "agente": "Zcode",
+  "color": "#0ea5e9",
+  "total": 90,
+  "tier": "S",
+  "scores": {
+   "completitudEscena": 18,
+   "fidelidadOrbital": 11,
+   "cometaHalley": 8,
+   "esteticaWow": 14,
+   "panelUI": 12,
+   "camaraControles": 7,
+   "postProcesado": 6,
+   "rendimiento": 4,
+   "robustez": 5,
+   "calidadCodigo": 5
+  },
+  "lineas": 1381,
+  "features": {
+   "sol": true,
+   "planetas8": true,
+   "plutonEnano": true,
+   "cinturonAsteroides": true,
+   "saturnoAnillos": true,
+   "halleyCola": true,
+   "colaOpuestaAlSol": true,
+   "estrellas3000": true,
+   "nebulosas": true,
+   "orbitasElipticas": true,
+   "bloomGlow": true,
+   "panelCompleto": false,
+   "vistasCamara": true,
+   "deltaTime": true,
+   "instanciasAsteroides": true,
+   "consultaContext7": true
+  },
+  "fortalezas": [
+   "Ambas trampas impecables: Sol en el foco con una sola función (posicionElipse L730-733) compartida por las líneas de órbita (L975) y el movimiento (L1307), y cola anti-solar con normalizeToNew sin mutación recalculada cada frame (L1340-1342).",
+   "Halley resuelve la ecuación de Kepler por Newton (L737-743, 1330) acelerando de verdad en el perihelio; instancing real createInstance para 240 asteroides en 1 draw call (L1005); 10 lunas reales con Tritón retrógrada.",
+   "Post-procesado sólido (pipeline + GlowLayer restringido L1151-1172), 6 vistas de cámara con transición sin rebotes y robustez con múltiples fallbacks (WebGL guard, try/catch, corona manual)."
+  ],
+  "debilidades": [
+   "Panel con solo 3 secciones (la tarea esperaba 4).",
+   "Rendimiento pobre en runtime (fps 8 con 290 mallas + estrellas/cola de partículas).",
+   "Posible incoherencia sutil del tercer discriminador (órbita +X→+Z frente a rotation.y positivo)."
+  ],
+  "riesgo": "bajo",
+  "veredicto": "Tier S (90). Trampa 1 resuelta con el Sol en el foco vía posicionElipse (L730-733) usada idénticamente en órbitas (L975) y en el bucle de movimiento (L1307); trampa 2 correcta con normalizeToNew (L1340) sin mutar, asignada a direction1 cada frame. Instancing genuino (createInstance L1005). Supera por un punto a su hermana Zcode GLM 5.2 Max (89) por la solución de Kepler con aceleración en perihelio, 10 lunas reales y cámara sin rebotes; se queda por debajo del clúster de 92 por el panel de solo 3 secciones y el rendimiento débil.",
+  "runtime": {
+   "meshes": 290,
+   "fps": 8,
+   "consoleErrors": 0,
+   "webgl": true
+  },
+  "preview": "assets/previews/Zcode-GML-5.3-Max.png",
+  "rank": 15
+ },
+ {
+  "folder": "Antigravity-Gemini-3.7-Flash-High",
+  "modelo": "Gemini 3.7 Flash (High)",
+  "agente": "Antigravity",
+  "color": "#4f8ff7",
+  "total": 90,
+  "tier": "S",
+  "scores": {
+   "completitudEscena": 19,
+   "fidelidadOrbital": 11,
+   "cometaHalley": 7,
+   "esteticaWow": 14,
+   "panelUI": 14,
+   "camaraControles": 7,
+   "postProcesado": 5,
+   "rendimiento": 3,
+   "robustez": 5,
+   "calidadCodigo": 5
+  },
+  "lineas": 1752,
+  "features": {
+   "sol": true,
+   "planetas8": true,
+   "plutonEnano": true,
+   "cinturonAsteroides": true,
+   "saturnoAnillos": true,
+   "halleyCola": true,
+   "colaOpuestaAlSol": true,
+   "estrellas3000": true,
+   "nebulosas": true,
+   "orbitasElipticas": true,
+   "bloomGlow": true,
+   "panelCompleto": true,
+   "vistasCamara": true,
+   "deltaTime": true,
+   "instanciasAsteroides": true,
+   "consultaContext7": false
+  },
+  "fortalezas": [
+   "Sol en el foco EXACTO y una sola función reutilizada: calculateKeplerPosition (L822-841) con b=a·√(1−e²), c=a·e, x=a·cosθ−c; la MISMA función alimenta las líneas de órbita (L1167, 1181) y el movimiento por frame (L1439, 1472).",
+   "Cola del cometa correcta y anti-solar recalculada cada frame: con el Sol en (0,0,0), tempAntiSunDir = copyFrom(cometPos).normalize() (L1480-1481) apunta cometa−Sol sin negate/scale(-1) ni mutar halleyMesh.position.",
+   "Instancing REAL con baseAsteroid.createInstance (L1309) para 280 asteroides; rotación retrógrada correcta en Venus (−0.2, L608) y Urano (−1.3, L683); post-proceso doble (GlowLayer + DefaultRenderingPipeline bloom) y 0 errores."
+  ],
+  "debilidades": [
+   "Rendimiento pobre: 322 mallas con 4200 estrellas + 1400 partículas de cola + 280 instancias arrojan 8 fps en el harness; escena genuinamente sobrecargada.",
+   "Velocidad orbital angular constante por planeta (L1436) en lugar de 2.ª ley de Kepler real, pese al comentario que lo afirma.",
+   "direction1/2 de la cola añaden offsets fijos ±1.2 que sesgan levemente el chorro; sin evidencia de consulta a Context7."
+  ],
+  "riesgo": "bajo",
+  "veredicto": "Tier S (90). Ambas trampas resueltas: Sol en el foco con x=a·cosθ−a·e, b=a·√(1−e²) (L831-840) compartido entre trazo y movimiento, y cola cometa−Sol anti-solar recalculada por frame sin mutación destructiva (L1480-1493). Instancing auténtico (createInstance L1309). Supera a la 3.6 High (89) por corrección física verificable, rotación retrógrada de Venus/Urano y post-proceso doble, pero no alcanza el clúster de 92 (como la 3.5 High) por el rendimiento real (8 fps, escena sobrecargada) y la velocidad orbital sin 2.ª ley de Kepler.",
+  "runtime": {
+   "meshes": 322,
+   "fps": 8,
+   "consoleErrors": 0,
+   "webgl": true
+  },
+  "preview": "assets/previews/Antigravity-Gemini-3.7-Flash-High.png",
+  "rank": 16
  },
  {
   "folder": "Agy-Gemini-3.5-Flash-Antigravity-CLI",
@@ -855,7 +1033,7 @@
    "webgl": true
   },
   "preview": "assets/previews/Agy-Gemini-3.5-Flash-Antigravity-CLI.png",
-  "rank": 14
+  "rank": 17
  },
  {
   "folder": "GLM-5.2-Claude-Code",
@@ -916,7 +1094,7 @@
    "webgl": true
   },
   "preview": "assets/previews/GLM-5.2-Claude-Code.png",
-  "rank": 15
+  "rank": 18
  },
  {
   "folder": "Zcode-GML-5.2-Max",
@@ -979,7 +1157,7 @@
    "webgl": true
   },
   "preview": "assets/previews/Zcode-GML-5.2-Max.png",
-  "rank": 16
+  "rank": 19
  },
  {
   "folder": "Mimo-V2.5-Pro-OpenCode",
@@ -1040,7 +1218,7 @@
    "webgl": true
   },
   "preview": "assets/previews/Mimo-V2.5-Pro-OpenCode.png",
-  "rank": 17
+  "rank": 20
  },
  {
   "folder": "Antigravity-Gemini-3.6-Flash-High",
@@ -1101,7 +1279,66 @@
    "webgl": true
   },
   "preview": "assets/previews/Antigravity-Gemini-3.6-Flash-High.png",
-  "rank": 18
+  "rank": 21
+ },
+ {
+  "folder": "GLM-5.3-Claude-Code",
+  "modelo": "GLM 5.3",
+  "agente": "Claude Code",
+  "color": "#0891b2",
+  "total": 89,
+  "tier": "A",
+  "scores": {
+   "completitudEscena": 19,
+   "fidelidadOrbital": 10,
+   "cometaHalley": 7,
+   "esteticaWow": 13,
+   "panelUI": 13,
+   "camaraControles": 7,
+   "postProcesado": 6,
+   "rendimiento": 4,
+   "robustez": 5,
+   "calidadCodigo": 5
+  },
+  "lineas": 1567,
+  "features": {
+   "sol": true,
+   "planetas8": true,
+   "plutonEnano": true,
+   "cinturonAsteroides": true,
+   "saturnoAnillos": true,
+   "halleyCola": true,
+   "colaOpuestaAlSol": true,
+   "estrellas3000": true,
+   "nebulosas": true,
+   "orbitasElipticas": true,
+   "bloomGlow": true,
+   "panelCompleto": true,
+   "vistasCamara": true,
+   "deltaTime": true,
+   "instanciasAsteroides": true,
+   "consultaContext7": true
+  },
+  "fortalezas": [
+   "Trampa 1 impecable: posicionElipse (L490-493) usa x=a·cosθ−a·e, z=b·sinθ, b=a·√(1−e²), y la MISMA función alimenta línea (L1048/1179) y movimiento (L1351/1374) — foco real, no centro.",
+   "Trampa 2 impecable: cola = posNucleo.subtract(posSol).normalizeToNew() (L1385) recalculada cada frame, sin negate/scale(-1) ni normalize() mutante; escala emitRate/potencia según distancia al Sol.",
+   "Instancing real (createInstance sobre 2 mallas base para 260 asteroides, L1094); robustez sobresaliente: guarda de CDN (L416), webglcontextlost (L427), corona fallback (L863-895), post-procesado en try/catch (L1264-1290)."
+  ],
+  "debilidades": [
+   "Tercer discriminador INVERTIDO: la revolución usa z=+b·sinθ (+X→+Z) mientras la rotación axial es rotation.y+ (+X→−Z en Babylon levógiro); revolución y giro propio quedan en sentidos OPUESTOS.",
+   "Rendimiento flojo en el harness: fps 6 con 304 mallas (bloom+glow+~5400 partículas).",
+   "El cono de emisión de la cola aplica la misma dispersión 0.22 en los tres ejes (L1392-1397) en vez de una base perpendicular a la dirección anti-solar."
+  ],
+  "riesgo": "bajo",
+  "veredicto": "Tier A (89). Las dos trampas están resueltas con rigor de manual: foco en posicionElipse (L490-493) compartida por línea y movimiento, y cola en L1385 con posNucleo.subtract(posSol).normalizeToNew() por frame (opuesta al Sol garantizada); instancing genuino (createInstance L1094). Empata a su hermana GLM 5.2 · Claude Code (89): iguala su nivel con ambas trampas limpias y una robustez y post-procesado superiores, pero el crédito extra se compensa con el fps 6 del harness y la inversión sutil revolución/rotación del tercer discriminador (z=+b·sinθ con rotation.y+).",
+  "runtime": {
+   "meshes": 304,
+   "fps": 6,
+   "consoleErrors": 0,
+   "webgl": true
+  },
+  "preview": "assets/previews/GLM-5.3-Claude-Code.png",
+  "rank": 22
  },
  {
   "folder": "codewhale-deepseek-v4-pro",
@@ -1162,7 +1399,7 @@
    "webgl": true
   },
   "preview": "assets/previews/codewhale-deepseek-v4-pro.png",
-  "rank": 19
+  "rank": 23
  },
  {
   "folder": "Pi-DeepSeek-v4-pro",
@@ -1223,7 +1460,7 @@
    "webgl": true
   },
   "preview": "assets/previews/Pi-DeepSeek-v4-pro.png",
-  "rank": 20
+  "rank": 24
  },
  {
   "folder": "Kimi-K3-Open-Code",
@@ -1284,7 +1521,7 @@
    "webgl": true
   },
   "preview": "assets/previews/Kimi-K3-Open-Code.png",
-  "rank": 21
+  "rank": 25
  },
  {
   "folder": "Claude-Sonnet-4.6-Antigravity-IDE",
@@ -1345,7 +1582,66 @@
    "webgl": true
   },
   "preview": "assets/previews/Claude-Sonnet-4.6-Antigravity-IDE.png",
-  "rank": 22
+  "rank": 26
+ },
+ {
+  "folder": "Agy-Gemini-3.7-Flash-Antigravity-CLI",
+  "modelo": "Gemini 3.7 Flash",
+  "agente": "Antigravity CLI",
+  "color": "#93b8ff",
+  "total": 86,
+  "tier": "A",
+  "scores": {
+   "completitudEscena": 18,
+   "fidelidadOrbital": 11,
+   "cometaHalley": 7,
+   "esteticaWow": 11,
+   "panelUI": 14,
+   "camaraControles": 7,
+   "postProcesado": 6,
+   "rendimiento": 4,
+   "robustez": 4,
+   "calidadCodigo": 4
+  },
+  "lineas": 2370,
+  "features": {
+   "sol": true,
+   "planetas8": true,
+   "plutonEnano": true,
+   "cinturonAsteroides": true,
+   "saturnoAnillos": true,
+   "halleyCola": true,
+   "colaOpuestaAlSol": true,
+   "estrellas3000": true,
+   "nebulosas": true,
+   "orbitasElipticas": true,
+   "bloomGlow": true,
+   "panelCompleto": true,
+   "vistasCamara": true,
+   "deltaTime": true,
+   "instanciasAsteroides": true,
+   "consultaContext7": false
+  },
+  "fortalezas": [
+   "Trampa 1 resuelta: calculateKeplerianPosition (L1493-1499) usa x=a·cosθ−a·e, z=b·sinθ, b=a·√(1−e²), y es la MISMA función para planetas (L2246), órbitas (L1670), asteroides (L2307) y Halley (L2272) — Sol en el foco, elipses descentradas confirmadas en la captura.",
+   "Trampa 2 resuelta: antiSolar = hPos.subtract(Vector3.Zero()).normalize() (L2281) apunta cometa−Sol cada frame, sin negate ni mutación de hPos (normaliza el vector nuevo de subtract).",
+   "Instancing REAL: baseAsteroid.setEnabled(false) + createInstance (L1719) para 280 asteroides; deltaTime (L2193), panel de 4 secciones completo, GlowLayer + DefaultRenderingPipeline + ACES; la más completa del campo (361 mallas, 0 errores)."
+  ],
+  "debilidades": [
+   "PARCHES BLANCOS EN ETIQUETAS PERSISTEN: labelMat usa emissiveColor.White + disableLighting sin useAlphaFromDiffuseTexture/opacityTexture (L1554-1557); con bloom, cada etiqueta florece como un cuadrado blanco que tapa el planeta y hace el texto casi ilegible (visible en la captura) — el mismo defecto que costó puntos a la 3.6, no corregido pese a lo afirmado en los commits.",
+   "Rendimiento pobre: 9 fps pese al instancing, por múltiples ParticleSystems (2800 cola + 400 coma + 3800 estrellas), 361 mallas y texturas procedurales grandes.",
+   "Tercer discriminador dudoso (revolución z=+b·sinθ frente a rotation.y+); sin evidencia de consulta a Context7."
+  ],
+  "riesgo": "bajo",
+  "veredicto": "Tier A (86). Trampa 1 correcta: Sol en el foco con x=a·cosθ−a·e y b=a·√(1−e²) en calculateKeplerianPosition (L1493-1499), función única compartida por planetas, órbitas, asteroides y Halley. Trampa 2 correcta: antiSolar = hPos.subtract(Vector3.Zero()).normalize() (L2281) apunta cometa−Sol cada frame sin mutar hPos. Instancing genuino (createInstance L1719). Supera por poco a la 3.6 CLI (85) por la corrección demostrable de ambas trampas, pero se queda por debajo de la 3.5 CLI (89) porque arrastra el mismo defecto de parches blancos en etiquetas (L1554-1557, visibles en la captura) y solo alcanza 9 fps.",
+  "runtime": {
+   "meshes": 361,
+   "fps": 9,
+   "consoleErrors": 0,
+   "webgl": true
+  },
+  "preview": "assets/previews/Agy-Gemini-3.7-Flash-Antigravity-CLI.png",
+  "rank": 27
  },
  {
   "folder": "Agy-Gemini-3.6-Flash-Antigravity-CLI",
@@ -1406,7 +1702,7 @@
    "webgl": true
   },
   "preview": "assets/previews/Agy-Gemini-3.6-Flash-Antigravity-CLI.png",
-  "rank": 23
+  "rank": 28
  },
  {
   "folder": "Kimi-k.7-code-Claude-Code",
@@ -1467,7 +1763,7 @@
    "webgl": true
   },
   "preview": "assets/previews/Kimi-k.7-code-Claude-Code.png",
-  "rank": 24
+  "rank": 29
  },
  {
   "folder": "kimi-k2.7-code-Kimi-Code-CLI",
@@ -1528,7 +1824,7 @@
    "webgl": true
   },
   "preview": "assets/previews/kimi-k2.7-code-Kimi-Code-CLI.png",
-  "rank": 25
+  "rank": 30
  },
  {
   "folder": "mini-agent-MiniMax-M3",
@@ -1589,7 +1885,7 @@
    "webgl": true
   },
   "preview": "assets/previews/mini-agent-MiniMax-M3.png",
-  "rank": 26
+  "rank": 31
  },
  {
   "folder": "codex-gpt-5.6-terra",
@@ -1648,7 +1944,7 @@
    "webgl": true
   },
   "preview": "assets/previews/codex-gpt-5.6-terra.png",
-  "rank": 27
+  "rank": 32
  },
  {
   "folder": "deepseek-v4-pro-Pi-Coding-Agent",
@@ -1709,7 +2005,7 @@
    "webgl": true
   },
   "preview": "assets/previews/deepseek-v4-pro-Pi-Coding-Agent.png",
-  "rank": 28
+  "rank": 33
  },
  {
   "folder": "Antigravity-Claude-Opus-4.6",
@@ -1770,7 +2066,7 @@
    "webgl": true
   },
   "preview": "assets/previews/Antigravity-Claude-Opus-4.6.png",
-  "rank": 29
+  "rank": 34
  },
  {
   "folder": "vibe-devstral",
@@ -1831,7 +2127,7 @@
    "webgl": true
   },
   "preview": "assets/previews/vibe-devstral.png",
-  "rank": 30
+  "rank": 35
  },
  {
   "folder": "Zai-GLM-5.2-Claude-Code",
@@ -1892,6 +2188,6 @@
    "webgl": true
   },
   "preview": "assets/previews/Zai-GLM-5.2-Claude-Code.png",
-  "rank": 31
+  "rank": 36
  }
 ]

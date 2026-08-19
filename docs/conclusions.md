@@ -68,7 +68,7 @@ La revisión estática declaró "pantalla negra / no arranca" a `GLM-5.2-Claude-
 
 ## Conclusiones
 
-- **El listón base es altísimo:** las **31** entregas arrancan y renderizan una escena WebGL compleja (≈1.1k líneas) en una sola pasada, y **29 de 31 con cero errores de consola**.
+- **El listón base es altísimo:** las **36** entregas arrancan y renderizan una escena WebGL compleja (≈1.1k líneas) en una sola pasada, y **34 de 36 con cero errores de consola**.
 - **La frontera ya no es "¿funciona?" sino "¿acierta los detalles difíciles?":** foco orbital, signo de un vector, *instancing*, degradación elegante.
 - **El andamiaje del agente es un multiplicador**, no un detalle.
 - **Evaluar agentes exige ejecutarlos:** la revisión estática y la ejecución real discrepan, y la verdad está en el *runtime*.

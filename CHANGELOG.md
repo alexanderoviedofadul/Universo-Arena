@@ -6,6 +6,34 @@ Todos los cambios notables de **Universo-Arena**. El formato sigue
 
 ## [Unreleased]
 
+### Añadido — Décima tanda: 31 → 36 entradas (2026-08-07)
+
+- **5 entradas nuevas** (3× GLM 5.3, 2× Gemini 3.7 Flash), todas con **0 errores de
+  consola** y ambas trampas resueltas:
+  - `Opencode-GLM-5.3` (GLM 5.3 · OpenCode, **91**, #13, tier S): Kepler por
+    Newton-Raphson con velocidad variable real, foco e instancing correctos.
+  - `Zcode-GML-5.3-Max` (GLM 5.3 (Max) · Zcode, **90**, #15, tier S): Kepler con
+    aceleración en perihelio y 10 lunas reales; panel de solo 3 secciones.
+  - `Antigravity-Gemini-3.7-Flash-High` (Gemini 3.7 Flash (High) · Antigravity, **90**,
+    #16, tier S): foco y cola correctos, Venus/Urano retrógrados; rendimiento pobre.
+  - `GLM-5.3-Claude-Code` (GLM 5.3 · Claude Code, **89**, #22, tier A): ambas trampas
+    limpias pero **tercer discriminador invertido** (revolución vs rotación).
+  - `Agy-Gemini-3.7-Flash-Antigravity-CLI` (Gemini 3.7 Flash · Antigravity CLI, **86**,
+    #27, tier A): la más completa (361 mallas) pero **parches blancos en etiquetas
+    persisten** (defecto de la 3.6 no corregido).
+- **Hallazgos:** ninguna de las 5 alcanza a su hermana calibrada ni al podio. GLM 5.3
+  no supera a GLM 5.2 · OpenCode (95); Gemini 3.7 Flash sube solo +1 sobre la 3.6 en
+  ambos agentes. El foco elíptico, el tercer discriminador y los parches de etiquetas
+  siguen siendo los discriminadores que separan generaciones. Detalle en
+  [`docs/decima-tanda-2026-08-07.md`](docs/decima-tanda-2026-08-07.md).
+- **Re-ranking completo a 36 entradas** preservando el triple empate de cabeza (97) y
+  los siete 95. Ahora **34/36** sin errores y media 87.
+- Regenerados todos los artefactos derivados de `assets/benchmark.json`: galería
+  `index.html` (DATA, contadores dinámicos, bloque "estado del arte" 36/36·34/36,
+  JSON-LD `ItemList` de 36, metas), `README.md` (tablas + badges), `docs/results.md`,
+  `docs/conclusions.md`, `docs/methodology.md`, `docs/README.md`, `sitemap.xml`,
+  `llms.txt`, `llms-full.txt` y `assets/runtime.json`.
+
 ### Añadido — Novena tanda: 29 → 31 entradas (2026-08-07)
 
 - **2 entradas nuevas**:

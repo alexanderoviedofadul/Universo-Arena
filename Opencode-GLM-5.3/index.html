@@ -235,8 +235,7 @@ const COLORES_SOL = {
 const ESTADO = {
   velGlobal: 1,      // multiplicador de todas las animaciones
   multOrbital: 1,    // multiplicador extra solo del movimiento orbital
-  pausado: false,
-  seguimiento: null  // nombre del mesh al que sigue la cámara (o null)
+  pausado: false
 };
 
 /* ── 2. ENGINE + ESCENA ────────────────────────────────────────── */
@@ -260,8 +259,7 @@ let nebulosasRaiz;
 let pipeline = null, glowLayer = null;
 let tiempoSim = 0;
 
-/** Vectores temporales reutilizados para no crear basura cada frame. */
-const _vTmp  = new BABYLON.Vector3();
+/** Vector temporal reutilizado para no crear basura cada frame. */
 const _vCola = new BABYLON.Vector3();
 
 /* ── 3. CÁMARA ─────────────────────────────────────────────────── */
@@ -863,15 +861,18 @@ function buscarObjetivo(nombre) {
 
 /**
  * Aplica una vista de cámara: radio, objetivo y límite de zoom cercano.
+ * Para los cuerpos se usa setTarget(mesh): seguimiento nativo de Babylon
+ * que refresca el objetivo cada frame sin tocar el radio.
  * @param {string} clave - Clave de VISTAS.
  */
 function aplicarVista(clave) {
   const vista = VISTAS[clave];
   if (!vista) return;
-  ESTADO.seguimiento = vista.objetivo;
   camera.lowerRadiusLimit = vista.minimo;
+  const objetivo = vista.objetivo ? buscarObjetivo(vista.objetivo) : null;
+  if (objetivo) camera.setTarget(objetivo);
+  else camera.setTarget(BABYLON.Vector3.Zero());
   camera.radius = vista.radio;
-  if (!vista.objetivo) camera.setTarget(BABYLON.Vector3.Zero());
 }
 
 /**
@@ -962,15 +963,6 @@ function setupUI() {
  */
 scene.onBeforeRenderObservable.add(() => {
   const deltaT = engine.getDeltaTime() / 1000;
-
-  // La cámara sigue a su objetivo aunque la simulación esté en pausa.
-  if (ESTADO.seguimiento) {
-    const objetivo = buscarObjetivo(ESTADO.seguimiento);
-    if (objetivo) {
-      _vTmp.copyFrom(objetivo.getAbsolutePosition());
-      camera.setTarget(_vTmp);
-    }
-  }
 
   if (ESTADO.pausado) return;
 

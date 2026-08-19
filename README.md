@@ -4,12 +4,12 @@
   <img src="assets/universo_arena_banner.png" alt="Universo-Arena Banner" width="100%">
 </p>
 
-### Un mismo prompt. 31 combinaciones de LLM + agente de código. Una sola pasada. ¿Quién construye el mejor universo 3D?
+### Un mismo prompt. 36 combinaciones de LLM + agente de código. Una sola pasada. ¿Quién construye el mejor universo 3D?
 
 <p align="center">
-  <img alt="Entregas" src="https://img.shields.io/badge/entregas-31-7c9cff">
+  <img alt="Entregas" src="https://img.shields.io/badge/entregas-36-7c9cff">
   <img alt="Ganador" src="https://img.shields.io/badge/%F0%9F%A5%87-GPT--5.5%20·%20Codex%20(97)-ffd24a">
-  <img alt="Sin errores" src="https://img.shields.io/badge/sin%20errores-29%2F31-56e0a6">
+  <img alt="Sin errores" src="https://img.shields.io/badge/sin%20errores-34%2F36-56e0a6">
   <img alt="Tecnología" src="https://img.shields.io/badge/BabylonJS-WebGL-bb464b">
   <img alt="Licencia" src="https://img.shields.io/badge/licencia-MIT-blue">
 </p>
@@ -51,7 +51,7 @@ Todo ello generado en **una sola pasada** por cada agente.
 La evaluación combina **tres señales independientes** para evitar tanto la subjetividad como las alucinaciones del juez:
 
 1. **Rúbrica de 100 puntos** sobre 10 categorías (escena, fidelidad orbital, cometa Halley, estética, panel UI, cámara, post‑procesado, rendimiento, robustez y calidad de código). Un jurado‑LLM por implementación leyó el `index.html` completo y el spec, y puntuó **verificando el código, no los comentarios**.
-2. **Ejecución real en Chrome *headless*** (WebGL vía SwiftShader) de las 31 entregas: se capturó **captura de pantalla**, número de **mallas en escena**, **FPS** y, sobre todo, **errores de consola y excepciones** reales. Ningún archivo se juzga solo por su código: se juzga por lo que hace al abrirse.
+2. **Ejecución real en Chrome *headless*** (WebGL vía SwiftShader) de las 36 entregas: se capturó **captura de pantalla**, número de **mallas en escena**, **FPS** y, sobre todo, **errores de consola y excepciones** reales. Ningún archivo se juzga solo por su código: se juzga por lo que hace al abrirse.
 3. **Calibración adversarial + corrección por *runtime*.** Un juez final normalizó las notas entre jurados. Donde la revisión estática contradijo la ejecución real, **mandó la ejecución real** (ver "El caso GLM‑5.2" más abajo).
 
 > Orquestado con un *pipeline* multi‑agente (15+ subagentes): un evaluador por entrega en paralelo, un calibrador, y re‑evaluaciones dirigidas para las contradicciones. Toda la data cruda vive en [`assets/benchmark.json`](assets/benchmark.json) y [`assets/runtime.json`](assets/runtime.json).
@@ -76,26 +76,31 @@ La evaluación combina **tres señales independientes** para evitar tanto la sub
 | 9 |  | **Gemini 3.5 (High)** | Antigravity | **92** | S | ✅ 0 | 1533 | [▶](Antigravity-Gemini-3.5-High/index.html) |
 | 10 |  | **MiniMax M3** | Claude Code | **92** | S | ✅ 0 | 1062 | [▶](Minimax-M3-Claude-Code/index.html) |
 | 11 |  | **Kimi K3** | Claude Code | **92** | S | ✅ 0 | 1245 | [▶](Kimi-K3-Claude-Code/index.html) |
-| 12 |  | **DeepSeek V4 Flash** 🆕 | OpenCode | **92** | S | ✅ 0 | 1131 | [▶](Opencode-DeepSeek-V4-Flash/index.html) |
-| 13 |  | **MiMo v2.5 Pro** | Claude Code | **90** | S | ✅ 0 | 1005 | [▶](Mimo-V2.5-Pro-Claude-Code/index.html) |
-| 14 |  | **Gemini 3.5 Flash** | Antigravity CLI | **89** | A | ✅ 0 | 1637 | [▶](Agy-Gemini-3.5-Flash-Antigravity-CLI/index.html) |
-| 15 |  | **GLM 5.2** | Claude Code | **89** | A | ✅ 0 | 1306 | [▶](GLM-5.2-Claude-Code/index.html) |
-| 16 |  | **GLM 5.2 (Max)** | Zcode | **89** | A | ✅ 0 | 1275 | [▶](Zcode-GML-5.2-Max/index.html) |
-| 17 |  | **MiMo v2.5 Pro** | OpenCode | **89** | A | ✅ 0 | 1239 | [▶](Mimo-V2.5-Pro-OpenCode/index.html) |
-| 18 |  | **Gemini 3.6 Flash (High)** | Antigravity | **89** | A | ✅ 0 | 1249 | [▶](Antigravity-Gemini-3.6-Flash-High/index.html) |
-| 19 |  | **DeepSeek V4 Pro** | CodeWhale | **88** | A | ✅ 0 | 1251 | [▶](codewhale-deepseek-v4-pro/index.html) |
-| 20 |  | **DeepSeek V4 Pro** | Pi | **88** | A | ✅ 0 | 1575 | [▶](Pi-DeepSeek-v4-pro/index.html) |
-| 21 |  | **Kimi K3** | OpenCode | **87** | A | ✅ 0 | 1544 | [▶](Kimi-K3-Open-Code/index.html) |
-| 22 |  | **Claude Sonnet 4.6** | Antigravity IDE | **86** | A | ✅ 0 | 1592 | [▶](Claude-Sonnet-4.6-Antigravity-IDE/index.html) |
-| 23 |  | **Gemini 3.6 Flash** | Antigravity CLI | **85** | A | ✅ 0 | 1510 | [▶](Agy-Gemini-3.6-Flash-Antigravity-CLI/index.html) |
-| 24 |  | **Kimi K2.7** | Claude Code | **80** | B | ⚠️ 1 | 696 | [▶](Kimi-k.7-code-Claude-Code/index.html) |
-| 25 |  | **Kimi K2.7** | Kimi Code CLI | **79** | B | ⚠️ 1 | 541 | [▶](kimi-k2.7-code-Kimi-Code-CLI/index.html) |
-| 26 |  | **MiniMax M3** | mini-agent | **79** | B | ✅ 0 | 1100 | [▶](mini-agent-MiniMax-M3/index.html) |
-| 27 |  | **GPT-5.6 Terra** | Codex | **79** | B | ✅ 0 | 120 | [▶](codex-gpt-5.6-terra/index.html) |
-| 28 |  | **DeepSeek V4 Pro** | Pi Coding Agent | **78** | B | ✅ 0 | 1276 | [▶](deepseek-v4-pro-Pi-Coding-Agent/index.html) |
-| 29 |  | **Claude Opus 4.6** 🆕 | Antigravity | **78** | B | ✅ 0 | 1824 | [▶](Antigravity-Claude-Opus-4.6/index.html) |
-| 30 |  | **Devstral** | Vibe | **70** | C | ✅ 0 | 960 | [▶](vibe-devstral/index.html) |
-| 31 |  | **Z.ai GLM 5.2** | Claude Code | **54** | D | ✅ 0 | 624 | [▶](Zai-GLM-5.2-Claude-Code/index.html) |
+| 12 |  | **DeepSeek V4 Flash** | OpenCode | **92** | S | ✅ 0 | 1131 | [▶](Opencode-DeepSeek-V4-Flash/index.html) |
+| 13 |  | **GLM 5.3** 🆕 | OpenCode | **91** | S | ✅ 0 | 1041 | [▶](Opencode-GLM-5.3/index.html) |
+| 14 |  | **MiMo v2.5 Pro** | Claude Code | **90** | S | ✅ 0 | 1005 | [▶](Mimo-V2.5-Pro-Claude-Code/index.html) |
+| 15 |  | **GLM 5.3 (Max)** 🆕 | Zcode | **90** | S | ✅ 0 | 1381 | [▶](Zcode-GML-5.3-Max/index.html) |
+| 16 |  | **Gemini 3.7 Flash (High)** 🆕 | Antigravity | **90** | S | ✅ 0 | 1752 | [▶](Antigravity-Gemini-3.7-Flash-High/index.html) |
+| 17 |  | **Gemini 3.5 Flash** | Antigravity CLI | **89** | A | ✅ 0 | 1637 | [▶](Agy-Gemini-3.5-Flash-Antigravity-CLI/index.html) |
+| 18 |  | **GLM 5.2** | Claude Code | **89** | A | ✅ 0 | 1306 | [▶](GLM-5.2-Claude-Code/index.html) |
+| 19 |  | **GLM 5.2 (Max)** | Zcode | **89** | A | ✅ 0 | 1275 | [▶](Zcode-GML-5.2-Max/index.html) |
+| 20 |  | **MiMo v2.5 Pro** | OpenCode | **89** | A | ✅ 0 | 1239 | [▶](Mimo-V2.5-Pro-OpenCode/index.html) |
+| 21 |  | **Gemini 3.6 Flash (High)** | Antigravity | **89** | A | ✅ 0 | 1249 | [▶](Antigravity-Gemini-3.6-Flash-High/index.html) |
+| 22 |  | **GLM 5.3** 🆕 | Claude Code | **89** | A | ✅ 0 | 1567 | [▶](GLM-5.3-Claude-Code/index.html) |
+| 23 |  | **DeepSeek V4 Pro** | CodeWhale | **88** | A | ✅ 0 | 1251 | [▶](codewhale-deepseek-v4-pro/index.html) |
+| 24 |  | **DeepSeek V4 Pro** | Pi | **88** | A | ✅ 0 | 1575 | [▶](Pi-DeepSeek-v4-pro/index.html) |
+| 25 |  | **Kimi K3** | OpenCode | **87** | A | ✅ 0 | 1544 | [▶](Kimi-K3-Open-Code/index.html) |
+| 26 |  | **Claude Sonnet 4.6** | Antigravity IDE | **86** | A | ✅ 0 | 1592 | [▶](Claude-Sonnet-4.6-Antigravity-IDE/index.html) |
+| 27 |  | **Gemini 3.7 Flash** 🆕 | Antigravity CLI | **86** | A | ✅ 0 | 2370 | [▶](Agy-Gemini-3.7-Flash-Antigravity-CLI/index.html) |
+| 28 |  | **Gemini 3.6 Flash** | Antigravity CLI | **85** | A | ✅ 0 | 1510 | [▶](Agy-Gemini-3.6-Flash-Antigravity-CLI/index.html) |
+| 29 |  | **Kimi K2.7** | Claude Code | **80** | B | ⚠️ 1 | 696 | [▶](Kimi-k.7-code-Claude-Code/index.html) |
+| 30 |  | **Kimi K2.7** | Kimi Code CLI | **79** | B | ⚠️ 1 | 541 | [▶](kimi-k2.7-code-Kimi-Code-CLI/index.html) |
+| 31 |  | **MiniMax M3** | mini-agent | **79** | B | ✅ 0 | 1100 | [▶](mini-agent-MiniMax-M3/index.html) |
+| 32 |  | **GPT-5.6 Terra** | Codex | **79** | B | ✅ 0 | 120 | [▶](codex-gpt-5.6-terra/index.html) |
+| 33 |  | **DeepSeek V4 Pro** | Pi Coding Agent | **78** | B | ✅ 0 | 1276 | [▶](deepseek-v4-pro-Pi-Coding-Agent/index.html) |
+| 34 |  | **Claude Opus 4.6** | Antigravity | **78** | B | ✅ 0 | 1824 | [▶](Antigravity-Claude-Opus-4.6/index.html) |
+| 35 |  | **Devstral** | Vibe | **70** | C | ✅ 0 | 960 | [▶](vibe-devstral/index.html) |
+| 36 |  | **Z.ai GLM 5.2** | Claude Code | **54** | D | ✅ 0 | 624 | [▶](Zai-GLM-5.2-Claude-Code/index.html) |
 
 ### 📊 Desglose por categoría
 
@@ -113,16 +118,21 @@ La evaluación combina **tres señales independientes** para evitar tanto la sub
 | MiniMax M3 · Claude Code | 19 | 11 | 8 | 12 | 14 | 8 | 6 | 4 | 5 | 5 | **92** |
 | Kimi K3 · Claude Code | 18 | 11 | 8 | 13 | 14 | 7 | 6 | 5 | 5 | 5 | **92** |
 | DeepSeek V4 Flash · OpenCode | 18 | 11 | 8 | 12 | 14 | 8 | 6 | 5 | 5 | 5 | **92** |
+| GLM 5.3 · OpenCode | 19 | 11 | 7 | 13 | 14 | 7 | 5 | 5 | 5 | 5 | **91** |
 | MiMo v2.5 Pro · Claude Code | 18 | 11 | 8 | 11 | 13 | 7 | 6 | 6 | 5 | 5 | **90** |
+| GLM 5.3 (Max) · Zcode | 18 | 11 | 8 | 14 | 12 | 7 | 6 | 4 | 5 | 5 | **90** |
+| Gemini 3.7 Flash (High) · Antigravity | 19 | 11 | 7 | 14 | 14 | 7 | 5 | 3 | 5 | 5 | **90** |
 | Gemini 3.5 Flash · Antigravity CLI | 19 | 9 | 8 | 12 | 14 | 8 | 6 | 5 | 4 | 4 | **89** |
 | GLM 5.2 · Claude Code | 20 | 11 | 4 | 13 | 15 | 8 | 6 | 4 | 4 | 4 | **89** |
 | GLM 5.2 (Max) · Zcode | 18 | 9 | 8 | 11 | 15 | 7 | 6 | 6 | 4 | 5 | **89** |
 | MiMo v2.5 Pro · OpenCode | 17 | 11 | 8 | 11 | 14 | 7 | 6 | 5 | 5 | 5 | **89** |
 | Gemini 3.6 Flash (High) · Antigravity | 19 | 11 | 7 | 13 | 14 | 7 | 6 | 4 | 4 | 4 | **89** |
+| GLM 5.3 · Claude Code | 19 | 10 | 7 | 13 | 13 | 7 | 6 | 4 | 5 | 5 | **89** |
 | DeepSeek V4 Pro · CodeWhale | 19 | 11 | 8 | 11 | 14 | 7 | 6 | 3 | 4 | 5 | **88** |
 | DeepSeek V4 Pro · Pi | 19 | 10 | 8 | 12 | 13 | 6 | 6 | 5 | 5 | 4 | **88** |
 | Kimi K3 · OpenCode | 18 | 10 | 7 | 12 | 14 | 7 | 6 | 5 | 4 | 4 | **87** |
 | Claude Sonnet 4.6 · Antigravity IDE | 18 | 9 | 4 | 12 | 15 | 8 | 6 | 5 | 4 | 5 | **86** |
+| Gemini 3.7 Flash · Antigravity CLI | 18 | 11 | 7 | 11 | 14 | 7 | 6 | 4 | 4 | 4 | **86** |
 | Gemini 3.6 Flash · Antigravity CLI | 18 | 11 | 7 | 10 | 14 | 7 | 5 | 5 | 4 | 4 | **85** |
 | Kimi K2.7 · Claude Code | 17 | 9 | 3 | 11 | 15 | 7 | 6 | 3 | 4 | 5 | **80** |
 | Kimi K2.7 · Kimi Code CLI | 18 | 9 | 4 | 11 | 14 | 7 | 6 | 3 | 4 | 3 | **79** |
@@ -149,16 +159,21 @@ La evaluación combina **tres señales independientes** para evitar tanto la sub
 | MiniMax M3 · Claude Code | ✅ | ✅ | ✅ | — | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Kimi K3 · Claude Code | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | DeepSeek V4 Flash · OpenCode | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| GLM 5.3 · OpenCode | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | MiMo v2.5 Pro · Claude Code | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| GLM 5.3 (Max) · Zcode | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | — | ✅ | ✅ |
+| Gemini 3.7 Flash (High) · Antigravity | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Gemini 3.5 Flash · Antigravity CLI | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | GLM 5.2 · Claude Code | ✅ | — | ✅ | — | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | GLM 5.2 (Max) · Zcode | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | MiMo v2.5 Pro · OpenCode | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Gemini 3.6 Flash (High) · Antigravity | ✅ | ✅ | ✅ | — | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| GLM 5.3 · Claude Code | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | DeepSeek V4 Pro · CodeWhale | ✅ | ✅ | ✅ | — | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | DeepSeek V4 Pro · Pi | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Kimi K3 · OpenCode | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Claude Sonnet 4.6 · Antigravity IDE | ✅ | — | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Gemini 3.7 Flash · Antigravity CLI | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Gemini 3.6 Flash · Antigravity CLI | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Kimi K2.7 · Claude Code | ✅ | — | ✅ | — | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Kimi K2.7 · Kimi Code CLI | ✅ | — | ✅ | — | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
@@ -185,7 +200,7 @@ La evaluación combina **tres señales independientes** para evitar tanto la sub
 
 **El mismo modelo, dos veces, distinto resultado.** `Pi-DeepSeek-v4-pro` (**88**) acierta las dos trampas (cola anti‑solar y foco elíptico) que la otra entrada del mismo modelo, `deepseek-v4-pro-Pi-Coding-Agent` (**78**), había fallado — andamiaje y varianza entre ejecuciones, en estado puro.
 
-> **Ampliaciones:** el benchmark creció de 14 a **30 entradas** en nueve tandas (14→17 el 2026‑06‑17, 17→19 el 2026‑06‑18, 19→20 el 2026‑07‑04, 20→23 el 2026‑07‑05, 23→25 el 2026‑07‑23, 25→26 el 2026‑07‑27, 26→28 el 2026‑07‑29, 28→29 el 2026‑08‑07, 29→30 el 2026‑08‑07) con la misma metodología y **verificación contra el *runtime***. El techo sigue en **97** con **triple empate**. Detalle en [`docs/segunda-tanda-2026-06-17.md`](docs/segunda-tanda-2026-06-17.md), [`docs/tercera-tanda-2026-06-18.md`](docs/tercera-tanda-2026-06-18.md), [`docs/cuarta-tanda-2026-07-05.md`](docs/cuarta-tanda-2026-07-05.md), [`docs/quinta-tanda-2026-07-23.md`](docs/quinta-tanda-2026-07-23.md), [`docs/sexta-tanda-2026-07-27.md`](docs/sexta-tanda-2026-07-27.md), [`docs/septima-tanda-2026-07-29.md`](docs/septima-tanda-2026-07-29.md), [`docs/octava-tanda-2026-08-07.md`](docs/octava-tanda-2026-08-07.md) y [`docs/novena-tanda-2026-08-07.md`](docs/novena-tanda-2026-08-07.md).
+> **Ampliaciones:** el benchmark creció de 14 a **36 entradas** en diez tandas (14→17 el 2026‑06‑17, 17→19 el 2026‑06‑18, 19→20 el 2026‑07‑04, 20→23 el 2026‑07‑05, 23→25 el 2026‑07‑23, 25→26 el 2026‑07‑27, 26→28 el 2026‑07‑29, 28→29 el 2026‑08‑07, 29→31 el 2026‑08‑07, 31→36 el 2026‑08‑07) con la misma metodología y **verificación contra el *runtime***. El techo sigue en **97** con **triple empate**. Detalle en [`docs/segunda-tanda-2026-06-17.md`](docs/segunda-tanda-2026-06-17.md), [`docs/tercera-tanda-2026-06-18.md`](docs/tercera-tanda-2026-06-18.md), [`docs/cuarta-tanda-2026-07-05.md`](docs/cuarta-tanda-2026-07-05.md), [`docs/quinta-tanda-2026-07-23.md`](docs/quinta-tanda-2026-07-23.md), [`docs/sexta-tanda-2026-07-27.md`](docs/sexta-tanda-2026-07-27.md), [`docs/septima-tanda-2026-07-29.md`](docs/septima-tanda-2026-07-29.md), [`docs/octava-tanda-2026-08-07.md`](docs/octava-tanda-2026-08-07.md), [`docs/novena-tanda-2026-08-07.md`](docs/novena-tanda-2026-08-07.md) y [`docs/decima-tanda-2026-08-07.md`](docs/decima-tanda-2026-08-07.md).
 
 **Una tercera trampa, hallada en la 6.ª tanda: el sentido de giro.** BabylonJS es **levógiro** y una rotación positiva sobre Y lleva **+X → −Z**. Si la elipse se recorre con `z = +b·sinθ` y la rotación propia se aplica con `rotation.y += …`, revolución y rotación van **en sentidos opuestos**: los planetas prógrados giran al revés y Venus, Urano y Plutón acaban prógrados en vez de retrógrados. No lo delata ninguna captura —solo el razonamiento sobre la convención del motor—, y se arregla con un signo. Detalle en [`docs/rubric.md`](docs/rubric.md#un-tercer-discriminador-hallado-en-la-6ª-tanda).
 
@@ -199,7 +214,7 @@ La revisión estática inicial sentenció a **GLM‑5.2‑Claude‑Code** con un
 
 ## ✅ Conclusiones
 
-- **El listón base es altísimo.** Las **31** entregas arrancan y renderizan una escena WebGL compleja (1000+ líneas) en una sola pasada, y **29 de 31 con cero errores de consola**. Generar una app 3D autocontenida y funcional ya es terreno resuelto para los agentes frontera.
+- **El listón base es altísimo.** Las **36** entregas arrancan y renderizan una escena WebGL compleja (1000+ líneas) en una sola pasada, y **34 de 36 con cero errores de consola**. Generar una app 3D autocontenida y funcional ya es terreno resuelto para los agentes frontera.
 - **La frontera ya no es "¿funciona?" sino "¿acierta los detalles difíciles?":** foco orbital, signo de un vector, *instancing*, degradación elegante. Ahí se decide todo.
 - **Profundidad vs. amplitud.** La mejor mecánica orbital del benchmark (Z.ai‑GLM‑5.2, con Kepler real por Newton‑Raphson) se quedó en el tier D por **entregar una escena incompleta** (sin Plutón, sin asteroides, sin nebulosas, sin post‑procesado). Resolver lo difícil no compensa dejar lo fácil a medias.
 - **El andamiaje del agente es un multiplicador**, no un detalle: el mismo modelo gana o pierde un *tier* según su agente.
@@ -225,7 +240,7 @@ Toda la documentación vive en [`docs/`](docs/):
 |:--|:--|
 | [docs/methodology.md](docs/methodology.md) | Cómo se evaluó (las tres señales) y sus límites. |
 | [docs/rubric.md](docs/rubric.md) | La rúbrica de 100 puntos y las dos "trampas" de corrección. |
-| [docs/results.md](docs/results.md) | Ficha detallada de las 31 entregas. |
+| [docs/results.md](docs/results.md) | Ficha detallada de las 36 entregas. |
 | [docs/harness.md](docs/harness.md) | El arnés técnico y cómo reproducirlo. |
 | [docs/conclusions.md](docs/conclusions.md) | Análisis comparativo y estado del arte (extendido). |
 | [docs/contributing.md](docs/contributing.md) | Cómo añadir una nueva entrada. |
@@ -259,7 +274,7 @@ Universo-Arena/
 │   ├── runtime.json            ← datos objetivos de ejecución (meshes, errores)
 │   ├── universo_arena_banner.png
 │   └── previews/*.png          ← capturas reales de cada simulación
-└── <Modelo>-<Agente>/index.html   ← una carpeta por entrega (31)
+└── <Modelo>-<Agente>/index.html   ← una carpeta por entrega (36)
 ```
 
 ## ▶️ Cómo usarlo

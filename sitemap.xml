@@ -290,4 +290,49 @@
       <image:loc>https://universo-arena.alexanderoviedofadul.dev/assets/previews/Antigravity-Claude-Opus-4.6.png</image:loc>
     </image:image>
   </url>
+  <url>
+    <loc>https://universo-arena.alexanderoviedofadul.dev/Opencode-GLM-5.3/index.html</loc>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://universo-arena.alexanderoviedofadul.dev/assets/previews/Opencode-GLM-5.3.png</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://universo-arena.alexanderoviedofadul.dev/Zcode-GML-5.3-Max/index.html</loc>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://universo-arena.alexanderoviedofadul.dev/assets/previews/Zcode-GML-5.3-Max.png</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://universo-arena.alexanderoviedofadul.dev/Antigravity-Gemini-3.7-Flash-High/index.html</loc>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://universo-arena.alexanderoviedofadul.dev/assets/previews/Antigravity-Gemini-3.7-Flash-High.png</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://universo-arena.alexanderoviedofadul.dev/GLM-5.3-Claude-Code/index.html</loc>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://universo-arena.alexanderoviedofadul.dev/assets/previews/GLM-5.3-Claude-Code.png</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://universo-arena.alexanderoviedofadul.dev/Agy-Gemini-3.7-Flash-Antigravity-CLI/index.html</loc>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://universo-arena.alexanderoviedofadul.dev/assets/previews/Agy-Gemini-3.7-Flash-Antigravity-CLI.png</image:loc>
+    </image:image>
+  </url>
 </urlset>
