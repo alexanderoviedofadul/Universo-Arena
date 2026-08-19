@@ -1,6 +1,6 @@
 # Universo 3D — Agy-Gemini-3.7-Flash-Antigravity-CLI
 
-Simulación 3D interactiva, inmersiva y de alto rendimiento del Sistema Solar completo desarrollada en **BabylonJS**, construida bajo las especificaciones de [`Prompt-Maestro_v2.txt`](../Prompt-Maestro_v2.txt) con mejoras integrales en nebulosas orgánicas, zoom cinemático y sistema completo de lunas satelitales.
+Simulación 3D interactiva, inmersiva y de alto rendimiento del Sistema Solar completo desarrollada en **BabylonJS**, construida bajo las especificaciones de [`Prompt-Maestro_v2.txt`](../Prompt-Maestro_v2.txt) con precisión cromática fotorrealista para cada planeta, dinámica de viento solar para la cola del Cometa Halley, nebulosas orgánicas y sistema completo de lunas satelitales.
 
 ---
 
@@ -32,7 +32,7 @@ Simulación 3D interactiva, inmersiva y de alto rendimiento del Sistema Solar co
 - **Pulsación Armónica:** Modulación de escala sinusoidal ($1.0 \leftrightarrow 1.04$) con período de ~3 segundos.
 - **Corona Solar Oficial:** Integración con `BABYLON.ParticleHelper.CreateAsync("sun", scene)` y degradación elegante a `BABYLON.ParticleSystem` procedural con emisor en memoria si se ejecuta offline bajo `file://`.
 
-### 2. Sistema Solar Completo (8 Planetas + Plutón Enano)
+### 2. Sistema Solar Completo (8 Planetas + Plutón Enano) con Paleta Cromática Fotorrealista
 - **Física Orbital Kepleriana Rigurosa:**
   - Sol situado estrictamente en el **foco de la elipse**:
     $$x = a \cos\theta - a \cdot e$$
@@ -40,36 +40,42 @@ Simulación 3D interactiva, inmersiva y de alto rendimiento del Sistema Solar co
   - Líneas orbitales (`BABYLON.MeshBuilder.CreateLines`) y trayectorias planetarias calculadas con la **misma función matemática unificada** para garantizar alineación absoluta.
   - Velocidades orbitales Keplerianas inversamente proporcionales a la distancia ($v \propto \frac{1}{\sqrt{a}}$).
   - Inclinación de planos orbitales (`orbitTilt`) e inclinación de ejes de rotación propia (`axialTilt`), incluyendo la rotación retrógrada de Venus y la inclinación extrema (~97.8°) de Urano.
-- **Texturizado Procedural Planetario:**
-  - Superficies detalladas generadas en memoria: Bandas y Gran Mancha Roja en Júpiter, continentes y nubes en la Tierra, casquetes marcianos y cráteres en Mercurio y bandas doradas en Saturno.
-- **Atmósferas y Anillos:**
-  - Atmósferas semitransparentes con resplandor para la Tierra, Venus y Marte.
-  - Sistemas de anillos concéntricos con textura de división de Cassini para Saturno y Urano.
-- **Etiquetas Flotantes:** Nombres identificativos con `BABYLON.TransformNode.BILLBOARDMODE_ALL`.
+- **Texturizado y Cromatismo Detallado por Planeta:**
+  - **Mercurio:** Gris basáltico rocoso (`#8c8d94`) con maria oscuros, cráteres de impacto y rayos de eyección claros.
+  - **Venus:** Atmósfera densa en remolinos de oro, ocre y crema (`#eab308` / `#d97706`) con halo atmosférico dorado.
+  - **Tierra:** Océanos azul zafiro (`#1e40af`), plataformas costeras turquesas (`#0ea5e9`), continentes con selvas verdes, desiertos ocres, cordilleras, nubes ciclónicas blancas y atmósfera cian brillante (`#38bdf8`).
+  - **Marte:** Regolito oxidado rojo-anaranjado (`#c2410c`), mesetas oscuras de hierro (Syrtis Major), casquetes polares níveos y tenue halo salmón.
+  - **Júpiter:** Bandas turbulentas alternantes de amoníaco e hidrocarburos (terracota, cobre, marfil y oro), con la icónica **Gran Mancha Roja** carmesí (`#991b1b`) y perlas anticlónicas blancas.
+  - **Saturno:** Bandas doradas armónicas en tonos mantequilla y miel (`#fcd34d` / `#fef08a`), con sistema de anillos concéntricos y **División de Cassini** oscura.
+  - **Urano:** Atmósfera de metano turquesa/cian pastel (`#67e8f9`) con tenue gradiente polar y anillos finos de hielo.
+  - **Neptuno:** Azul cobalto/zafiro profundo (`#1d4ed8`) con bandas marinas oscuras, Gran Mancha Oscura y nubes cirros blancas brillantes ("Scooter").
+  - **Plutón:** Terreno tholin marrón rojizo ecuatorial (`#78350f`) y el famoso glaciar de nitrógeno con forma de corazón (**Tombaugh Regio**) en blanco melocotón.
 
 ### 3. Sistema Completo de Lunas y Satélites Naturales
-- 🌍 **Tierra:** **La Luna** con textura de maria y cráteres, orbitando a escala visual ajustada.
-- 🔴 **Marte:** **Fobos** y **Deimos** (satélites irregulares y veloces).
+- 🌍 **Tierra:** **La Luna** con maria basálticos y regolito craterizado.
+- 🔴 **Marte:** **Fobos** y **Deimos** (satélites rocosos irregulares).
 - 🪐 **Júpiter (Lunas Galileanas):**
-  - **Ío:** Terreno volcánico de azufre amarillo-anaranjado.
-  - **Europa:** Corteza de hielo brillante con líneas de fractura.
-  - **Ganimedes:** El satélite más grande, con terreno helado y cráteres.
-  - **Calisto:** Superficie oscura ancestral fuertemente craterizada.
-- 🪐 **Saturno:** **Titán** (atmósfera densa anaranjada con hidrocarburos) y **Encélado** (hielo blanco puro).
+  - **Ío:** Vulcanismo de azufre amarillo-dorado y calderas oscuras.
+  - **Europa:** Corteza de hielo brillante con líneas de fractura marrón-rojizas (*lineae*).
+  - **Ganimedes:** El satélite más grande del sistema solar, mixto de hielo y cráteres.
+  - **Calisto:** Superficie ancestral oscura fuertemente craterizada con cicatrices de impacto concéntricas (Valhalla).
+- 🪐 **Saturno:** **Titán** (atmósfera densa anaranjada con hidrocarburos) y **Encélado** (hielo blanco puro reflectante con fracturas azules).
 - 🔵 **Urano:** **Titania** y **Oberón**.
-- 🌀 **Neptuno:** **Tritón** (órbita retrógrada y criovulcanismo rosáceo).
-- ⚪ **Plutón:** **Caronte** (sistema binario).
+- 🌀 **Neptuno:** **Tritón** (órbita retrógrada real y criovulcanismo de nitrógeno rosáceo).
+- ⚪ **Plutón:** **Caronte** (sistema binario con polo oscuro Mordor Macula).
 - Cada luna cuenta con su propia órbita, etiqueta identificativa y renderizado sincronizado al planeta padre.
 
 ### 4. Cinturón de Asteroides Optimizado (Instanced Meshes)
 - Más de **280 asteroides rocosos** distribuidos elípticamente entre Marte y Júpiter.
 - Renderizado ultra-optimizado mediante `baseAsteroid.createInstance()` (1 solo *draw-call* de geometría base), manteniendo 60 FPS estables.
 
-### 5. Cometa Halley y Cola Vectorial Anti-Solar
+### 5. Cometa Halley con Coma Luminosa y Cola Vectorial Anti-Solar Majestuosa
 - **Órbita Excéntrica:** Alta excentricidad ($e = 0.85$, $a = 155$, período visible de ~18s).
-- **Cálculo Anti-Solar por Frame:**
+- **Coma Esférica:** Resplandor de gas ionizado (`BABYLON.ParticleSystem`) envolviendo el núcleo cometario.
+- **Cálculo Anti-Solar con Base Ortonormal:**
   $$\vec{d}_{\text{anti-solar}} = \text{normalize}(\vec{P}_{\text{Halley}} - \vec{P}_{\text{Sol}})$$
-- Emisión de partículas (`BABYLON.ParticleSystem`) dirigida estrictamente en la dirección opuesta al Sol con gradiente de color cromático (blanco brillante a azul cian y fadeout transparente).
+  Con dispersión cónica simétrica calculada mediante productos cruzados con los ejes globales.
+- **Efecto de Viento Solar Dinámico:** La velocidad y emisión de partículas se modulan según la proximidad al Sol ($L \propto 1/r$), logrando una cola extendida de 45 a 85 unidades con gradiente de color: blanco puro brillante en el núcleo $\rightarrow$ cian eléctrico en el cuerpo $\rightarrow$ fadeout transparente.
 
 ### 6. Cosmos Profundo y Nebulosas Orgánicas
 - **Campo Estelar:** Más de 3800 estrellas estáticas distribuidas tridimensionalmente en un volumen cúbico profundo de $3600^3$ unidades.
