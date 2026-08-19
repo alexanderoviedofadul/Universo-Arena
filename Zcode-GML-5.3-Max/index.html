@@ -42,6 +42,11 @@
        (producto escalar con el vector anti-solar ≈ 1.000, verificable).
     3) Halley resuelve la ecuación de Kepler (E − e·sinE = M) por Newton:
        se acelera de verdad en el perihelio, como el cometa real.
+
+  Extras: 10 lunas reales (Luna, Fobos/Deimos, las 4 galileanas, Rea/Titán,
+  Titania y Tritón retrógrada), nebulosas con máscara radial (sin bordes
+  cuadrados) y cámara que solo anima la transición de vista — después el
+  zoom/pan del usuario persiste sin rebotes.
   ════════════════════════════════════════════════════════════════════════
 -->
 <html lang="es">
@@ -419,6 +424,22 @@ const PLANETAS = [
       textura: "roca",   colores: ["#b8a898", "#8f7f6f", "#d8ccc0"], atmosfera: null }
 ];
 
+/** Lunas por planeta (radio = distancia al centro del planeta, tamano =
+ *  diámetro, velocidad = rad/s; negativa = órbita retrógrada, Tritón). */
+const LUNAS = {
+    "Tierra":  [{ nombre: "Luna", radio: 3.4, tamano: 0.45, velocidad: 0.90, color: "#b8b8b8" }],
+    "Marte":   [{ nombre: "Fobos", radio: 1.9, tamano: 0.13, velocidad: 2.60, color: "#8a8078" },
+                { nombre: "Deimos", radio: 2.6, tamano: 0.10, velocidad: 1.60, color: "#9a9088" }],
+    "Júpiter": [{ nombre: "Ío", radio: 4.0, tamano: 0.50, velocidad: 1.50, color: "#d8c060" },
+                { nombre: "Europa", radio: 5.0, tamano: 0.45, velocidad: 1.10, color: "#cfc8bd" },
+                { nombre: "Ganímedes", radio: 6.2, tamano: 0.75, velocidad: 0.85, color: "#a89880" },
+                { nombre: "Calisto", radio: 7.6, tamano: 0.70, velocidad: 0.60, color: "#7a6a58" }],
+    "Saturno": [{ nombre: "Rea", radio: 6.9, tamano: 0.35, velocidad: 0.80, color: "#c8c4bc" },
+                { nombre: "Titán", radio: 8.6, tamano: 0.80, velocidad: 0.50, color: "#d8a050" }],
+    "Urano":   [{ nombre: "Titania", radio: 4.6, tamano: 0.45, velocidad: 0.70, color: "#b0c0c0" }],
+    "Neptuno": [{ nombre: "Tritón", radio: 4.6, tamano: 0.65, velocidad: -0.50, color: "#d8c8c0" }]
+};
+
 /** Paletas del Sol según el selector de color (emisivo HDR para el bloom). */
 const COLORES_SOL = {
     blanco:   { nucleo: [1.45, 1.40, 1.30], luz: [1.0, 0.98, 0.92], particula1: [1.0, 1.0, 1.0, 1.0], particula2: [0.9, 0.92, 1.0, 1.0] },
@@ -475,10 +496,10 @@ const camera = new BABYLON.ArcRotateCamera("camaraPrincipal", -Math.PI / 2.3, 1.
 camera.attachControl(lienzo, true);
 camera.lowerRadiusLimit = 30;      // límites exigidos por el reto
 camera.upperRadiusLimit = 2000;
-camera.wheelPrecision = 6;         // zoom suave en todo el rango 30–2000
-camera.wheelDeltaPercentage = 0.02;
+camera.wheelPrecision = 6;         // respaldo si el porcentaje estuviera en 0
+camera.wheelDeltaPercentage = 0.1; // ~10 % del radio por muesca de rueda
 camera.panningSensibility = 900;
-camera.pinchDeltaPercentage = 0.015;
+camera.pinchDeltaPercentage = 0.02;
 camera.minZ = 0.5;
 camera.maxZ = 10000;
 
@@ -492,6 +513,10 @@ window.camera = camera;
 
 lienzo.addEventListener("contextmenu", (evento) => evento.preventDefault());
 
+// Cualquier interacción del usuario cancela la transición de cámara al instante
+lienzo.addEventListener("pointerdown", () => { transicionVista = 0; });
+lienzo.addEventListener("wheel", () => { transicionVista = 0; }, { passive: true });
+
 /** Controlador de vistas: cada vista puede seguir una malla/nodo y fija un
  *  radio objetivo hacia el que la cámara se aproxima suavemente. */
 const vistasCamara = {
@@ -503,6 +528,12 @@ const vistasCamara = {
     halley:     { sigue: () => nucleoHalley, radio: 38 }
 };
 let vistaActiva = vistasCamara.sistema;
+
+/** Segundos restantes de la transición hacia la vista seleccionada. Mientras
+ *  sea > 0 la cámara anima radio y objetivo; al llegar a 0 (o si el usuario
+ *  toca los controles) el mando es total del usuario: el zoom y el pan ya no
+ *  "rebotan" de vuelta al punto inicial. */
+let transicionVista = 0;
 
 /* ══════════════════════════════════════════════════════════════════
    4 · ILUMINACIÓN
@@ -564,30 +595,42 @@ function crearTexturaEtiqueta(texto) {
 }
 
 /** Crea una textura de nebulosa: manchas radiales superpuestas (composición
- *  "lighter") de dos colores sobre negro, para planos con mezcla aditiva.
+ *  "lighter") de dos colores, recortadas al final con una máscara radial
+ *  (destination-in) para que la nube SIEMPRE termine en un borde circular
+ *  suave — nunca se ven los bordes rectos del plano ni del canvas.
  *  @param {string} colorA hexadecimal @param {string} colorB hexadecimal
  *  @returns {BABYLON.DynamicTexture} */
 function crearTexturaNebulosa(colorA, colorB) {
-    const TAM = 256;
+    const TAM = 512;
     const textura = new BABYLON.DynamicTexture("texturaNebulosa", { width: TAM, height: TAM }, scene, true);
     const ctx = textura.getContext();
     ctx.fillStyle = "#000";
     ctx.fillRect(0, 0, TAM, TAM);
     ctx.globalCompositeOperation = "lighter";
-    for (let i = 0; i < 9; i++) {
-        const cx = TAM * (0.5 + (Math.random() - 0.5) * 0.55);
-        const cy = TAM * (0.5 + (Math.random() - 0.5) * 0.55);
-        const radio = 28 + Math.random() * 78;
+    for (let i = 0; i < 10; i++) {
+        // Los blobs quedan contenidos en la zona central (no tocan los bordes)
+        const cx = TAM * (0.5 + (Math.random() - 0.5) * 0.38);
+        const cy = TAM * (0.5 + (Math.random() - 0.5) * 0.38);
+        const radio = TAM * (0.08 + Math.random() * 0.15);
         const color = (i % 2 === 0) ? colorA : colorB;
         const gradiente = ctx.createRadialGradient(cx, cy, 0, cx, cy, radio);
-        gradiente.addColorStop(0, color + "cc");
-        gradiente.addColorStop(0.5, color + "55");
+        gradiente.addColorStop(0, color + "dd");
+        gradiente.addColorStop(0.55, color + "55");
         gradiente.addColorStop(1, color + "00");
         ctx.fillStyle = gradiente;
         ctx.beginPath();
         ctx.arc(cx, cy, radio, 0, Math.PI * 2);
         ctx.fill();
     }
+    // Máscara circular con caída suave: elimina cualquier esquina recta
+    ctx.globalCompositeOperation = "destination-in";
+    const mascara = ctx.createRadialGradient(TAM / 2, TAM / 2, TAM * 0.16, TAM / 2, TAM / 2, TAM * 0.5);
+    mascara.addColorStop(0, "rgba(255,255,255,1)");
+    mascara.addColorStop(0.7, "rgba(255,255,255,0.8)");
+    mascara.addColorStop(1, "rgba(255,255,255,0)");
+    ctx.fillStyle = mascara;
+    ctx.fillRect(0, 0, TAM, TAM);
+    ctx.globalCompositeOperation = "source-over";
     textura.update();
     return textura;
 }
@@ -810,6 +853,36 @@ function crearCoronaReserva() {
 const pivotesPlanetas = {};   // nombre → TransformNode pivote (posición orbital)
 const cuerposPlanetas = [];   // registros por planeta para el bucle de animación
 const etiquetasPlanetas = []; // planos de texto (toggle "nombres")
+const lunasCuerpos = [];      // { pivote, velocidad } de cada luna
+
+/** Crea las lunas de un planeta (si las tiene): cada luna es una esfera al
+ *  borde de un pivote que rota, orbitando en el plano ecuatorial del planeta
+ *  (hereda su inclinación axial; por eso las de Urano orbitan casi verticales,
+ *  como en la realidad). Tritón gira en sentido retrógrado (velocidad < 0).
+ *  @param {BABYLON.TransformNode} pivote pivote del planeta
+ *  @param {object} planeta dato de PLANETAS
+ *  @returns {BABYLON.TransformNode|null} nodo contenedor del sistema de lunas */
+function crearLunas(pivote, planeta) {
+    const lunas = LUNAS[planeta.nombre];
+    if (!lunas) return null;
+    const nodoLunas = new BABYLON.TransformNode("lunas_" + planeta.nombre, scene);
+    nodoLunas.parent = pivote;
+    for (const luna of lunas) {
+        const pivoteLuna = new BABYLON.TransformNode("orbitaLuna_" + luna.nombre, scene);
+        pivoteLuna.parent = nodoLunas;
+        pivoteLuna.rotation.y = Math.random() * Math.PI * 2;
+        const malla = BABYLON.MeshBuilder.CreateSphere(luna.nombre, { diameter: luna.tamano, segments: 12 }, scene);
+        malla.parent = pivoteLuna;
+        malla.position.x = luna.radio;
+        const material = new BABYLON.StandardMaterial("materialLuna_" + luna.nombre, scene);
+        material.diffuseColor = BABYLON.Color3.FromHexString(luna.color);
+        material.specularColor = new BABYLON.Color3(0.04, 0.04, 0.04);
+        malla.material = material;
+        malla.isPickable = false;
+        lunasCuerpos.push({ pivote: pivoteLuna, velocidad: luna.velocidad });
+    }
+    return nodoLunas;
+}
 
 /** Crea los 9 cuerpos (8 planetas + Plutón) con su jerarquía:
  *  nodoOrbita (plano inclinado, estático) → pivote (posición + tilt axial)
@@ -851,6 +924,9 @@ function crearPlanetas() {
             crearAnillosSaturno(esfera, planeta);
         }
 
+        // Sistema de lunas (Luna, galileanas, Titán, Tritón…)
+        const nodoLunas = crearLunas(pivote, planeta);
+
         // Etiqueta flotante (billboard) sobre el planeta
         const etiqueta = BABYLON.MeshBuilder.CreatePlane("etiqueta_" + planeta.nombre, { width: 7, height: 1.75 }, scene);
         etiqueta.parent = pivote;
@@ -872,6 +948,7 @@ function crearPlanetas() {
             pivote,
             esfera,
             etiqueta,
+            nodoLunas,
             anguloOrbital: Math.random() * Math.PI * 2,
             velocidadAngular: (2 * Math.PI) / (K_KEPLER * Math.pow(planeta.a, 1.5)) // Kepler simplificado
         });
@@ -917,9 +994,9 @@ const asteroides = [];   // { malla, radio, angulo, velocidad, altura, giroX, gi
  *  poligonización. La malla base ES el asteroide 0 (así todas las rocas
  *  comparten material y búfer). Órbitas circulares lentas + rotación caótica. */
 function crearCinturonAsteroides() {
-    const base = BABYLON.MeshBuilder.CreateSphere("asteroideBase", { diameter: 0.28, segments: 5 }, scene);
+    const base = BABYLON.MeshBuilder.CreateSphere("asteroideBase", { diameter: 0.55, segments: 5 }, scene);
     const material = new BABYLON.StandardMaterial("materialAsteroides", scene);
-    material.diffuseColor = new BABYLON.Color3(0.36, 0.33, 0.30);
+    material.diffuseColor = new BABYLON.Color3(0.42, 0.39, 0.35);
     material.specularColor = new BABYLON.Color3(0.03, 0.03, 0.03);
     base.material = material;
     base.isPickable = false;
@@ -927,7 +1004,7 @@ function crearCinturonAsteroides() {
     for (let i = 0; i < CINTURON.cantidad; i++) {
         const malla = (i === 0) ? base : base.createInstance("asteroide_" + i);
         malla.isPickable = false;
-        malla.scaling.setAll(0.5 + Math.random() * 1.1);
+        malla.scaling.setAll(0.55 + Math.random() * 1.25);
         asteroides.push({
             malla,
             radio: CINTURON.radioMin + Math.random() * (CINTURON.radioMax - CINTURON.radioMin),
@@ -1158,12 +1235,14 @@ function configurarUI() {
     });
     $("selVista").addEventListener("change", (e) => {
         vistaActiva = vistasCamara[e.target.value] || vistasCamara.sistema;
+        transicionVista = 2.6;   // anima la llegada y luego libera el control
     });
     $("rangoTamano").addEventListener("input", (e) => {
         const escala = parseFloat(e.target.value);
         $("valTamano").textContent = escala.toFixed(1) + "×";
         for (const cuerpo of cuerposPlanetas) {
             cuerpo.esfera.scaling.setAll(escala);          // atmósfera y anillos heredan
+            if (cuerpo.nodoLunas) cuerpo.nodoLunas.scaling.setAll(escala); // lunas también
             cuerpo.etiqueta.position.y = (cuerpo.planeta.tamano * escala) / 2 + 1.8;
         }
     });
@@ -1229,6 +1308,11 @@ scene.onBeforeRenderObservable.add(() => {
         cuerpo.esfera.rotation.y += dt * 1.5 * cuerpo.planeta.rot;
     }
 
+    // — Lunas: giro de los pivotes orbitales (velocidad negativa = retrógrada) —
+    for (const luna of lunasCuerpos) {
+        luna.pivote.rotation.y += dt * luna.velocidad * estado.multiplicadorOrbital;
+    }
+
     // — Cinturón de asteroides: deriva orbital + rotación caótica —
     for (const asteroide of asteroides) {
         asteroide.angulo += dt * asteroide.velocidad * estado.multiplicadorOrbital;
@@ -1262,18 +1346,28 @@ scene.onBeforeRenderObservable.add(() => {
         posicionTemporal.z + 0.35
     );
 
-    // — Cámara: seguimiento suave de la vista activa (posición y radio) —
+    // — Cámara: transición animada SOLO al cambiar de vista (o mientras dura
+    // un seguimiento). Después, el zoom/pan del usuario persiste sin rebotes. —
     const objetivoRadio = vistaActiva.radio;
     const seguido = vistaActiva.sigue ? vistaActiva.sigue() : null;
+    if (transicionVista > 0) transicionVista = Math.max(0, transicionVista - dtReal);
+
     if (seguido) {
+        // Vistas de seguimiento: el objetivo persigue al astro continuamente
         objetivoCamara.copyFrom(seguido.getAbsolutePosition());
-    } else {
-        objetivoCamara.copyFromFloats(0, 0, 0);
+        camera.target = BABYLON.Vector3.Lerp(camera.target, objetivoCamara, Math.min(1, dtReal * 4));
+    } else if (transicionVista > 0) {
+        // Vistas fijas: solo durante la transición se vuelve al objetivo (0,0,0)
+        camera.target = BABYLON.Vector3.Lerp(camera.target, BABYLON.Vector3.Zero(), Math.min(1, dtReal * 3));
     }
-    const factorSeguimiento = Math.min(1, dtReal * 3);
-    camera.target = BABYLON.Vector3.Lerp(camera.target, objetivoCamara, factorSeguimiento);
-    camera.radius += (objetivoRadio - camera.radius) * Math.min(1, dtReal * 2.5);
-    if (Math.abs(objetivoRadio - camera.radius) < 0.5) camera.radius = objetivoRadio;
+
+    if (transicionVista > 0) {
+        camera.radius += (objetivoRadio - camera.radius) * Math.min(1, dtReal * 2.5);
+        if (Math.abs(objetivoRadio - camera.radius) < 0.5) {
+            camera.radius = objetivoRadio;
+            if (!seguido) transicionVista = 0;
+        }
+    }
 });
 
 /* ══════════════════════════════════════════════════════════════════
