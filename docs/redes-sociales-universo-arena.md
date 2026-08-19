@@ -2,7 +2,7 @@
 
 Versiones del anuncio adaptadas a la **extensión máxima de cada red**. Copia el bloque de la red que quieras. Imagen recomendada: `assets/universo_arena_banner.png` (en TikTok/Reels, úsala como portada del vídeo).
 
-🌌 Galería: https://universo-arena.alexanderoviedofadul.dev · 💻 Repo: https://github.com/bladealex9848/Universo-Arena
+🌌 Galería: https://universo-arena.alexanderoviedofadul.dev · 💻 Repo: https://github.com/alexanderoviedofadul/Universo-Arena
 
 > LinkedIn (post ≤3.000): [`articulo-linkedin-universo-arena-v2.md`](articulo-linkedin-universo-arena-v2.md) · Artículo largo: [`articulo-linkedin-universo-arena.md`](articulo-linkedin-universo-arena.md) · Versión web de este kit: [`redes-sociales-universo-arena.html`](redes-sociales-universo-arena.html)
 
@@ -63,7 +63,7 @@ Por eso construí MALLO, multi-agente con fallback. Irónicamente, hasta la API 
 Míralo tú mismo 👇
 
 🌌 https://universo-arena.alexanderoviedofadul.dev
-💻 https://github.com/bladealex9848/Universo-Arena
+💻 https://github.com/alexanderoviedofadul/Universo-Arena
 
 ¿Construyes sobre un solo proveedor?
 
@@ -121,7 +121,7 @@ Le di el MISMO prompt —una simulación 3D del Sistema Solar en BabylonJS, en u
 El modelo que se cayó no era imprescindible. La resiliencia no es tener el mejor modelo: es no necesitar a ninguno en particular. Por eso construí MALLO, multi-agente con fallback.
 
 🌌 Galería y demos en vivo: https://universo-arena.alexanderoviedofadul.dev
-💻 Código y datos: https://github.com/bladealex9848/Universo-Arena
+💻 Código y datos: https://github.com/alexanderoviedofadul/Universo-Arena
 
 #InteligenciaArtificial #IA #MultiAgente #LegalTech #Colombia
 ```
@@ -173,7 +173,7 @@ Moraleja: no dependas de un solo modelo.
 Y 3 días antes, EE. UU. suspendió Claude Fable 5 para extranjeros. Moraleja: diversifica, no dependas de un solo modelo.
 
 🌌 https://universo-arena.alexanderoviedofadul.dev
-💻 https://github.com/bladealex9848/Universo-Arena
+💻 https://github.com/alexanderoviedofadul/Universo-Arena
 
 #IA #LLM #MultiAgente
 ```

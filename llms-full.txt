@@ -6,7 +6,7 @@
 > en navegador y calibración adversarial. Código abierto bajo licencia MIT.
 
 Sitio: https://universo-arena.alexanderoviedofadul.dev/
-Repositorio: https://github.com/bladealex9848/Universo-Arena
+Repositorio: https://github.com/alexanderoviedofadul/Universo-Arena
 Autor: Alexander Oviedo Fadul
 Versión del benchmark: 1.1.0 (2026-08-07)
 
@@ -368,8 +368,8 @@ Desglose: Completitud de escena 9/20, Fidelidad orbital 11/12, Cometa Halley 5/8
 ## Recursos
 - Ranking (datos crudos): https://universo-arena.alexanderoviedofadul.dev/assets/benchmark.json
 - Datos de ejecución: https://universo-arena.alexanderoviedofadul.dev/assets/runtime.json
-- Documentación completa: https://github.com/bladealex9848/Universo-Arena/tree/main/docs
-- Prompt maestro del reto: https://github.com/bladealex9848/Universo-Arena/blob/main/Prompt-Maestro_v2.txt
+- Documentación completa: https://github.com/alexanderoviedofadul/Universo-Arena/tree/main/docs
+- Prompt maestro del reto: https://github.com/alexanderoviedofadul/Universo-Arena/blob/main/Prompt-Maestro_v2.txt
 
 ## Cómo citar
 Universo-Arena (2026). Benchmark de LLMs + agentes de código sobre una simulación 3D

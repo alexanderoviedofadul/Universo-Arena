@@ -1,13 +1,13 @@
 /* TEAM */
 Autor: Alexander Oviedo Fadul
 Sitio: https://alexanderoviedofadul.dev
-GitHub: https://github.com/bladealex9848
+GitHub: https://github.com/alexanderoviedofadul
 Ubicación: Colombia
 
 /* SITE */
 Nombre: Universo-Arena
 Descripción: Benchmark abierto de LLM + agente de código sobre una simulación 3D del Sistema Solar en BabylonJS.
-Repositorio: https://github.com/bladealex9848/Universo-Arena
+Repositorio: https://github.com/alexanderoviedofadul/Universo-Arena
 Licencia: MIT
 Estándares: HTML5, CSS3, JavaScript (vanilla), WebGL (BabylonJS)
 Componentes: BabylonJS (CDN), sin build step ni dependencias de servidor.

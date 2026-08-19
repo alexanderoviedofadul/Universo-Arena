@@ -312,4 +312,4 @@ Primera versión pública del benchmark, con galería web y documentación compl
 - Las puntuaciones reflejan **una sola ejecución** por entrega (no se mide varianza).
 - Los FPS se miden bajo SwiftShader (software) y son solo una señal cualitativa.
 
-[1.0.0]: https://github.com/bladealex9848/Universo-Arena/releases/tag/v1.0.0
+[1.0.0]: https://github.com/alexanderoviedofadul/Universo-Arena/releases/tag/v1.0.0

@@ -1,7 +1,7 @@
 <!--
   POST LISTO PARA PUBLICAR — LinkedIn · VERSIÓN 2 (≈2.700 caracteres, cabe en el límite de 3.000 de LinkedIn)
   Autor: Alexander Oviedo Fadul
-  Imagen: assets/universo_arena_banner.png · Galería: https://universo-arena.alexanderoviedofadul.dev · Repo: https://github.com/bladealex9848/Universo-Arena
+  Imagen: assets/universo_arena_banner.png · Galería: https://universo-arena.alexanderoviedofadul.dev · Repo: https://github.com/alexanderoviedofadul/Universo-Arena
   Copia desde el primer título (🌌). Sube el banner como imagen del post.
 -->
 
@@ -34,7 +34,7 @@ Esto no es anti-Anthropic: todo el experimento lo armé con Opus 4.8 + Claude Co
 
 👀 Míralo tú mismo
 🌌 Galería: https://universo-arena.alexanderoviedofadul.dev
-💻 Repo: https://github.com/bladealex9848/Universo-Arena
+💻 Repo: https://github.com/alexanderoviedofadul/Universo-Arena
 
 ¿Estás construyendo sobre un solo proveedor? Y tu cometa… ¿apunta para el lado correcto? 👇
 

@@ -87,6 +87,6 @@ galería, las metas o el ranking, mantén la coherencia con estos artefactos:
 
 ## Git
 
-- The project is published at `github.com/bladealex9848/Universo-Arena`; history is on `main`.
+- The project is published at `github.com/alexanderoviedofadul/Universo-Arena`; history is on `main`.
 - Commit/push only when the user asks. End commit messages with the required `Co-Authored-By` trailer.
 - **Despliegue y CD:** El sitio web se expone en `https://universo-arena.alexanderoviedofadul.dev`. Cuenta con un auto-despliegue continuo (CD) mediante un webhook en Node.js que escucha en el puerto `3020` del VPS y actualiza automáticamente los archivos locales en la rama `main` tras recibir el evento push de GitHub.

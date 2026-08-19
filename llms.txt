@@ -3,7 +3,7 @@
 > Benchmark abierto y reproducible: 36 combinaciones de **LLM + agente de código** implementan el *mismo* reto —una simulación 3D del Sistema Solar en BabylonJS, como un único `index.html` autocontenido— y se puntúan y rankean. Licencia MIT.
 
 Sitio: https://universo-arena.alexanderoviedofadul.dev/
-Repositorio: https://github.com/bladealex9848/Universo-Arena
+Repositorio: https://github.com/alexanderoviedofadul/Universo-Arena
 Autor: Alexander Oviedo Fadul
 Idioma: español
 
@@ -64,4 +64,4 @@ GPT-5.5 · Codex, Claude Opus 4.8 · Ultracode + Claude Code y Claude Opus 5 · 
 
 - Datos crudos del ranking: https://universo-arena.alexanderoviedofadul.dev/assets/benchmark.json
 - Datos objetivos de ejecución: https://universo-arena.alexanderoviedofadul.dev/assets/runtime.json
-- Metodología, rúbrica, resultados y conclusiones: https://github.com/bladealex9848/Universo-Arena/tree/main/docs
+- Metodología, rúbrica, resultados y conclusiones: https://github.com/alexanderoviedofadul/Universo-Arena/tree/main/docs

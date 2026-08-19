@@ -3,7 +3,7 @@
   Autor: Alexander Oviedo Fadul
   Imagen de portada: assets/universo_arena_banner.png
   URL del proyecto (galería): https://universo-arena.alexanderoviedofadul.dev
-  Repositorio público: https://github.com/bladealex9848/Universo-Arena
+  Repositorio público: https://github.com/alexanderoviedofadul/Universo-Arena
   Idioma: Español
 -->
 
@@ -69,7 +69,7 @@ Que quede claro, porque sé cómo se leen estas cosas: **esto no es un ataque a 
 Dejé el experimento completo abierto para que cualquiera lo audite, lo critique o le añada su propia entrada.
 
 - 🌌 **Galería interactiva** (ranking, fichas, radares y demos en vivo de las 14): **https://universo-arena.alexanderoviedofadul.dev**
-- 💻 **Repositorio público** (código, datos crudos, metodología): **https://github.com/bladealex9848/Universo-Arena**
+- 💻 **Repositorio público** (código, datos crudos, metodología): **https://github.com/alexanderoviedofadul/Universo-Arena**
 
 Si trabajas con estos modelos, me encantaría saber tu opinión sobre dos cosas: ¿estás construyendo sobre un solo proveedor? Y la cola de tu cometa… ¿apunta para el lado correcto?
 
@@ -118,7 +118,7 @@ Por eso construí MALLO, un orquestador multi-agente con fallback entre proveedo
 No es un benchmark científico —es una sola pasada por modelo— pero la foto es clara: el frontier es ancho. La diversificación no es el plan B; es el plan A.
 
 Galería con las 14 entregas en vivo 👉 https://universo-arena.alexanderoviedofadul.dev
-Repo público 👉 https://github.com/bladealex9848/Universo-Arena
+Repo público 👉 https://github.com/alexanderoviedofadul/Universo-Arena
 
 ¿Cuántos proveedores distintos usas hoy en tus flujos críticos?
 
@@ -157,7 +157,7 @@ Opus 4.8, el modelo que Fable 5 venía a reemplazar, lidera mi ranking. No hizo 
 Las nuevas actualizaciones son bienvenidas. Como punto único de fallo, no.
 
 Galería en vivo 👉 https://universo-arena.alexanderoviedofadul.dev
-Repo 👉 https://github.com/bladealex9848/Universo-Arena
+Repo 👉 https://github.com/alexanderoviedofadul/Universo-Arena
 
 ¿Tu stack de IA tiene fallback real o es un single point of failure disfrazado de estrategia?
 
@@ -172,7 +172,7 @@ Repo 👉 https://github.com/bladealex9848/Universo-Arena
 | **Autor** | Alexander Oviedo Fadul |
 | **Imagen de portada** | `assets/universo_arena_banner.png` |
 | **URL del proyecto (galería)** | https://universo-arena.alexanderoviedofadul.dev |
-| **Repositorio público** | https://github.com/bladealex9848/Universo-Arena |
+| **Repositorio público** | https://github.com/alexanderoviedofadul/Universo-Arena |
 | **Formato** | Artículo largo de LinkedIn + post de feed (2 variantes) |
 | **Idioma** | Español |
 | **Hashtags sugeridos** | #InteligenciaArtificial #MultiAgente #LLM #LegalTech #BuildInPublic #InnovaciónJudicial #Colombia |
@@ -184,4 +184,4 @@ Repo 👉 https://github.com/bladealex9848/Universo-Arena
 - [ ] Publicar el artículo largo y, por separado, uno de los dos posts de feed enlazándolo.
 - [ ] Etiquetar a quien aparezca mencionado y responder comentarios las primeras 2 horas (mejor alcance).
 
-> **Sobre el subdominio:** la URL recomendada es **`universo-arena.alexanderoviedofadul.dev`** (coincide con el nombre del repo y es autoexplicativa). Alternativa más corta: `arena.alexanderoviedofadul.dev`. Para activarla, basta con un registro CNAME del subdominio hacia GitHub Pages (`bladealex9848.github.io`) y añadir ese dominio en *Settings → Pages → Custom domain* del repositorio.
+> **Sobre el subdominio:** la URL recomendada es **`universo-arena.alexanderoviedofadul.dev`** (coincide con el nombre del repo y es autoexplicativa). Alternativa más corta: `arena.alexanderoviedofadul.dev`. Para activarla, basta con un registro CNAME del subdominio hacia GitHub Pages (`alexanderoviedofadul.github.io`) y añadir ese dominio en *Settings → Pages → Custom domain* del repositorio.

@@ -40,7 +40,7 @@ GitHub Push (main) ──> Caddy HTTPS (Port 443) ──> Webhook NodeJS (Port 3
 
 ## 3. Cómo Activar el Webhook en GitHub
 
-Si administras el repositorio en GitHub (`https://github.com/bladealex9848/Universo-Arena.git`) y deseas reactivar o configurar el webhook ante un cambio o migración de servidor, sigue estos pasos:
+Si administras el repositorio en GitHub (`https://github.com/alexanderoviedofadul/Universo-Arena.git`) y deseas reactivar o configurar el webhook ante un cambio o migración de servidor, sigue estos pasos:
 
 1. Ve a la pestaña **Settings** (Configuración) de tu repositorio en GitHub.
 2. En la barra lateral izquierda, selecciona **Webhooks**.
