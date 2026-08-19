@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Simulador de Universo 3D — Antigravity Gemini 3.7 Flash High</title>
-  <meta name="description" content="Simulación 3D completa del Sistema Solar con BabylonJS: órbitas Keplerianas elípticas, cometa Halley con cola vectorial anti-solar, cinturón de asteroides instanciado, post-procesado y panel de control interactivo." />
+  <meta name="description" content="Simulación 3D interactiva del Sistema Solar con BabylonJS: órbitas Keplerianas elípticas con el Sol en el foco, cometa Halley con cola vectorial anti-solar, cinturón de asteroides instanciado, nebulosas profundas y panel de control glassmorphism." />
   <style>
     /* ═══════════════════════════════════════════════════════════════════
        RESET CSS Y SISTEMA DE DISEÑO GLASSMORPHISM PREMIUM
@@ -82,40 +82,48 @@
       background: var(--accent);
     }
 
-    /* Botón flotante para alternar panel */
+    /* Botón flotante para alternar panel cuando está colapsado */
     #togglePanelBtn {
       position: fixed;
       top: 16px;
       right: 16px;
-      z-index: 110;
+      z-index: 90;
       background: var(--bg-panel);
       backdrop-filter: var(--panel-blur);
       -webkit-backdrop-filter: var(--panel-blur);
       border: 1px solid var(--border-panel);
       color: var(--text-main);
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      font-size: 18px;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
-      transition: all 0.25s ease;
+      font-size: 20px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      opacity: 0;
+      pointer-events: none;
+      transform: scale(0.85);
+    }
+    #togglePanelBtn.visible {
+      opacity: 1;
+      pointer-events: auto;
+      transform: scale(1);
     }
     #togglePanelBtn:hover {
       border-color: var(--accent);
-      box-shadow: 0 0 12px var(--accent-glow);
-      transform: scale(1.05);
+      box-shadow: 0 0 14px var(--accent-glow);
+      transform: scale(1.08);
     }
 
-    /* Panel de Configuración */
+    /* Panel de Configuración Glassmorphism */
     #panel {
       position: fixed;
       top: 16px;
       right: 16px;
-      width: 320px;
+      width: 324px;
       max-height: calc(100vh - 32px);
       overflow-y: auto;
       background: var(--bg-panel);
@@ -123,11 +131,11 @@
       -webkit-backdrop-filter: var(--panel-blur);
       border: 1px solid var(--border-panel);
       border-radius: 16px;
-      padding: 20px 18px;
+      padding: 18px 18px 20px;
       font-size: 13px;
       line-height: 1.45;
       z-index: 100;
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.12);
       transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
     }
     #panel.collapsed {
@@ -140,9 +148,14 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
       padding-bottom: 10px;
       border-bottom: 1px solid var(--border-panel);
+    }
+    .panel-header-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
     .panel-header h2 {
       font-size: 14px;
@@ -150,9 +163,6 @@
       letter-spacing: 0.06em;
       text-transform: uppercase;
       color: var(--accent);
-      display: flex;
-      align-items: center;
-      gap: 8px;
     }
     .badge-agent {
       font-size: 9px;
@@ -164,9 +174,28 @@
       font-weight: 600;
       letter-spacing: 0.04em;
     }
+    .btn-close-panel {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--border-panel);
+      color: var(--text-muted);
+      width: 26px;
+      height: 26px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 12px;
+      transition: all 0.2s;
+    }
+    .btn-close-panel:hover {
+      background: var(--accent-glow);
+      color: #fff;
+      border-color: var(--accent);
+    }
 
     .section {
-      margin-bottom: 16px;
+      margin-bottom: 14px;
       padding-bottom: 12px;
       border-bottom: 1px solid rgba(255, 255, 255, 0.07);
     }
@@ -181,7 +210,7 @@
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--text-muted);
-      margin-bottom: 10px;
+      margin-bottom: 9px;
       display: flex;
       align-items: center;
       gap: 6px;
@@ -192,7 +221,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 9px;
+      margin-bottom: 8px;
       gap: 10px;
     }
     .control-row label {
@@ -429,14 +458,17 @@
   <!-- Canvas WebGL 3D -->
   <canvas id="renderCanvas"></canvas>
 
-  <!-- Botón Toggle de Panel -->
-  <button id="togglePanelBtn" title="Alternar panel de control">⚙️</button>
+  <!-- Botón Toggle de Panel (Visible al colapsar) -->
+  <button id="togglePanelBtn" title="Abrir panel de control">⚙️</button>
 
   <!-- Panel de Configuración Glassmorphism -->
   <div id="panel">
     <div class="panel-header">
-      <h2>🌌 Sistema Solar</h2>
-      <span class="badge-agent">Gemini 3.7 Flash</span>
+      <div class="panel-header-left">
+        <h2>🌌 Sistema Solar</h2>
+        <span class="badge-agent">Gemini 3.7 Flash</span>
+      </div>
+      <button class="btn-close-panel" id="btnClosePanel" title="Ocultar panel">✕</button>
     </div>
 
     <!-- SECCIÓN 1: TIEMPO Y VELOCIDAD -->
@@ -556,7 +588,7 @@
         semiMajor: 28,
         eccentricity: 0.205,
         radius: 0.9,
-        color: new BABYLON.Color3(0.68, 0.67, 0.65),
+        color: new BABYLON.Color3(0.72, 0.70, 0.68),
         orbitSpeed: 2.2,
         orbitTilt: 0.05,
         axialTilt: 0.01,
@@ -815,7 +847,7 @@
     }
 
     /**
-     * Genera una textura de flare / partícula circular con gradiente alfa.
+     * Genera una textura de flare / partícula circular con gradiente alfa suave.
      */
     function createFlareTexture(name, hexColor) {
       const tex = new BABYLON.DynamicTexture(name, 128, scene, false);
@@ -824,8 +856,8 @@
 
       const radGrad = ctx.createRadialGradient(64, 64, 0, 64, 64, 64);
       radGrad.addColorStop(0.0, hexColor);
-      radGrad.addColorStop(0.25, hexColor);
-      radGrad.addColorStop(0.65, "rgba(255, 255, 255, 0.4)");
+      radGrad.addColorStop(0.2, hexColor);
+      radGrad.addColorStop(0.5, "rgba(255, 255, 255, 0.4)");
       radGrad.addColorStop(1.0, "rgba(0, 0, 0, 0)");
 
       ctx.fillStyle = radGrad;
@@ -919,18 +951,18 @@
       const ctx = tex.getContext();
       ctx.clearRect(0, 0, 256, 64);
 
-      // Fondo píldora semitransparente
-      ctx.fillStyle = "rgba(10, 15, 30, 0.75)";
-      ctx.strokeStyle = "rgba(120, 160, 255, 0.5)";
-      ctx.lineWidth = 2;
+      // Fondo píldora semitransparente con borde azul brillante
+      ctx.fillStyle = "rgba(10, 18, 38, 0.85)";
+      ctx.strokeStyle = "rgba(90, 160, 255, 0.85)";
+      ctx.lineWidth = 3;
       ctx.beginPath();
-      ctx.roundRect(10, 8, 236, 48, 12);
+      ctx.roundRect(8, 6, 240, 52, 14);
       ctx.fill();
       ctx.stroke();
 
-      // Texto centrado
-      ctx.fillStyle = "#f8fafc";
-      ctx.font = "bold 22px system-ui, sans-serif";
+      // Texto centrado nítido
+      ctx.fillStyle = "#ffffff";
+      ctx.font = "bold 26px system-ui, -apple-system, sans-serif";
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
       ctx.fillText(name, 128, 32);
@@ -947,16 +979,16 @@
     const nebulaPlanes = [];
 
     /**
-     * Crea 3500+ estrellas estáticas en una caja cósmica profunda de 2400x2400x2400.
+     * Crea 4000+ estrellas estáticas en una caja cósmica profunda de 3200x3200x3200.
      */
     function createStars() {
-      starParticleSystem = new BABYLON.ParticleSystem("CosmicStars", 3600, scene);
+      starParticleSystem = new BABYLON.ParticleSystem("CosmicStars", 4200, scene);
       starParticleSystem.particleTexture = createFlareTexture("tex_star", "#ffffff");
 
       // Emisor de volumen cúbico profundo
       starParticleSystem.emitter = new BABYLON.Vector3(0, 0, 0);
-      starParticleSystem.minEmitBox = new BABYLON.Vector3(-1400, -1400, -1400);
-      starParticleSystem.maxEmitBox = new BABYLON.Vector3(1400, 1400, 1400);
+      starParticleSystem.minEmitBox = new BABYLON.Vector3(-1800, -1800, -1800);
+      starParticleSystem.maxEmitBox = new BABYLON.Vector3(1800, 1800, 1800);
 
       // Variación cromática estelar (blanco, azulado, cálido)
       starParticleSystem.color1 = new BABYLON.Color4(1.0, 1.0, 1.0, 1.0);
@@ -964,11 +996,11 @@
       starParticleSystem.colorDead = new BABYLON.Color4(1.0, 0.95, 0.75, 0.8);
 
       // Tamaño de partículas y longevidad infinita
-      starParticleSystem.minSize = 0.5;
-      starParticleSystem.maxSize = 1.6;
+      starParticleSystem.minSize = 0.6;
+      starParticleSystem.maxSize = 2.2;
       starParticleSystem.minLifeTime = 999999;
       starParticleSystem.maxLifeTime = 999999;
-      starParticleSystem.emitRate = 3600;
+      starParticleSystem.emitRate = 4200;
       starParticleSystem.blendMode = BABYLON.ParticleSystem.BLENDMODE_ONEONE;
       starParticleSystem.gravity = new BABYLON.Vector3(0, 0, 0);
       starParticleSystem.minEmitPower = 0;
@@ -981,15 +1013,16 @@
     }
 
     /**
-     * Crea planos distantes de nebulosa con DynamicTexture y mezcla alfa.
+     * Crea planos distantes de nebulosa con DynamicTexture y mezcla alfa suave.
+     * Ubicados a radio 2200+ para servir como majestuoso fondo cósmico profundo.
      */
     function createNebulas() {
       const nebulaConfigs = [
-        { pos: new BABYLON.Vector3(900, 400, -1200), c1: "#8b5cf6", c2: "#ec4899", size: 650 },
-        { pos: new BABYLON.Vector3(-1100, -300, 900), c1: "#06b6d4", c2: "#3b82f6", size: 750 },
-        { pos: new BABYLON.Vector3(400, -800, 1100), c1: "#f43f5e", c2: "#7c3aed", size: 700 },
-        { pos: new BABYLON.Vector3(-900, 700, -800), c1: "#10b981", c2: "#0ea5e9", size: 600 },
-        { pos: new BABYLON.Vector3(1200, -200, 600), c1: "#f59e0b", c2: "#ef4444", size: 800 }
+        { pos: new BABYLON.Vector3(2200, 1100, -2500), c1: "rgba(139, 92, 246, 0.45)", c2: "rgba(236, 72, 153, 0.2)", size: 1600 },
+        { pos: new BABYLON.Vector3(-2500, -800, 2000), c1: "rgba(6, 182, 212, 0.45)", c2: "rgba(59, 130, 246, 0.2)", size: 1750 },
+        { pos: new BABYLON.Vector3(1200, -2000, 2400), c1: "rgba(244, 63, 94, 0.4)", c2: "rgba(124, 58, 237, 0.18)", size: 1650 },
+        { pos: new BABYLON.Vector3(-2200, 1800, -2000), c1: "rgba(16, 185, 129, 0.4)", c2: "rgba(14, 165, 233, 0.18)", size: 1500 },
+        { pos: new BABYLON.Vector3(2600, -700, 1600), c1: "rgba(245, 158, 11, 0.4)", c2: "rgba(239, 68, 68, 0.18)", size: 1800 }
       ];
 
       nebulaConfigs.forEach((cfg, idx) => {
@@ -1003,8 +1036,8 @@
 
         const grad = ctx.createRadialGradient(128, 128, 0, 128, 128, 128);
         grad.addColorStop(0.0, cfg.c1);
-        grad.addColorStop(0.4, cfg.c2);
-        grad.addColorStop(0.8, "rgba(20, 10, 40, 0.2)");
+        grad.addColorStop(0.45, cfg.c2);
+        grad.addColorStop(0.75, "rgba(10, 5, 25, 0.08)");
         grad.addColorStop(1.0, "rgba(0, 0, 0, 0)");
 
         ctx.fillStyle = grad;
@@ -1228,7 +1261,7 @@
         }
 
         // Etiqueta flotante Billboard
-        const labelPlane = BABYLON.MeshBuilder.CreatePlane(`label_${data.name}`, { width: 12, height: 3 }, scene);
+        const labelPlane = BABYLON.MeshBuilder.CreatePlane(`label_${data.name}`, { width: 13, height: 3.25 }, scene);
         labelPlane.billboardMode = BABYLON.TransformNode.BILLBOARDMODE_ALL;
         const labelMat = new BABYLON.StandardMaterial(`labelMat_${data.name}`, scene);
         labelMat.emissiveTexture = createLabelTexture(data.name);
@@ -1478,6 +1511,7 @@
       // Elementos del DOM
       const panel = document.getElementById("panel");
       const toggleBtn = document.getElementById("togglePanelBtn");
+      const btnClosePanel = document.getElementById("btnClosePanel");
       const sliderGlobalSpeed = document.getElementById("globalSpeed");
       const valGlobalSpeed = document.getElementById("valGlobalSpeed");
       const sliderOrbitSpeed = document.getElementById("orbitSpeedMult");
@@ -1498,10 +1532,14 @@
       const fpsCounter = document.getElementById("fpsCounter");
       const meshCounter = document.getElementById("meshCounter");
 
-      // Alternar panel
-      toggleBtn.addEventListener("click", () => {
-        panel.classList.toggle("collapsed");
-      });
+      // Alternar panel y visibilidad de botón flotante
+      function setPanelCollapsed(collapsed) {
+        panel.classList.toggle("collapsed", collapsed);
+        toggleBtn.classList.toggle("visible", collapsed);
+      }
+
+      btnClosePanel.addEventListener("click", () => setPanelCollapsed(true));
+      toggleBtn.addEventListener("click", () => setPanelCollapsed(false));
 
       // Sección 1: Velocidad global y Pausa
       sliderGlobalSpeed.addEventListener("input", (e) => {
