@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Simulador de Universo 3D — Gemini 3.7 Flash (Antigravity CLI)</title>
-  <meta name="description" content="Simulación 3D interactiva del Sistema Solar completo con BabylonJS: colores planetarios fotorrealistas, cola del cometa Halley hiperbólica y vectorial anti-solar, sistema completo de lunas (Luna, Fobos, Deimos, Galileanas, Titán, Tritón), cinturón de asteroides instanciado, nebulosas orgánicas procedurales, post-procesado y panel de control glassmorphism." />
+  <meta name="description" content="Simulación 3D interactiva del Sistema Solar completo con BabylonJS: iluminación global equilibrada (sin caras oscuras en negro), cola del cometa Halley física y vectorial anti-solar, colores planetarios fotorrealistas, sistema completo de lunas, cinturón de asteroides instanciado, nebulosas orgánicas y panel de control glassmorphism." />
 
   <!-- Estilos CSS Autocontenidos -->
   <style>
@@ -534,9 +534,9 @@
   <!-- LÓGICA JAVASCRIPT PRINCIPAL -->
   <script>
     /**
-     * Universo 3D — Simulación BabylonJS con precisión Kepleriana, Colores Fotorrealistas y Cola Cometaria Dinámica
+     * Universo 3D — Simulación BabylonJS con iluminación global equilibrada y cola del cometa física
      * Agente: Gemini 3.7 Flash (Antigravity CLI)
-     * Especificación: Prompt-Maestro_v2.txt + Corrección de Colores y Cola Halley
+     * Especificación: Prompt-Maestro_v2.txt + Corrección de Iluminación Planetaria y Cola Halley
      */
 
     // ═══════════════════════════════════════════════════════════════════
@@ -878,7 +878,7 @@
     };
 
     // ═══════════════════════════════════════════════════════════════════
-    // 2. ENGINE + SCENE + CLEARCOLOR
+    // 2. ENGINE + SCENE + ILUMINACIÓN GLOBAL EQUILIBRADA
     // ═══════════════════════════════════════════════════════════════════
 
     const canvas = document.getElementById('renderCanvas');
@@ -891,6 +891,8 @@
 
     const scene = new BABYLON.Scene(engine);
     scene.clearColor = new BABYLON.Color4(0.005, 0.005, 0.015, 1.0);
+    // Luz ambiental base para garantizar que ningún astro quede en negro total
+    scene.ambientColor = new BABYLON.Color3(0.45, 0.45, 0.50);
 
     // ═══════════════════════════════════════════════════════════════════
     // 3. CÁMARA (ArcRotateCamera con zoom suave y sin bloqueos)
@@ -930,25 +932,28 @@
     });
 
     // ═══════════════════════════════════════════════════════════════════
-    // 4. LUCES (Hemispheric tenue + PointLight solar)
+    // 4. LUCES (Hemispheric ambiental rica + PointLight solar)
     // ═══════════════════════════════════════════════════════════════════
 
+    // Luz hemisférica con intensidad calibrada para iluminar con claridad la cara nocturna
     const hemiLight = new BABYLON.HemisphericLight(
       'hemiLight',
       new BABYLON.Vector3(0, 1, 0),
       scene
     );
-    hemiLight.intensity = 0.16;
-    hemiLight.groundColor = new BABYLON.Color3(0.04, 0.04, 0.08);
+    hemiLight.intensity = 0.65;
+    hemiLight.diffuse = new BABYLON.Color3(0.85, 0.88, 0.95);
+    hemiLight.groundColor = new BABYLON.Color3(0.45, 0.48, 0.55);
 
+    // Luz solar puntual en el origen
     const sunLight = new BABYLON.PointLight(
       'sunLight',
       BABYLON.Vector3.Zero(),
       scene
     );
-    sunLight.intensity = 2.2;
+    sunLight.intensity = 2.0;
     sunLight.diffuse = SUN_CONFIGS.yellow.lightColor.clone();
-    sunLight.specular = new BABYLON.Color3(0.8, 0.8, 0.8);
+    sunLight.specular = new BABYLON.Color3(0.4, 0.4, 0.4);
     sunLight.range = 3000;
 
     // ═══════════════════════════════════════════════════════════════════
@@ -1014,11 +1019,9 @@
       ctx.fillRect(0, 0, width, height);
 
       if (data.type === 'mercury') {
-        // Mercurio: gris rocoso con cráteres y rayos de eyección
         ctx.fillStyle = '#6b7280';
         ctx.fillRect(0, 0, width, height);
 
-        // Cuencas y maria basálticos oscuros
         ctx.fillStyle = '#374151';
         for (let i = 0; i < 25; i++) {
           ctx.beginPath();
@@ -1026,7 +1029,6 @@
           ctx.fill();
         }
 
-        // Cráteres con bordes claros y sombras
         for (let i = 0; i < 60; i++) {
           const cx = Math.random() * width;
           const cy = Math.random() * height;
@@ -1040,7 +1042,6 @@
           ctx.stroke();
         }
       } else if (data.type === 'venus') {
-        // Venus: atmósfera densa en remolinos de oro, ocre y crema
         ctx.fillStyle = '#d97706';
         ctx.fillRect(0, 0, width, height);
 
@@ -1054,11 +1055,9 @@
         }
         ctx.globalAlpha = 1.0;
       } else if (data.type === 'earth') {
-        // Tierra: Océanos azul zafiro con plataformas costeras turquesas
         ctx.fillStyle = '#1d4ed8';
         ctx.fillRect(0, 0, width, height);
 
-        // Aguas someras costeras
         ctx.fillStyle = '#0ea5e9';
         for (let i = 0; i < 20; i++) {
           ctx.beginPath();
@@ -1066,7 +1065,6 @@
           ctx.fill();
         }
 
-        // Continentes (selvas verdes, sabana y cordilleras marrones)
         ctx.fillStyle = '#15803d';
         for (let i = 0; i < 18; i++) {
           ctx.beginPath();
@@ -1074,7 +1072,6 @@
           ctx.fill();
         }
 
-        // Desiertos y montañas
         ctx.fillStyle = '#b45309';
         for (let i = 0; i < 12; i++) {
           ctx.beginPath();
@@ -1082,7 +1079,6 @@
           ctx.fill();
         }
 
-        // Capas de nubes arremolinadas
         ctx.fillStyle = 'rgba(255, 255, 255, 0.70)';
         for (let y = 25; y < height - 25; y += 16) {
           ctx.beginPath();
@@ -1090,16 +1086,13 @@
           ctx.fill();
         }
 
-        // Casquetes polares níveos
         ctx.fillStyle = '#ffffff';
         ctx.fillRect(0, 0, width, 18);
         ctx.fillRect(0, height - 18, width, 18);
       } else if (data.type === 'mars') {
-        // Marte: Desiertos oxidantes rojo-anaranjados y mesetas oscuras
         ctx.fillStyle = '#c2410c';
         ctx.fillRect(0, 0, width, height);
 
-        // Terreno basáltico oscuro (Syrtis Major)
         ctx.fillStyle = '#451a03';
         for (let i = 0; i < 35; i++) {
           ctx.beginPath();
@@ -1107,7 +1100,6 @@
           ctx.fill();
         }
 
-        // Cañón y polvo marciano
         ctx.fillStyle = '#ea580c';
         for (let i = 0; i < 20; i++) {
           ctx.beginPath();
@@ -1115,12 +1107,10 @@
           ctx.fill();
         }
 
-        // Casquetes polares marcianos
         ctx.fillStyle = '#ffffff';
         ctx.fillRect(0, 0, width, 12);
         ctx.fillRect(0, height - 10, width, 10);
       } else if (data.type === 'jupiter') {
-        // Júpiter: Bandas turbulentas de amoníaco e hidrocarburos
         const jBands = ['#9a3412', '#c2410c', '#b45309', '#fde68a', '#fef3c7', '#7c2d12', '#d97706'];
         let curY = 0;
         while (curY < height) {
@@ -1130,7 +1120,6 @@
           curY += bh;
         }
 
-        // Gran Mancha Roja icónica
         ctx.fillStyle = '#991b1b';
         ctx.beginPath();
         ctx.ellipse(width * 0.65, height * 0.62, 38, 20, 0, 0, Math.PI * 2);
@@ -1139,7 +1128,6 @@
         ctx.lineWidth = 3;
         ctx.stroke();
 
-        // Remolinos blancos anticlónicos (perlas)
         ctx.fillStyle = '#ffffff';
         for (let i = 0; i < 8; i++) {
           ctx.beginPath();
@@ -1147,7 +1135,6 @@
           ctx.fill();
         }
       } else if (data.type === 'saturn') {
-        // Saturno: Bandas doradas armónicas y suaves
         const sBands = ['#fef08a', '#fde047', '#eab308', '#ca8a04', '#d97706', '#fef9c3'];
         let curY = 0;
         while (curY < height) {
@@ -1157,7 +1144,6 @@
           curY += bh;
         }
       } else if (data.type === 'uranus') {
-        // Urano: Atmósfera de metano turquesa/cian pastel con bandas sutiles
         ctx.fillStyle = '#67e8f9';
         ctx.fillRect(0, 0, width, height);
 
@@ -1169,22 +1155,18 @@
         }
         ctx.globalAlpha = 1.0;
       } else if (data.type === 'neptune') {
-        // Neptuno: Azul cobalto profundo con nubes cirros blancas y Mancha Oscura
         ctx.fillStyle = '#1d4ed8';
         ctx.fillRect(0, 0, width, height);
 
-        // Bandas azul marino intenso
         ctx.fillStyle = '#1e3a8a';
         ctx.fillRect(0, height * 0.25, width, 30);
         ctx.fillRect(0, height * 0.65, width, 35);
 
-        // Gran Mancha Oscura
         ctx.fillStyle = '#0f172a';
         ctx.beginPath();
         ctx.ellipse(width * 0.45, height * 0.35, 28, 14, 0, 0, Math.PI * 2);
         ctx.fill();
 
-        // Nubes cirros blancas brillantes ("Scooter")
         ctx.fillStyle = '#e0f2fe';
         for (let i = 0; i < 14; i++) {
           ctx.beginPath();
@@ -1192,7 +1174,6 @@
           ctx.fill();
         }
       } else if (data.type === 'pluto') {
-        // Plutón: Glaciar Tombaugh Regio (corazón blanco) y cinturón tholin marrón
         ctx.fillStyle = '#78350f';
         ctx.fillRect(0, 0, width, height);
 
@@ -1203,7 +1184,6 @@
           ctx.fill();
         }
 
-        // Glaciar de nitrógeno con forma de corazón (Tombaugh Regio)
         ctx.fillStyle = '#fff1f2';
         ctx.beginPath();
         ctx.arc(width * 0.5, height * 0.5, 35, 0, Math.PI * 2);
@@ -1212,7 +1192,6 @@
         ctx.arc(width * 0.58, height * 0.5, 30, 0, Math.PI * 2);
         ctx.fill();
       } else if (data.type === 'moon_luna') {
-        // Luna: Maria basálticos y regolito con cráteres
         ctx.fillStyle = '#94a3b8';
         ctx.fillRect(0, 0, width, height);
 
@@ -1230,7 +1209,6 @@
           ctx.fill();
         }
       } else if (data.type === 'moon_io') {
-        // Ío: Vulcanismo amarillo-azufre con calderas oscuras
         ctx.fillStyle = '#eab308';
         ctx.fillRect(0, 0, width, height);
 
@@ -1241,7 +1219,6 @@
           ctx.fill();
         }
       } else if (data.type === 'moon_europa') {
-        // Europa: Hielo blanco-azulado con fracturas lineae
         ctx.fillStyle = '#f0f9ff';
         ctx.fillRect(0, 0, width, height);
 
@@ -1254,7 +1231,6 @@
           ctx.stroke();
         }
       } else if (data.type === 'moon_ganymede') {
-        // Ganimedes: Terreno surcado mixto
         ctx.fillStyle = '#64748b';
         ctx.fillRect(0, 0, width, height);
 
@@ -1265,7 +1241,6 @@
           ctx.fill();
         }
       } else if (data.type === 'moon_callisto') {
-        // Calisto: Corteza antigua oscura con anillos de impacto
         ctx.fillStyle = '#475569';
         ctx.fillRect(0, 0, width, height);
 
@@ -1276,7 +1251,6 @@
           ctx.fill();
         }
       } else if (data.type === 'moon_titan') {
-        // Titán: Smog espeso de nitrógeno/metano
         ctx.fillStyle = '#f97316';
         ctx.fillRect(0, 0, width, height);
 
@@ -1287,7 +1261,6 @@
           ctx.fill();
         }
       } else if (data.type === 'moon_enceladus') {
-        // Encélado: Hielo níveo puro y fracturas
         ctx.fillStyle = '#ffffff';
         ctx.fillRect(0, 0, width, height);
 
@@ -1300,7 +1273,6 @@
           ctx.stroke();
         }
       } else if (data.type === 'moon_triton') {
-        // Tritón: Terreno melón cantaloupe rosáceo
         ctx.fillStyle = '#fbcfe8';
         ctx.fillRect(0, 0, width, height);
 
@@ -1311,14 +1283,12 @@
           ctx.fill();
         }
       } else if (data.type === 'moon_charon') {
-        // Caronte: Polo oscuro Mordor Macula
         ctx.fillStyle = '#94a3b8';
         ctx.fillRect(0, 0, width, height);
 
         ctx.fillStyle = '#7c2d12';
         ctx.fillRect(0, 0, width, 25);
       } else if (data.type === 'moon_rocky') {
-        // Fobos y Deimos
         ctx.fillStyle = '#52525b';
         ctx.fillRect(0, 0, width, height);
 
@@ -1345,7 +1315,7 @@
         const norm = (r - rad * 0.45) / (rad * 0.5);
         let alpha = 0.55 + 0.4 * Math.sin(norm * 25);
         if (norm > 0.64 && norm < 0.73) {
-          alpha = 0.02; // División de Cassini limpia
+          alpha = 0.02;
         }
 
         ctx.strokeStyle = `rgba(245, 215, 150, ${alpha})`;
@@ -1512,7 +1482,7 @@
     }
 
     // ═══════════════════════════════════════════════════════════════════
-    // 8. PLANETAS, ÓRBITAS Y SISTEMA DE LUNAS
+    // 8. PLANETAS, ÓRBITAS Y SISTEMA DE LUNAS (Sin Caras Negras)
     // ═══════════════════════════════════════════════════════════════════
 
     const planetsList = [];
@@ -1541,11 +1511,14 @@
 
         const mat = new BABYLON.StandardMaterial('mat_' + data.name, scene);
         mat.diffuseTexture = makePlanetTexture(data);
-        mat.specularColor = new BABYLON.Color3(0.12, 0.12, 0.12);
+        mat.specularColor = new BABYLON.Color3(0.08, 0.08, 0.08);
         mat.specularPower = 16;
+        // Iluminación ambiental y emisiva calibrada: la cara nocturna es suave, clara y nunca negra
+        mat.ambientColor = new BABYLON.Color3(0.60, 0.60, 0.65);
+        mat.emissiveColor = new BABYLON.Color3(0.28, 0.28, 0.32);
         mesh.material = mat;
 
-        // Atmósfera
+        // Atmósfera luminosa
         let atmoMesh = null;
         if (data.hasAtmosphere && data.atmoColor) {
           atmoMesh = BABYLON.MeshBuilder.CreateSphere('atmo_' + data.name, {
@@ -1556,7 +1529,9 @@
 
           const atmoMat = new BABYLON.StandardMaterial('atmoMat_' + data.name, scene);
           atmoMat.emissiveColor = data.atmoColor;
-          atmoMat.alpha = 0.28;
+          atmoMat.alpha = 0.25;
+          atmoMat.alphaMode = BABYLON.Engine.ALPHA_ADD;
+          atmoMat.disableLighting = true;
           atmoMat.backFaceCulling = false;
           atmoMesh.material = atmoMat;
         }
@@ -1606,7 +1581,9 @@
 
           const moonMat = new BABYLON.StandardMaterial('matMoon_' + mDatum.name, scene);
           moonMat.diffuseTexture = makePlanetTexture(mDatum);
-          moonMat.specularColor = new BABYLON.Color3(0.08, 0.08, 0.08);
+          moonMat.specularColor = new BABYLON.Color3(0.05, 0.05, 0.05);
+          moonMat.ambientColor = new BABYLON.Color3(0.60, 0.60, 0.65);
+          moonMat.emissiveColor = new BABYLON.Color3(0.28, 0.28, 0.32);
           moonMesh.material = moonMat;
 
           const moonLabel = BABYLON.MeshBuilder.CreatePlane('moonLabel_' + mDatum.name, {
@@ -1728,8 +1705,10 @@
       baseAsteroid.setEnabled(false);
 
       const astMat = new BABYLON.StandardMaterial('astMat', scene);
-      astMat.diffuseColor = new BABYLON.Color3(0.55, 0.5, 0.45);
-      astMat.specularColor = new BABYLON.Color3(0.1, 0.1, 0.1);
+      astMat.diffuseColor = new BABYLON.Color3(0.65, 0.6, 0.55);
+      astMat.specularColor = new BABYLON.Color3(0.05, 0.05, 0.05);
+      astMat.ambientColor = new BABYLON.Color3(0.5, 0.5, 0.5);
+      astMat.emissiveColor = new BABYLON.Color3(0.2, 0.2, 0.2);
       baseAsteroid.material = astMat;
 
       const asteroidCount = 280;
@@ -1788,7 +1767,8 @@
 
       const ringMat = new BABYLON.StandardMaterial('ringMat_' + data.name, scene);
       ringMat.diffuseTexture = makeRingTexture(data.colorHex);
-      ringMat.emissiveColor = new BABYLON.Color3(0.2, 0.18, 0.14);
+      ringMat.emissiveColor = new BABYLON.Color3(0.35, 0.32, 0.26);
+      ringMat.ambientColor = new BABYLON.Color3(0.5, 0.5, 0.5);
       ringMat.specularColor = BABYLON.Color3.Black();
       ringMat.backFaceCulling = false;
       ringMat.alpha = data.ringAlpha || 0.85;
@@ -1808,7 +1788,6 @@
     let halleyCurrentAngle = 0;
 
     function createHalley() {
-      // Núcleo brillante
       halleyMesh = BABYLON.MeshBuilder.CreateSphere('halleyCore', {
         diameter: HALLEY_DATA.size * 2,
         segments: 18
@@ -1817,14 +1796,15 @@
       const hMat = new BABYLON.StandardMaterial('halleyMat', scene);
       hMat.emissiveColor = new BABYLON.Color3(0.9, 0.96, 1.0);
       hMat.diffuseColor = new BABYLON.Color3(0.6, 0.85, 1.0);
+      hMat.ambientColor = new BABYLON.Color3(0.6, 0.6, 0.6);
       halleyMesh.material = hMat;
 
       // Coma esférica resplandeciente alrededor del núcleo
-      halleyComaSystem = new BABYLON.ParticleSystem('halleyComa', 300, scene);
+      halleyComaSystem = new BABYLON.ParticleSystem('halleyComa', 400, scene);
       halleyComaSystem.particleTexture = makeFlareTexture('#ffffff', 'rgba(56,189,248,0.7)');
       halleyComaSystem.emitter = halleyMesh;
-      halleyComaSystem.minEmitBox = new BABYLON.Vector3(-0.4, -0.4, -0.4);
-      halleyComaSystem.maxEmitBox = new BABYLON.Vector3(0.4, 0.4, 0.4);
+      halleyComaSystem.minEmitBox = new BABYLON.Vector3(-0.3, -0.3, -0.3);
+      halleyComaSystem.maxEmitBox = new BABYLON.Vector3(0.3, 0.3, 0.3);
       halleyComaSystem.color1 = new BABYLON.Color4(1.0, 1.0, 1.0, 1.0);
       halleyComaSystem.color2 = new BABYLON.Color4(0.3, 0.8, 1.0, 0.8);
       halleyComaSystem.colorDead = new BABYLON.Color4(0.1, 0.4, 0.9, 0.0);
@@ -1832,33 +1812,32 @@
       halleyComaSystem.maxSize = 2.8;
       halleyComaSystem.minLifeTime = 0.3;
       halleyComaSystem.maxLifeTime = 0.6;
-      halleyComaSystem.emitRate = 120;
+      halleyComaSystem.emitRate = 160;
       halleyComaSystem.blendMode = BABYLON.ParticleSystem.BLENDMODE_ONEONE;
       halleyComaSystem.minEmitPower = 0.2;
       halleyComaSystem.maxEmitPower = 1.0;
       halleyComaSystem.start();
 
-      // Cola de partículas extendida y direccional (Anti-Solar)
-      halleyTailSystem = new BABYLON.ParticleSystem('halleyTail', 3200, scene);
+      // Cola de partículas continua y direccional (Anti-Solar)
+      halleyTailSystem = new BABYLON.ParticleSystem('halleyTail', 2800, scene);
       halleyTailSystem.particleTexture = makeFlareTexture('#ffffff', 'rgba(56,189,248,0.85)');
       halleyTailSystem.emitter = halleyMesh;
 
-      halleyTailSystem.minEmitBox = new BABYLON.Vector3(-0.35, -0.35, -0.35);
-      halleyTailSystem.maxEmitBox = new BABYLON.Vector3(0.35, 0.35, 0.35);
+      halleyTailSystem.minEmitBox = new BABYLON.Vector3(-0.2, -0.2, -0.2);
+      halleyTailSystem.maxEmitBox = new BABYLON.Vector3(0.2, 0.2, 0.2);
 
-      // Gradiente de color: blanco ionizado brillante -> cian eléctrico -> fadeout cósmico
       halleyTailSystem.color1 = new BABYLON.Color4(1.0, 1.0, 1.0, 1.0);
       halleyTailSystem.color2 = new BABYLON.Color4(0.25, 0.85, 1.0, 0.85);
       halleyTailSystem.colorDead = new BABYLON.Color4(0.05, 0.30, 0.85, 0.0);
 
-      halleyTailSystem.minSize = 1.0;
-      halleyTailSystem.maxSize = 4.5;
-      halleyTailSystem.minLifeTime = 1.4;
-      halleyTailSystem.maxLifeTime = 2.8;
-      halleyTailSystem.emitRate = 800;
+      halleyTailSystem.minSize = 0.9;
+      halleyTailSystem.maxSize = 4.0;
+      halleyTailSystem.minLifeTime = 0.9;
+      halleyTailSystem.maxLifeTime = 1.8;
+      halleyTailSystem.emitRate = 600;
       halleyTailSystem.blendMode = BABYLON.ParticleSystem.BLENDMODE_ONEONE;
-      halleyTailSystem.minEmitPower = 35;
-      halleyTailSystem.maxEmitPower = 75;
+      halleyTailSystem.minEmitPower = 14;
+      halleyTailSystem.maxEmitPower = 28;
       halleyTailSystem.updateSpeed = 0.015;
 
       halleyTailSystem.start();
@@ -2230,7 +2209,7 @@
         }
       }
 
-      // Seguir objetivos en movimiento si una vista está activa
+      // Seguir objetivos en movimiento
       if (!STATE.cameraTransition) {
         if (STATE.currentView === 'earth') {
           const earth = planetsList.find(p => p.data.name === 'Tierra');
@@ -2285,7 +2264,7 @@
           }
         });
 
-        // 5. Animación del Cometa Halley y Cola Vectorial Anti-Solar Majestuosa
+        // 5. Animación del Cometa Halley y Cola Vectorial Anti-Solar Suave y Continua
         if (halleyMesh) {
           const halleyAngularSpeed = (Math.PI * 2 / HALLEY_DATA.period);
           halleyCurrentAngle += dt * halleyAngularSpeed * STATE.globalSpeed * STATE.orbitSpeedMult;
@@ -2298,27 +2277,26 @@
           );
           halleyMesh.position = hPos;
 
-          // Vector Anti-Solar estricto (del Sol hacia el cometa y más allá)
+          // Vector Anti-Solar estricto (apuntando en línea directa opuesta al Sol)
           const antiSolar = hPos.subtract(BABYLON.Vector3.Zero()).normalize();
 
-          // Base ortonormal para dispersión cónica simétrica
-          let perp1 = BABYLON.Vector3.Cross(antiSolar, BABYLON.Axis.Y);
-          if (perp1.lengthSquared() < 0.001) {
-            perp1 = BABYLON.Vector3.Cross(antiSolar, BABYLON.Axis.Z);
-          }
-          perp1.normalize();
-          const perp2 = BABYLON.Vector3.Cross(antiSolar, perp1).normalize();
-
           const distToSun = hPos.length();
-          // Efecto de viento solar: más cerca del sol -> cola más larga, potente y brillante
-          const solarWindFactor = Math.min(2.2, Math.max(0.7, 140 / (distToSun + 20)));
+          const solarWindFactor = Math.min(2.0, Math.max(0.7, 120 / (distToSun + 20)));
 
           if (halleyTailSystem) {
-            const spread = 0.065;
-            halleyTailSystem.direction1 = antiSolar.add(perp1.scale(spread)).add(perp2.scale(spread));
-            halleyTailSystem.direction2 = antiSolar.subtract(perp1.scale(spread)).subtract(perp2.scale(spread));
-            halleyTailSystem.minEmitPower = 35 * solarWindFactor;
-            halleyTailSystem.maxEmitPower = 75 * solarWindFactor;
+            const spread = 0.08;
+            halleyTailSystem.direction1 = new BABYLON.Vector3(
+              antiSolar.x - spread,
+              antiSolar.y - spread,
+              antiSolar.z - spread
+            );
+            halleyTailSystem.direction2 = new BABYLON.Vector3(
+              antiSolar.x + spread,
+              antiSolar.y + spread,
+              antiSolar.z + spread
+            );
+            halleyTailSystem.minEmitPower = 12 * solarWindFactor;
+            halleyTailSystem.maxEmitPower = 26 * solarWindFactor;
           }
         }
 

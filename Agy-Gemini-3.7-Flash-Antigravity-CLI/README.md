@@ -1,6 +1,6 @@
 # Universo 3D — Agy-Gemini-3.7-Flash-Antigravity-CLI
 
-Simulación 3D interactiva, inmersiva y de alto rendimiento del Sistema Solar completo desarrollada en **BabylonJS**, construida bajo las especificaciones de [`Prompt-Maestro_v2.txt`](../Prompt-Maestro_v2.txt) con precisión cromática fotorrealista para cada planeta, dinámica de viento solar para la cola del Cometa Halley, nebulosas orgánicas y sistema completo de lunas satelitales.
+Simulación 3D interactiva, inmersiva y de alto rendimiento del Sistema Solar completo desarrollada en **BabylonJS**, construida bajo las especificaciones de [`Prompt-Maestro_v2.txt`](../Prompt-Maestro_v2.txt) con iluminación global equilibrada (eliminando caras nocturnas en negro total), dinámica física y continua para la cola del Cometa Halley, precisión cromática fotorrealista para cada planeta, nebulosas orgánicas y sistema completo de lunas satelitales.
 
 ---
 
@@ -26,9 +26,12 @@ Simulación 3D interactiva, inmersiva y de alto rendimiento del Sistema Solar co
 
 ## 🌟 Características Astronómicas y Visuales Implementadas
 
-### 1. Sol Central y Dinámica de Fotosfera
+### 1. Sol Central, Iluminación Global Equilibrada y Dinámica Fotosférica
+- **Iluminación Sin Caras Negras:**
+  - Configuración combinada de `scene.ambientColor` $(0.45, 0.45, 0.50)$, `hemiLight.intensity` $(0.65)$ con coloración suave y `mat.emissiveColor` / `mat.ambientColor` en planetas y lunas.
+  - Esto garantiza que al orbitar la cámara y observar el lado no iluminado directamente por el Sol, la superficie del planeta conserve todos sus detalles, colores, continentes y bandas sin oscurecerse en negro total.
 - **Núcleo Solar:** Esfera 3D central con material emisivo cálido y textura procedural dinámica generada en memoria con `BABYLON.DynamicTexture` (simulación de turbulencia de plasma solar y granulado fotosférico).
-- **Luz Puntual Solar:** `BABYLON.PointLight` en el origen $(0,0,0)$ con intensidad calibrada (2.2) y coloración cálida para iluminar de manera realista los cuerpos del sistema.
+- **Luz Puntual Solar:** `BABYLON.PointLight` en el origen $(0,0,0)$ con intensidad calibrada (2.0) y coloración cálida para iluminar de manera realista los cuerpos del sistema.
 - **Pulsación Armónica:** Modulación de escala sinusoidal ($1.0 \leftrightarrow 1.04$) con período de ~3 segundos.
 - **Corona Solar Oficial:** Integración con `BABYLON.ParticleHelper.CreateAsync("sun", scene)` y degradación elegante a `BABYLON.ParticleSystem` procedural con emisor en memoria si se ejecuta offline bajo `file://`.
 
@@ -42,7 +45,7 @@ Simulación 3D interactiva, inmersiva y de alto rendimiento del Sistema Solar co
   - Inclinación de planos orbitales (`orbitTilt`) e inclinación de ejes de rotación propia (`axialTilt`), incluyendo la rotación retrógrada de Venus y la inclinación extrema (~97.8°) de Urano.
 - **Texturizado y Cromatismo Detallado por Planeta:**
   - **Mercurio:** Gris basáltico rocoso (`#8c8d94`) con maria oscuros, cráteres de impacto y rayos de eyección claros.
-  - **Venus:** Atmósfera densa en remolinos de oro, ocre y crema (`#eab308` / `#d97706`) con halo atmosférico dorado.
+  - **Venus:** Atmósfera densa en remolinos de oro, ocre y crema (`#eab308` / `#d97706`) con halo atmosférico dorado luminiscente.
   - **Tierra:** Océanos azul zafiro (`#1e40af`), plataformas costeras turquesas (`#0ea5e9`), continentes con selvas verdes, desiertos ocres, cordilleras, nubes ciclónicas blancas y atmósfera cian brillante (`#38bdf8`).
   - **Marte:** Regolito oxidado rojo-anaranjado (`#c2410c`), mesetas oscuras de hierro (Syrtis Major), casquetes polares níveos y tenue halo salmón.
   - **Júpiter:** Bandas turbulentas alternantes de amoníaco e hidrocarburos (terracota, cobre, marfil y oro), con la icónica **Gran Mancha Roja** carmesí (`#991b1b`) y perlas anticlónicas blancas.
@@ -69,13 +72,13 @@ Simulación 3D interactiva, inmersiva y de alto rendimiento del Sistema Solar co
 - Más de **280 asteroides rocosos** distribuidos elípticamente entre Marte y Júpiter.
 - Renderizado ultra-optimizado mediante `baseAsteroid.createInstance()` (1 solo *draw-call* de geometría base), manteniendo 60 FPS estables.
 
-### 5. Cometa Halley con Coma Luminosa y Cola Vectorial Anti-Solar Majestuosa
+### 5. Cometa Halley con Coma Luminosa y Cola Continua Anti-Solar
 - **Órbita Excéntrica:** Alta excentricidad ($e = 0.85$, $a = 155$, período visible de ~18s).
-- **Coma Esférica:** Resplandor de gas ionizado (`BABYLON.ParticleSystem`) envolviendo el núcleo cometario.
-- **Cálculo Anti-Solar con Base Ortonormal:**
+- **Coma Esférica:** Resplandor de gas ionizado envolviendo el núcleo cometario (`halleyComaSystem`).
+- **Vector Anti-Solar Continuo:**
   $$\vec{d}_{\text{anti-solar}} = \text{normalize}(\vec{P}_{\text{Halley}} - \vec{P}_{\text{Sol}})$$
-  Con dispersión cónica simétrica calculada mediante productos cruzados con los ejes globales.
-- **Efecto de Viento Solar Dinámico:** La velocidad y emisión de partículas se modulan según la proximidad al Sol ($L \propto 1/r$), logrando una cola extendida de 45 a 85 unidades con gradiente de color: blanco puro brillante en el núcleo $\rightarrow$ cian eléctrico en el cuerpo $\rightarrow$ fadeout transparente.
+  Con caja de emisión calibrada simétricamente ($\pm \text{spread}$) para asegurar un flujo estable, continuo y perfectamente anclado a la cabeza del cometa sin saltos bruscos ni desconexiones.
+- **Efecto de Viento Solar Realista:** La velocidad y emisión de partículas se modulan de forma armónica según la distancia al Sol ($L \propto 1/r$), logrando una estela fluida con gradiente de color: blanco puro $\rightarrow$ cian eléctrico $\rightarrow$ fadeout transparente.
 
 ### 6. Cosmos Profundo y Nebulosas Orgánicas
 - **Campo Estelar:** Más de 3800 estrellas estáticas distribuidas tridimensionalmente en un volumen cúbico profundo de $3600^3$ unidades.
