@@ -90,7 +90,16 @@ titular ahora espera a Inter, que antes no se cargaba; sigue en verde.
   `/etc/systemd/system/universo-arena-webhook.service`, modo 644: legible por cualquier usuario del VPS).
   Recomendado: moverlo a un `EnvironmentFile` en 600 y rotarlo en GitHub. No lo hice: es del operador.
 
-## 6. Caddy (propuesta; este rediseño no lo edita)
+## 6. Caddy — aplicado el 11-oct-2026
+
+**Aplicado por el operador** (copias `/etc/caddy/Caddyfile.bak.pre-universo-arena-rediseno-20261011_132034` y
+`…-csp2-…`). La propuesta de abajo **no funcionó tal cual**: con el `header { … }` global llevando su propia CSP,
+el `header @portada` quedaba pisado y la portada seguía con la permisiva. Lo aplicado: la CSP de las demos sale
+del bloque global a `header @demos …` con `@demos not path / /index.html`, y la portada lleva la estricta con
+`@portada`. Comprobado: `/` e `/index.html` con la estricta (una sola cabecera), las demos y `llms.txt` con la de
+siempre; Playwright con consola 0 en la portada (1440 y 390 px, 18 enlaces a demos) y en dos demos BabylonJS.
+
+Propuesta original:
 
 La galería ya no ejecuta scripts en línea. Propuesta: en el bloque `universo-arena.alexanderoviedofadul.dev`,
 una CSP estricta **solo para la portada**, sin tocar la de las demos (que necesitan `unsafe-eval` y los CDN
@@ -110,6 +119,12 @@ de BabylonJS):
   `admin off`: el comando usa `localhost:2019` por defecto. Pasó durante este trabajo: producción **rechazó**
   la carga (puerto ocupado) y conservó su configuración; se comprobaron 200 en cinco dominios. Para el ensayo,
   parar y volver a lanzar `caddy run`, nunca `caddy reload`.
+  🔴 **Lo que no se vio entonces**: aunque rechazó la carga, producción **aplicó el `admin off`** y cerró su API
+  de administración (13:04:57, «admin endpoint disabled»). Siguió sirviendo con la configuración buena, pero
+  desde ese momento **ningún `systemctl reload caddy` funcionaba** («connection refused» en `localhost:2019`).
+  Se vio al aplicar la CSP de este rediseño (13:20) y se resolvió con `systemctl restart caddy` (el arranque lee
+  el Caddyfile, no `autosave.json`); dominios comprobados en 200 y `reload` de nuevo operativo. Un ensayo de
+  Caddy debe llevar su propio `admin localhost:<otro puerto>` en las opciones globales.
 - **Lenis se queda con el scroll**: en Playwright, `scrollIntoView()` después de mover la rueda no lleva a
   la parada (Lenis vuelve a su objetivo). Probar las paradas con movimiento reducido o sin interacción previa.
 - **`preserveAspectRatio="xMidYMid slice"`** en el hero: en móvil el Sol (x = 1230 de 1600) queda fuera

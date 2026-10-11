@@ -6,6 +6,8 @@ Todos los cambios notables de **Universo-Arena**. El formato sigue
 
 ## [Unreleased]
 
+- **Caddy** (aplicado el 11-oct): CSP estricta solo para la portada (`script-src 'self'`); las demos conservan la suya con `@demos`. Durante el ensayo, un `caddy reload` de prueba desactivó la API de administración del Caddy de producción: se recuperó con un reinicio (ver `docs/rediseno-2026-10/README.md` §7).
+
 ### Cambiado — Manual de Marca v1.0 y galería generada con el kit (2026-10-11)
 
 **Doc**: [`docs/rediseno-2026-10/README.md`](docs/rediseno-2026-10/README.md) ·
