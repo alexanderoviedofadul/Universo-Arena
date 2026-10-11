@@ -426,9 +426,15 @@ def capas_portada():
     VACIO, COSMOS = hexa("ua-vacio"), hexa("ua-cosmos")
     cx, cy = CENTRO
     capas = []
-    estrellas = "".join(
-        f'<circle cx="{rng.uniform(0, 1600):.0f}" cy="{rng.uniform(0, 900):.0f}" r="{rng.choice((0.8, 1, 1.2, 1.6, 2))}" '
-        f'fill="#FFFFFF" opacity="{rng.uniform(.25, .9):.2f}"/>' for _ in range(220))
+    # 220 estrellas en cinco trazados (uno por brillo), no 220 nodos: la galería pinta esta misma capa
+    # y cada nodo SVG cuesta estilo y maquetación en el primer pintado.
+    brillos = {}
+    for _ in range(220):
+        x, y = rng.uniform(0, 1600), rng.uniform(0, 900)
+        r = rng.choice((0.8, 1, 1.2, 1.6, 2))
+        o = round(rng.uniform(.25, .9) * 4) / 4 or .25
+        brillos.setdefault(o, []).append(f"M{x - r:.1f} {y:.0f}a{r:g} {r:g} 0 1 0 {2 * r:g} 0a{r:g} {r:g} 0 1 0 {-2 * r:g} 0")
+    estrellas = "".join(f'<path d="{"".join(v)}" fill="#FFFFFF" opacity="{o:g}"/>' for o, v in sorted(brillos.items()))
     capas.append(("fondo", 0,
         '<defs><linearGradient id="PORT-g" x1="0" y1="0" x2="0" y2="1">'
         f'<stop offset="0" stop-color="{COSMOS}"/><stop offset=".7" stop-color="{VACIO}"/><stop offset="1" stop-color="{VACIO}"/></linearGradient>'
@@ -1111,7 +1117,8 @@ def main():
     for rel in sorted(IMAGENES):
         datos = base64.b64encode((BASE / "assets" / rel).read_bytes()).decode("ascii")
         port = port.replace(f'src="assets/{rel}"', f'src="data:{TIPOS_IMG[Path(rel).suffix]};base64,{datos}"')
-    port = re.sub(r'\s*<link rel="icon"[^>]*>', "", port)
+    icono = base64.b64encode((BASE / "assets/logos/ua-simbolo.svg").read_bytes()).decode("ascii")
+    port = re.sub(r'<link rel="icon"[^>]*>', f'<link rel="icon" href="data:image/svg+xml;base64,{icono}" type="image/svg+xml">', port)
     port = port.replace('href="impresion.html"', 'href="Manual_Marca_UniversoArena_v1.pdf"')
     sello = ("<!-- ═══ Universo-Arena v1.0 · PORTABLE AUTOCONTENIDO ═══\n"
              "     GENERADO por scripts/build_v1.py desde contenido/ + plantillas/ + assets/ + assets/benchmark.json.\n"

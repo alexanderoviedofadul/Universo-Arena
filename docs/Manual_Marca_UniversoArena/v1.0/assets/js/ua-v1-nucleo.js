@@ -157,14 +157,16 @@
         w.gsap.to(lote, { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out', stagger: 0.06, overwrite: true });
       }
     });
-    qsa('[data-titulo]').forEach(function (h) {
+    // SplitText mide las líneas: con la fuente aún sin cargar las corta mal (y GSAP avisa en la consola).
+    var fuentes = (d.fonts && d.fonts.ready) ? d.fonts.ready : Promise.resolve();
+    fuentes.then(function () { qsa('[data-titulo]').forEach(function (h) {
       if (!w.SplitText) { return; }
       var s = new w.SplitText(h, { type: 'lines', mask: 'lines' });
       w.gsap.from(s.lines, {
         yPercent: 105, duration: 0.9, ease: 'power3.out', stagger: 0.08,
         scrollTrigger: { trigger: h, start: 'top 85%', once: true }
       });
-    });
+    }); });
     w.addEventListener('load', function () { w.ScrollTrigger.refresh(); });
   }
 

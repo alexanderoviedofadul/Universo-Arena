@@ -112,13 +112,22 @@
   /* ── Entradas: solo se esconde lo que está fuera de la pantalla al cargar ─── */
   function revelar() {
     if (reducido || !('IntersectionObserver' in w)) return;
-    var alto = w.innerHeight;
+    // Sin getBoundingClientRect (forzaría la maquetación al cargar): la primera entrega del observador
+    // dice qué está fuera de la pantalla, y solo eso se esconde para revelarlo después.
+    var vistos = new WeakSet();
     var io = new IntersectionObserver(function (es) {
-      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } });
+      es.forEach(function (e) {
+        var n = e.target;
+        if (!vistos.has(n)) {
+          vistos.add(n);
+          if (e.isIntersecting || e.boundingClientRect.top < 0) { io.unobserve(n); return; }
+          n.classList.add('por-revelar');
+          return;
+        }
+        if (e.isIntersecting) { n.classList.add('is-in'); io.unobserve(n); }
+      });
     }, { rootMargin: '0px 0px -8% 0px' });
-    d.querySelectorAll('[data-reveal]').forEach(function (n) {
-      if (n.getBoundingClientRect().top > alto) { n.classList.add('por-revelar'); io.observe(n); }
-    });
+    d.querySelectorAll('[data-reveal]').forEach(function (n) { io.observe(n); });
   }
 
   /* ── Galería: orden, filtro y ficha ─────────────────────────────────────── */
@@ -138,7 +147,11 @@
     var orden = 'total', filtro = 'todos';
     barra.hidden = false;
 
-    function aplicar() {
+    function aplicar(inicial) {
+      if (inicial) {  // el HTML ya viene ordenado por puesto y sin filtro: no se toca el DOM al cargar
+        if (contador) contador.textContent = tarjetas.length + ' entregas';
+        return;
+      }
       var vistas = tarjetas.slice().sort(function (a, b) {
         if (orden === 'total') return Number(a.dataset.rank) - Number(b.dataset.rank);
         return (Number(b.dataset[orden]) - Number(a.dataset[orden])) || (Number(a.dataset.rank) - Number(b.dataset.rank));
@@ -160,7 +173,7 @@
       if (grupo === 'orden') orden = b.dataset.orden.toLowerCase(); else filtro = b.dataset.filtro;
       aplicar();
     });
-    aplicar();
+    aplicar(true);
   }
 
   function radar(e, cats) {
@@ -306,13 +319,16 @@
       .catch(function () { /* sin movimiento: la página sigue igual */ });
   }
 
+  function luego(fn) { setTimeout(fn, 0); }
+
   function iniciar() {
     d.documentElement.classList.add('js');
+    // Cada pieza en su propia tarea: ninguna bloquea el hilo principal más de unos milisegundos.
     var world = d.querySelector('[data-world]');
-    if (world) recorrido(world);
-    revelar();
-    galeria();
-    ficha();
+    if (world) luego(function () { recorrido(world); });
+    luego(revelar);
+    luego(galeria);
+    luego(ficha);
     if (reducido || ahorro) return;
     var hecho = false;
     var eventos = ['scroll', 'keydown', 'pointerdown', 'touchstart', 'wheel'];
