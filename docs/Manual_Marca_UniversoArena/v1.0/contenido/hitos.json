@@ -1,0 +1,61 @@
+{
+ "_nota": "Cronología de Universo-Arena. Cada fecha sale de un commit (git log --date=short) o del registro de su tanda.",
+ "hitos": [
+  {
+   "fecha": "15-06-2026",
+   "acto": "Primeras entregas",
+   "resumen": "Las primeras simulaciones del reto, una carpeta por modelo y agente.",
+   "papel": "benchmark",
+   "fuente": "git-inicial"
+  },
+  {
+   "fecha": "15-06-2026",
+   "acto": "Galería y banner",
+   "resumen": "index.html con los datos en línea y el Sol en la barra.",
+   "papel": "marca",
+   "fuente": "git-galeria"
+  },
+  {
+   "fecha": "15-06-2026",
+   "acto": "SEO y cabeceras",
+   "resumen": "llms.txt, sitemap, CSP y PageSpeed 100 en la galería.",
+   "papel": "benchmark",
+   "fuente": "git-seo"
+  },
+  {
+   "fecha": "17-06-2026",
+   "acto": "Segunda tanda",
+   "resumen": "17 entradas.",
+   "papel": "benchmark",
+   "fuente": "tanda-2"
+  },
+  {
+   "fecha": "05-07-2026",
+   "acto": "Cuarta tanda",
+   "resumen": "23 entradas.",
+   "papel": "benchmark",
+   "fuente": "tanda-4"
+  },
+  {
+   "fecha": "27-07-2026",
+   "acto": "Sexta tanda",
+   "resumen": "26 entradas; triple empate en 97 y tercer discriminador.",
+   "papel": "benchmark",
+   "fuente": "tanda-6"
+  },
+  {
+   "fecha": "18-08-2026",
+   "acto": "Décima tanda",
+   "resumen": "36 entradas: GLM 5.3 ×3 y Gemini 3.7 Flash ×2.",
+   "papel": "benchmark",
+   "fuente": "tanda-10"
+  },
+  {
+   "fecha": "11-10-2026",
+   "acto": "Manual de Marca v1.0",
+   "resumen": "El Sol pasado a vector, paleta medida y galería nueva.",
+   "papel": "marca",
+   "fuente": "rediseno"
+  }
+ ]
+}

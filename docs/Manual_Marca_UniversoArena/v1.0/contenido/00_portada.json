@@ -1,0 +1,66 @@
+{
+ "id": "portada",
+ "num": "00",
+ "titulo": "Portada",
+ "corto": "Portada",
+ "kicker": "Manual de Marca v1.0",
+ "paginas": [
+  {
+   "plantilla": "portada",
+   "tono": "noche",
+   "bloques": [
+    {
+     "t": "comp",
+     "n": "portada"
+    }
+   ]
+  },
+  {
+   "plantilla": "libre",
+   "tono": "claro",
+   "bloques": [
+    {
+     "t": "cols",
+     "r": "1.2fr 1fr",
+     "cols": [
+      [
+       {
+        "t": "eyebrow",
+        "x": "Contenido"
+       },
+       {
+        "t": "h2",
+        "x": "El Sol en el foco, con su fuente"
+       },
+       {
+        "t": "comp",
+        "n": "indice"
+       }
+      ],
+      [
+       {
+        "t": "tarjeta",
+        "titulo": "Qué es este manual",
+        "x": "El primer manual de marca de Universo-Arena, el benchmark abierto en el que {d:entregas} combinaciones de modelo y agente de código resuelven el mismo reto {f:readme}. Mide lo que la galería ya tenía —el Sol de la barra y sus colores {f:galeria-anterior}— y fija las reglas de lo que viene.",
+        "sub": "Versión 1.0 · octubre de 2026",
+        "tono": "cian"
+       },
+       {
+        "t": "nota",
+        "titulo": "Las cifras no se escriben",
+        "x": "Cada número de este manual —entregas, notas, tiers, categorías— lo lee el build de assets/benchmark.json y de los documentos del método {f:benchmark,rubrica}. Si el benchmark cambia, el manual se reconstruye y dice lo nuevo.",
+        "tono": "azul"
+       },
+       {
+        "t": "nota",
+        "titulo": "Nada sin fuente",
+        "x": "Cada afirmación lleva un número entre corchetes que remite a la bibliografía del capítulo 10. Si algo no tiene fuente, no está.",
+        "tono": "verde"
+       }
+      ]
+     ]
+    }
+   ]
+  }
+ ]
+}

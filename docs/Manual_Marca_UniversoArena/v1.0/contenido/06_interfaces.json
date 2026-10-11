@@ -1,0 +1,67 @@
+{
+ "id": "interfaces",
+ "num": "06",
+ "titulo": "Interfaces",
+ "corto": "Interfaces",
+ "kicker": "La galería",
+ "paginas": [
+  {
+   "plantilla": "portadilla",
+   "tono": "noche",
+   "fig": "orbita",
+   "bloques": []
+  },
+  {
+   "plantilla": "libre",
+   "tono": "claro",
+   "bloques": [
+    {
+     "t": "cols",
+     "r": "1fr 1fr",
+     "cols": [
+      [
+       {
+        "t": "eyebrow",
+        "x": "Arquitectura"
+       },
+       {
+        "t": "h2",
+        "x": "Recorrido, podio, galería, método"
+       },
+       {
+        "t": "comp",
+        "n": "pantalla"
+       },
+       {
+        "t": "p",
+        "x": "Todo lo que muestra la galería sale de assets/benchmark.json al construirla; los datos viajan en la página como JSON no ejecutable, para que siga abriendo con doble clic {f:claude-md,rediseno}.",
+        "c": "small"
+       }
+      ],
+      [
+       {
+        "t": "eyebrow",
+        "x": "Componentes"
+       },
+       {
+        "t": "h2",
+        "x": "Botones, tiers y tarjetas"
+       },
+       {
+        "t": "comp",
+        "n": "componentes"
+       },
+       {
+        "t": "nota",
+        "titulo": "Una nota sin letra no es una nota",
+        "x": "El tier va siempre con su letra: el color solo no lo distingue quien no ve bien los colores {f:wcag}.",
+        "tono": "azul"
+       }
+      ]
+     ]
+    }
+   ]
+  }
+ ],
+ "lead": "La galería es la cara del benchmark: un recorrido por el método y las {d:entregas} entregas, con su captura real y su ficha."
+}

@@ -1,0 +1,114 @@
+{
+ "id": "gobernanza",
+ "num": "10",
+ "titulo": "Gobernanza y fuentes",
+ "corto": "Gobernanza",
+ "kicker": "Versionado e inmutable",
+ "paginas": [
+  {
+   "plantilla": "portadilla",
+   "tono": "noche",
+   "fig": "isotipo-oscuro",
+   "bloques": []
+  },
+  {
+   "plantilla": "libre",
+   "tono": "claro",
+   "bloques": [
+    {
+     "t": "cols",
+     "r": "1fr 1fr",
+     "cols": [
+      [
+       {
+        "t": "eyebrow",
+        "x": "Versiones"
+       },
+       {
+        "t": "h2",
+        "x": "Esta carpeta no se edita"
+       },
+       {
+        "t": "lista",
+        "items": [
+         "v1.0 es un estado congelado: cualquier cambio de fondo abre v1.1 o v2.0 en otra carpeta.",
+         "Se editan contenido/, plantillas/ y assets/; después build, PDF y audit, y se commitea todo junto.",
+         "El audit debe terminar en 0 fallos."
+        ]
+       }
+      ],
+      [
+       {
+        "t": "eyebrow",
+        "x": "Lo que corrige"
+       },
+       {
+        "t": "h2",
+        "x": "Respecto a la galería anterior"
+       },
+       {
+        "t": "lista",
+        "items": [
+         "Cuatro negros sin nombre pasan a dos: Vacío y Cosmos {f:galeria-anterior}.",
+         "Inter se declaraba y no se cargaba; ahora va autoalojada {f:inter}.",
+         "Las cifras del «estado del arte» estaban escritas a mano y se quedaron atrás más de una vez; ahora se calculan {f:changelog}.",
+         "La imagen para compartir ya no pone el Sol en el centro de las órbitas."
+        ]
+       }
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "plantilla": "libre",
+   "tono": "claro",
+   "bloques": [
+    {
+     "t": "eyebrow",
+     "x": "Bibliografía"
+    },
+    {
+     "t": "h2",
+     "x": "Fuentes (1)"
+    },
+    {
+     "t": "comp",
+     "n": "bibliografia",
+     "desde": 0,
+     "hasta": 15
+    }
+   ]
+  },
+  {
+   "plantilla": "libre",
+   "tono": "claro",
+   "bloques": [
+    {
+     "t": "eyebrow",
+     "x": "Bibliografía"
+    },
+    {
+     "t": "h2",
+     "x": "Fuentes (2)"
+    },
+    {
+     "t": "comp",
+     "n": "bibliografia",
+     "desde": 15
+    }
+   ]
+  },
+  {
+   "plantilla": "portada",
+   "tono": "noche",
+   "bloques": [
+    {
+     "t": "comp",
+     "n": "contraportada"
+    }
+   ]
+  }
+ ],
+ "lead": "Un manual con versión y con fuentes: lo que no se puede comprobar, no se publica."
+}

@@ -6,6 +6,30 @@ Todos los cambios notables de **Universo-Arena**. El formato sigue
 
 ## [Unreleased]
 
+### Cambiado — Manual de Marca v1.0 y galería generada con el kit (2026-10-11)
+
+**Doc**: [`docs/rediseno-2026-10/README.md`](docs/rediseno-2026-10/README.md) ·
+**Manual**: [`docs/Manual_Marca_UniversoArena/v1.0/`](docs/Manual_Marca_UniversoArena/v1.0/README.md).
+
+- **Manual de Marca v1.0 «El Sol en el foco»**: el Sol de la barra (`.brand .dot`) pasado a vector sin
+  rediseñarlo, paleta cerrada de 30 colores con su contraste, Inter y JetBrains Mono autoalojadas, recorrido
+  inmersivo, portable sin red, PDF A4 de 40 páginas y tokens. Las cifras se leen del benchmark al construir.
+  `audit_v1.py` en **0 fallos** (comprueba también el benchmark, la galería, `llms.txt` y `sitemap.xml`).
+- **Galería generada**: `scripts/generar_galeria.py` escribe `index.html` desde `assets/benchmark.json`
+  (adiós al `DATA` reinyectado a mano y a los contadores escritos a mano). Hero con la órbita de la marca en
+  paralaje, recorrido ScrollWorld de cinco paradas por el método, podio, 36 tarjetas con orden y filtro, ficha
+  en `<dialog>`, hallazgos, estado del arte, método y preguntas frecuentes.
+- **Sin scripts en línea** en la portada (CSP sin `'unsafe-inline'` posible); GSAP y Lenis locales, solo tras
+  la primera interacción. Capturas en WebP a la medida de la tarjeta; los datos de las fichas en
+  `assets/hub/fichas.js`, que se pide en diferido.
+- **Imagen para compartir nueva**: `assets/og-universo-arena-v1.png`, con el Sol en el foco (la anterior lo
+  ponía en el centro). El README la usa como portada.
+- **Corregido**: la FAQ decía que el arnés está versionado (vive fuera del repositorio); el pie enlazaba
+  `README.md`, que el servidor no sirve; el error de consola de la portada anterior.
+- **Webhook de despliegue con firma obligatoria** (fuera del repositorio, `/root/webhooks/`): antes un POST sin
+  firma con `ref` de `main` lanzaba el `git pull`.
+- Las 36 carpetas de entregas **no se tocaron**.
+
 ### Añadido — Décima tanda: 31 → 36 entradas (2026-08-07)
 
 - **5 entradas nuevas** (3× GLM 5.3, 2× Gemini 3.7 Flash), todas con **0 errores de

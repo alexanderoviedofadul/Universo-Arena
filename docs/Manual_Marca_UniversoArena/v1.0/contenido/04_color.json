@@ -1,0 +1,231 @@
+{
+ "id": "color",
+ "num": "04",
+ "titulo": "Color",
+ "corto": "Color",
+ "kicker": "Una paleta cerrada",
+ "paginas": [
+  {
+   "plantilla": "portadilla",
+   "tono": "noche",
+   "fig": "paleta-mini",
+   "bloques": []
+  },
+  {
+   "plantilla": "libre",
+   "tono": "claro",
+   "bloques": [
+    {
+     "t": "eyebrow",
+     "x": "El Sol"
+    },
+    {
+     "t": "h2",
+     "x": "Cuatro paradas, del blanco a la brasa"
+    },
+    {
+     "t": "comp",
+     "n": "paleta",
+     "ids": [
+      "ua-sol",
+      "ua-fulgor",
+      "ua-brasa"
+     ],
+     "grande": true
+    },
+    {
+     "t": "comp",
+     "n": "degradados"
+    },
+    {
+     "t": "p",
+     "x": "El blanco del centro no es un color de la paleta: es el brillo del Sol.",
+     "c": "small muted"
+    }
+   ]
+  },
+  {
+   "plantilla": "libre",
+   "tono": "claro",
+   "bloques": [
+    {
+     "t": "eyebrow",
+     "x": "Superficies y texto"
+    },
+    {
+     "t": "h2",
+     "x": "El vacío y lo que se lee encima"
+    },
+    {
+     "t": "comp",
+     "n": "paleta",
+     "ids": [
+      "ua-vacio",
+      "ua-cosmos",
+      "ua-estelar",
+      "ua-polvo",
+      "ua-tenue",
+      "ua-orbita",
+      "ua-nebulosa"
+     ]
+    }
+   ]
+  },
+  {
+   "plantilla": "libre",
+   "tono": "claro",
+   "bloques": [
+    {
+     "t": "eyebrow",
+     "x": "Tiers"
+    },
+    {
+     "t": "h2",
+     "x": "La nota tiene color, y siempre letra"
+    },
+    {
+     "t": "comp",
+     "n": "paleta",
+     "ids": [
+      "ua-sol",
+      "ua-esmeralda",
+      "ua-celeste",
+      "ua-nebulosa",
+      "ua-coral"
+     ]
+    },
+    {
+     "t": "p",
+     "x": "Sobre oscuro, cada tier es su color; sobre claro se escribe con su versión profunda, que sí llega a AA.",
+     "c": "small muted"
+    }
+   ]
+  },
+  {
+   "plantilla": "libre",
+   "tono": "claro",
+   "bloques": [
+    {
+     "t": "eyebrow",
+     "x": "Para papel y vistas claras"
+    },
+    {
+     "t": "h2",
+     "x": "Derivados con su contraste"
+    },
+    {
+     "t": "comp",
+     "n": "paleta",
+     "ids": [
+      "ua-tinta",
+      "ua-pizarra",
+      "ua-gris-texto",
+      "ua-orbita-profunda",
+      "ua-nebulosa-profunda",
+      "ua-ambar-profundo",
+      "ua-verde-profundo",
+      "ua-azul-profundo",
+      "ua-rojo-texto",
+      "ua-fulgor-profundo"
+     ]
+    }
+   ]
+  },
+  {
+   "plantilla": "libre",
+   "tono": "claro",
+   "bloques": [
+    {
+     "t": "eyebrow",
+     "x": "Contraste"
+    },
+    {
+     "t": "h2",
+     "x": "Calculado, no estimado"
+    },
+    {
+     "t": "comp",
+     "n": "contraste",
+     "pares": [
+      [
+       "ua-estelar",
+       "ua-vacio",
+       "Texto de cuerpo sobre el Vacío"
+      ],
+      [
+       "ua-polvo",
+       "ua-vacio",
+       "Texto secundario"
+      ],
+      [
+       "ua-tenue",
+       "ua-vacio",
+       "Notas pequeñas: el token --faint {f:pagespeed}"
+      ],
+      [
+       "ua-orbita",
+       "ua-vacio",
+       "Enlaces y foco"
+      ],
+      [
+       "ua-sol",
+       "ua-vacio",
+       "Tier S y la nota del podio"
+      ],
+      [
+       "ua-esmeralda",
+       "ua-cosmos",
+       "«0 errores» en las tarjetas"
+      ],
+      [
+       "ua-tinta",
+       "#FFFFFF",
+       "Texto sobre claro"
+      ],
+      [
+       "ua-orbita-profunda",
+       "#FFFFFF",
+       "Antetítulos sobre claro"
+      ],
+      [
+       "ua-ambar-profundo",
+       "#FFFFFF",
+       "Tier S sobre claro"
+      ],
+      [
+       "ua-orbita",
+       "#FFFFFF",
+       "El acento sobre claro: no se usa para texto"
+      ]
+     ],
+     "densa": true
+    }
+   ]
+  },
+  {
+   "plantilla": "libre",
+   "tono": "claro",
+   "bloques": [
+    {
+     "t": "eyebrow",
+     "x": "Retirados"
+    },
+    {
+     "t": "h2",
+     "x": "Lo que sale de la galería"
+    },
+    {
+     "t": "comp",
+     "n": "retirados"
+    },
+    {
+     "t": "nota",
+     "titulo": "Por qué",
+     "x": "La galería anterior tenía cuatro negros casi iguales y dos colores escritos fuera de sus tokens {f:galeria-anterior}. Esta versión los reduce a los que tienen nombre.",
+     "tono": "azul"
+    }
+   ]
+  }
+ ],
+ "lead": "Colores con nombre y origen: los del Sol, los que la galería ya declaraba y los que hacían falta para el papel."
+}

@@ -1,0 +1,39 @@
+/* GENERADO por docs/Manual_Marca_UniversoArena/v1.0/scripts/build_v1.py — no editar a mano.
+   Paleta cerrada de Universo-Arena v1.0: 30 colores. Los del logo se leyeron en el Sol de la
+   barra de la galería anterior (.brand .dot); los de CSS, en su :root; el resto se deriva con su
+   contraste calculado (contenido/paleta.json). */
+:root {
+  --ua-sol: #FFD24A;  /* Sol · logo */
+  --ua-fulgor: #FF7A3C;  /* Fulgor · logo */
+  --ua-brasa: #7A1D00;  /* Brasa · logo */
+  --ua-vacio: #05060F;  /* Vacío · CSS */
+  --ua-cosmos: #0A0D1F;  /* Cosmos · CSS */
+  --ua-estelar: #EAF0FF;  /* Estelar · CSS */
+  --ua-polvo: #9AA8D4;  /* Polvo · CSS */
+  --ua-tenue: #7884B5;  /* Tenue · CSS */
+  --ua-orbita: #7C9CFF;  /* Órbita · CSS */
+  --ua-nebulosa: #C08BFF;  /* Nebulosa · CSS */
+  --ua-esmeralda: #56E0A6;  /* Esmeralda · CSS */
+  --ua-celeste: #57B6FF;  /* Celeste · CSS */
+  --ua-coral: #FF7D8A;  /* Coral · CSS */
+  --ua-tinta: #0B1024;  /* Tinta · v1.0 */
+  --ua-pizarra: #1E2540;  /* Pizarra · v1.0 */
+  --ua-gris-texto: #535C7E;  /* Gris Texto · v1.0 */
+  --ua-borde: #DDE3F5;  /* Borde · v1.0 */
+  --ua-niebla: #F4F6FD;  /* Niebla · v1.0 */
+  --ua-hielo: #EEF2FF;  /* Hielo · v1.0 */
+  --ua-lavanda: #F5F0FF;  /* Lavanda · v1.0 */
+  --ua-orbita-profunda: #3550C4;  /* Órbita Profunda · v1.0 */
+  --ua-nebulosa-profunda: #7338C2;  /* Nebulosa Profunda · v1.0 */
+  --ua-ambar-profundo: #8A5A00;  /* Ámbar Profundo · v1.0 */
+  --ua-verde-profundo: #0B7350;  /* Verde Profundo · v1.0 */
+  --ua-azul-profundo: #1F64B8;  /* Azul Profundo · v1.0 */
+  --ua-rojo-texto: #B4233A;  /* Rojo Texto · v1.0 */
+  --ua-fulgor-profundo: #B4481A;  /* Fulgor Profundo · v1.0 */
+  --ua-verde-palido: #E9FBF3;  /* Verde Pálido · v1.0 */
+  --ua-ambar-palido: #FFF8E1;  /* Ámbar Pálido · v1.0 */
+  --ua-rojo-palido: #FFF0F2;  /* Rojo Pálido · v1.0 */
+  --ua-sol-radial: radial-gradient(circle at 35% 30%, #FFFFFF 0%, #FFD24A 30%, #FF7A3C 65%, #7A1D00 100%);
+  --f-display: 'Inter', system-ui, sans-serif;
+  --f-mono: 'JetBrains Mono', ui-monospace, monospace;
+}

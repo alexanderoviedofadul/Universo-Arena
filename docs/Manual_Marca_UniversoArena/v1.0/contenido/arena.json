@@ -1,0 +1,73 @@
+{
+ "_nota": "Lo que la arena es, dicho con su fuente. Las cifras NO van aquí: el build las lee de assets/benchmark.json, docs/rubric.md y docs/methodology.md.",
+ "senales": [
+  {
+   "n": "1",
+   "nombre": "Rúbrica de 100 puntos",
+   "que": "un jurado-LLM por entrega",
+   "color": "ua-orbita",
+   "texto": "Lee el index.html completo y el reto, y puntúa diez categorías verificando el código, no los comentarios.",
+   "fuente": "metodologia"
+  },
+  {
+   "n": "2",
+   "nombre": "Ejecución real",
+   "que": "Chrome headless · SwiftShader",
+   "color": "ua-esmeralda",
+   "texto": "Cada entrega se abre en un navegador: captura, objetos en escena, FPS y errores de consola. Se juzga por lo que hace al abrirse.",
+   "fuente": "arnes"
+  },
+  {
+   "n": "3",
+   "nombre": "Calibración",
+   "que": "juez final + runtime",
+   "color": "ua-nebulosa",
+   "texto": "Un juez normaliza las notas entre jurados. Donde la lectura del código contradice la ejecución, manda la ejecución.",
+   "fuente": "metodologia"
+  }
+ ],
+ "tiers_lectura": [
+  [
+   "S",
+   "Fiel al spec y correcto en los detalles difíciles."
+  ],
+  [
+   "A",
+   "Muy completo, con algún fallo concreto."
+  ],
+  [
+   "B",
+   "Completo, con un requisito nuclear incumplido."
+  ],
+  [
+   "C",
+   "Funciona, con varios bugs reales."
+  ],
+  [
+   "D",
+   "Entrega parcial o con fallos graves."
+  ]
+ ],
+ "artefactos": [
+  {
+   "nombre": "El ranking",
+   "id": "assets/benchmark.json",
+   "texto": "Fuente única: de aquí salen el README, docs/results.md, la galería y este manual."
+  },
+  {
+   "nombre": "La ejecución",
+   "id": "assets/runtime.json",
+   "texto": "WebGL, objetos en escena, FPS y errores de cada entrega, medidos al abrirla."
+  },
+  {
+   "nombre": "Las capturas",
+   "id": "assets/previews/<carpeta>.png",
+   "texto": "Lo que se ve al abrir cada simulación, en Chrome headless."
+  },
+  {
+   "nombre": "El reto",
+   "id": "Prompt-Maestro_v2.txt",
+   "texto": "El prompt idéntico que recibió cada combinación de modelo y agente."
+  }
+ ]
+}

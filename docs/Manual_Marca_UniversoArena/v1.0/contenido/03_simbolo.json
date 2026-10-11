@@ -1,0 +1,200 @@
+{
+ "id": "simbolo",
+ "num": "03",
+ "titulo": "Símbolo y logotipo",
+ "corto": "Símbolo",
+ "kicker": "El Sol de la barra",
+ "paginas": [
+  {
+   "plantilla": "portadilla",
+   "tono": "noche",
+   "fig": "isotipo-oscuro",
+   "bloques": []
+  },
+  {
+   "plantilla": "libre",
+   "tono": "claro",
+   "bloques": [
+    {
+     "t": "eyebrow",
+     "x": "Anatomía"
+    },
+    {
+     "t": "h2",
+     "x": "Un disco, un degradado, un nombre"
+    },
+    {
+     "t": "comp",
+     "n": "anatomia"
+    },
+    {
+     "t": "nota",
+     "titulo": "Sin rediseño",
+     "x": "El Sol ya estaba en la barra de la galería desde el 15 de junio: un círculo de 26 px con un degradado radial {f:galeria-anterior,git-galeria}. Esta versión lo mide y lo pasa a vector.",
+     "tono": "azul"
+    }
+   ]
+  },
+  {
+   "plantilla": "libre",
+   "tono": "claro",
+   "bloques": [
+    {
+     "t": "cols",
+     "r": "1fr 1fr",
+     "cols": [
+      [
+       {
+        "t": "eyebrow",
+        "x": "Construcción"
+       },
+       {
+        "t": "h2",
+        "x": "Las cotas del CSS"
+       },
+       {
+        "t": "comp",
+        "n": "construccion"
+       }
+      ],
+      [
+       {
+        "t": "eyebrow",
+        "x": "Cómo se midió"
+       },
+       {
+        "t": "p",
+        "x": "La regla original es <code>radial-gradient(circle at 35% 30%, #fff, #ffd24a 30%, #ff7a3c 65%, #7a1d00)</code> sobre un círculo de 26 px {f:galeria-anterior}."
+       },
+       {
+        "t": "p",
+        "x": "Sin tamaño explícito, CSS lleva el degradado hasta la esquina más lejana de la caja {f:css-radial}: desde (35, 30) hasta (100, 100) hay 95,5 u en un viewBox de 100. El SVG maestro usa exactamente ese radio, así que el vector y el CSS pintan lo mismo."
+       },
+       {
+        "t": "p",
+        "x": "El halo (<code>box-shadow: 0 0 18px</code>) es un efecto de pantalla sobre oscuro: no forma parte del símbolo ni se imprime."
+       },
+       {
+        "t": "nota",
+        "titulo": "El nombre, en curvas",
+        "x": "«Universo-Arena» va en Inter 800 con −0,01 em, a 16 px junto a un Sol de 26 px y 10 px de aire: las medidas de la barra {f:galeria-anterior,inter}. El build lo pasa a curvas.",
+        "tono": "verde"
+       }
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "plantilla": "libre",
+   "tono": "claro",
+   "bloques": [
+    {
+     "t": "eyebrow",
+     "x": "Versiones"
+    },
+    {
+     "t": "h2",
+     "x": "Horizontal, vertical y una tinta"
+    },
+    {
+     "t": "comp",
+     "n": "lockups"
+    },
+    {
+     "t": "comp",
+     "n": "variantes"
+    }
+   ]
+  },
+  {
+   "plantilla": "libre",
+   "tono": "claro",
+   "bloques": [
+    {
+     "t": "eyebrow",
+     "x": "Área de protección"
+    },
+    {
+     "t": "h2",
+     "x": "Aire alrededor"
+    },
+    {
+     "t": "comp",
+     "n": "proteccion"
+    },
+    {
+     "t": "eyebrow",
+     "x": "Tamaños mínimos"
+    },
+    {
+     "t": "h2",
+     "x": "Hasta dónde se reduce"
+    },
+    {
+     "t": "comp",
+     "n": "minimos"
+    },
+    {
+     "t": "p",
+     "x": "Por debajo de 16 px el degradado se pierde: el Sol pasa a la versión de una tinta.",
+     "c": "small muted"
+    }
+   ]
+  },
+  {
+   "plantilla": "libre",
+   "tono": "claro",
+   "bloques": [
+    {
+     "t": "eyebrow",
+     "x": "Usos incorrectos"
+    },
+    {
+     "t": "h2",
+     "x": "Lo que no se hace"
+    },
+    {
+     "t": "comp",
+     "n": "incorrectos"
+    }
+   ]
+  },
+  {
+   "plantilla": "libre",
+   "tono": "claro",
+   "bloques": [
+    {
+     "t": "eyebrow",
+     "x": "Favicon e iconos"
+    },
+    {
+     "t": "h2",
+     "x": "El Sol solo"
+    },
+    {
+     "t": "comp",
+     "n": "favicon"
+    },
+    {
+     "t": "p",
+     "x": "Los PNG salen del mismo SVG maestro con rsvg-convert: 16, 32, 180, 192 y 512 px.",
+     "c": "small muted"
+    },
+    {
+     "t": "eyebrow",
+     "x": "Fondos"
+    },
+    {
+     "t": "h2",
+     "x": "Sobre qué va cada versión"
+    },
+    {
+     "t": "comp",
+     "n": "fondos"
+    }
+   ]
+  }
+ ],
+ "lead": "El símbolo es el Sol que la galería llevaba en la barra desde el primer día. No se redibuja: se mide."
+}

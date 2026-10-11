@@ -1,0 +1,100 @@
+{
+ "id": "tipografia",
+ "num": "05",
+ "titulo": "Tipografía",
+ "corto": "Tipografía",
+ "kicker": "Inter y JetBrains Mono",
+ "paginas": [
+  {
+   "plantilla": "portadilla",
+   "tono": "noche",
+   "fig": "tipo-mini",
+   "bloques": []
+  },
+  {
+   "plantilla": "libre",
+   "tono": "claro",
+   "bloques": [
+    {
+     "t": "cols",
+     "r": "1fr 1fr",
+     "cols": [
+      [
+       {
+        "t": "comp",
+        "n": "especimen",
+        "familia": "Inter",
+        "rol": "Titulares, texto, notas e interfaz",
+        "muestra": "Un prompt. Muchos universos.",
+        "pesos": "400 · 600 · 700 · 800 · variable (wght 400–800, opsz 14–32)"
+       },
+       {
+        "t": "p",
+        "x": "La galería ya pedía Inter, pero nunca la cargaba: se veía con la fuente del sistema {f:galeria-anterior}. Ahora va autoalojada, recortada al latín {f:inter}."
+       }
+      ],
+      [
+       {
+        "t": "comp",
+        "n": "especimen",
+        "familia": "JetBrains Mono",
+        "rol": "Fórmulas, rutas y datos",
+        "muestra": "x = a·cosθ − a·e",
+        "pesos": "400 · 700"
+       },
+       {
+        "t": "p",
+        "x": "Para las fórmulas de las trampas, los nombres de carpeta y los datos de ejecución {f:jetbrains}."
+       }
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "plantilla": "libre",
+   "tono": "claro",
+   "bloques": [
+    {
+     "t": "cols",
+     "r": "1.25fr 1fr",
+     "cols": [
+      [
+       {
+        "t": "eyebrow",
+        "x": "Escala"
+       },
+       {
+        "t": "h2",
+        "x": "De la portada a la nota"
+       },
+       {
+        "t": "comp",
+        "n": "escala"
+       }
+      ],
+      [
+       {
+        "t": "eyebrow",
+        "x": "Tokens"
+       },
+       {
+        "t": "h2",
+        "x": "Lo que copia la galería"
+       },
+       {
+        "t": "p",
+        "x": "El build escribe la paleta en assets/marca/tokens-v1.css y la galería la enlaza; nada se copia a mano {f:rediseno}."
+       },
+       {
+        "t": "comp",
+        "n": "tokens"
+       }
+      ]
+     ]
+    }
+   ]
+  }
+ ],
+ "lead": "Una sola familia para leer y otra para las fórmulas. Las dos, servidas desde el propio sitio."
+}

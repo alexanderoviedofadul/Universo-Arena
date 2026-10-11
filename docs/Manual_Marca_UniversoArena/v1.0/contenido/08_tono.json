@@ -1,0 +1,83 @@
+{
+ "id": "tono",
+ "num": "08",
+ "titulo": "Tono y voz",
+ "corto": "Tono",
+ "kicker": "Se juzga por ejecución",
+ "paginas": [
+  {
+   "plantilla": "portadilla",
+   "tono": "noche",
+   "fig": "lema",
+   "bloques": []
+  },
+  {
+   "plantilla": "libre",
+   "tono": "claro",
+   "bloques": [
+    {
+     "t": "cols",
+     "r": "1fr 1fr",
+     "cols": [
+      [
+       {
+        "t": "eyebrow",
+        "x": "Cómo habla"
+       },
+       {
+        "t": "h2",
+        "x": "Con datos y sin adornos"
+       },
+       {
+        "t": "lista",
+        "items": [
+         "Dice qué se midió y cómo: «0 errores de consola al abrirla», no «impecable».",
+         "Nombra el modelo y el agente juntos: la nota es de la combinación {f:readme}.",
+         "Cuenta los fallos con su causa: «la cola apunta al Sol por un normalize() que muta el núcleo» {f:conclusiones}.",
+         "En español, como todo el repositorio {f:claude-md}."
+        ]
+       }
+      ],
+      [
+       {
+        "t": "eyebrow",
+        "x": "Así sí, así no"
+       },
+       {
+        "t": "h2",
+        "x": "Ejemplos"
+       },
+       {
+        "t": "tabla",
+        "cab": [
+         "Así no",
+         "Así sí"
+        ],
+        "filas": [
+         [
+          "El mejor modelo del mundo",
+          "La nota más alta de esta arena: {d:cima}/100"
+         ],
+         [
+          "La IA ya programa sola",
+          "Las {d:entregas} entregas arrancan; {d:limpias} sin errores de consola"
+         ],
+         [
+          "GPT gana a Claude",
+          "Empate a {d:cima} entre {d:empatados} entregas; el orden del podio sigue la regla contra el auto-favoritismo"
+         ],
+         [
+          "Evolution Hub",
+          "Benchmark abierto de LLM + agente de código"
+         ]
+        ],
+        "c": "compacta"
+       }
+      ]
+     ]
+    }
+   ]
+  }
+ ],
+ "lead": "Universo-Arena no opina de los modelos: dice lo que hicieron al abrirse."
+}

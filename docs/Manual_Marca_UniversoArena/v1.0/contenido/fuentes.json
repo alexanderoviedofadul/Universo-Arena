@@ -1,0 +1,208 @@
+{
+ "_nota": "Bibliografía del manual. Cada afirmación del contenido cita una de estas entradas con {f:id}.",
+ "fuentes": [
+  {
+   "id": "prompt",
+   "autor": "Universo-Arena",
+   "titulo": "Prompt-Maestro_v2.txt",
+   "detalle": "El reto que implementa cada entrega: simulación 3D del Sistema Solar con BabylonJS en un único index.html",
+   "url": "Prompt-Maestro_v2.txt"
+  },
+  {
+   "id": "readme",
+   "autor": "Universo-Arena",
+   "titulo": "README.md",
+   "detalle": "Resumen del benchmark, tablas de ranking y análisis comparativo",
+   "url": "README.md"
+  },
+  {
+   "id": "metodologia",
+   "autor": "Universo-Arena",
+   "titulo": "docs/methodology.md",
+   "detalle": "Las tres señales, el caso GLM-5.2, la escala de tiers y la ampliación del método desde la 6.ª tanda",
+   "url": "docs/methodology.md"
+  },
+  {
+   "id": "rubrica",
+   "autor": "Universo-Arena",
+   "titulo": "docs/rubric.md",
+   "detalle": "Las 10 categorías y sus máximos, las dos trampas, el tercer discriminador y los tiers",
+   "url": "docs/rubric.md"
+  },
+  {
+   "id": "arnes",
+   "autor": "Universo-Arena",
+   "titulo": "docs/harness.md",
+   "detalle": "Captura y datos de ejecución con Puppeteer sobre Chrome headless (SwiftShader)",
+   "url": "docs/harness.md"
+  },
+  {
+   "id": "conclusiones",
+   "autor": "Universo-Arena",
+   "titulo": "docs/conclusions.md",
+   "detalle": "Análisis, conclusiones y estado del arte",
+   "url": "docs/conclusions.md"
+  },
+  {
+   "id": "benchmark",
+   "autor": "Universo-Arena",
+   "titulo": "assets/benchmark.json",
+   "detalle": "Fuente única del ranking: nota, tier, desglose, rasgos, fortalezas y debilidades de cada entrega. El build la lee",
+   "url": "assets/benchmark.json"
+  },
+  {
+   "id": "runtime",
+   "autor": "Universo-Arena",
+   "titulo": "assets/runtime.json",
+   "detalle": "Datos objetivos de ejecución: WebGL, objetos en escena, FPS y errores",
+   "url": "assets/runtime.json"
+  },
+  {
+   "id": "claude-md",
+   "autor": "Universo-Arena",
+   "titulo": "CLAUDE.md",
+   "detalle": "Convenciones del repositorio: una carpeta por entrega, datos en línea y regla absoluta",
+   "url": "CLAUDE.md"
+  },
+  {
+   "id": "changelog",
+   "autor": "Universo-Arena",
+   "titulo": "CHANGELOG.md",
+   "detalle": "Registro de cambios por tanda",
+   "url": "CHANGELOG.md"
+  },
+  {
+   "id": "git-inicial",
+   "autor": "Historial de git",
+   "titulo": "Commit 914f279",
+   "detalle": "15-06-2026: primera entrega (simulación 3D con BabylonJS y panel de control)",
+   "url": "git log 914f279"
+  },
+  {
+   "id": "git-galeria",
+   "autor": "Historial de git",
+   "titulo": "Commit b9f17ac",
+   "detalle": "15-06-2026: banner del proyecto, galería index.html y assets/benchmark.json",
+   "url": "git log b9f17ac"
+  },
+  {
+   "id": "git-seo",
+   "autor": "Historial de git",
+   "titulo": "Commit 937ab0c",
+   "detalle": "15-06-2026: SEO/GEO, endurecimiento de cabeceras y PageSpeed 100/100/100/100",
+   "url": "git log 937ab0c"
+  },
+  {
+   "id": "tanda-2",
+   "autor": "Universo-Arena",
+   "titulo": "docs/segunda-tanda-2026-06-17.md",
+   "detalle": "Segunda tanda: 17 entradas",
+   "url": "docs/segunda-tanda-2026-06-17.md"
+  },
+  {
+   "id": "tanda-4",
+   "autor": "Universo-Arena",
+   "titulo": "docs/cuarta-tanda-2026-07-05.md",
+   "detalle": "Cuarta tanda: 23 entradas",
+   "url": "docs/cuarta-tanda-2026-07-05.md"
+  },
+  {
+   "id": "tanda-6",
+   "autor": "Universo-Arena",
+   "titulo": "docs/sexta-tanda-2026-07-27.md",
+   "detalle": "Sexta tanda: 26 entradas y triple empate en 97",
+   "url": "docs/sexta-tanda-2026-07-27.md"
+  },
+  {
+   "id": "tanda-10",
+   "autor": "Universo-Arena",
+   "titulo": "docs/decima-tanda-2026-08-07.md",
+   "detalle": "Décima tanda: 36 entradas (commit ca4a05b del 18-08-2026)",
+   "url": "docs/decima-tanda-2026-08-07.md"
+  },
+  {
+   "id": "galeria-anterior",
+   "autor": "Universo-Arena",
+   "titulo": "index.html hasta el 11-oct-2026 (commit 8acc8ef)",
+   "detalle": "La galería anterior: el Sol de la barra (.brand .dot) y el :root de colores de los que sale esta paleta",
+   "url": "git show 8acc8ef:index.html"
+  },
+  {
+   "id": "seo-doc",
+   "autor": "Universo-Arena",
+   "titulo": "docs/seo-geo-2026-06-15.md",
+   "detalle": "Metas, JSON-LD, robots.txt, sitemap.xml y llms.txt derivados del benchmark",
+   "url": "docs/seo-geo-2026-06-15.md"
+  },
+  {
+   "id": "websec",
+   "autor": "Universo-Arena",
+   "titulo": "docs/security-audit-2026-06-15.md",
+   "detalle": "Cabeceras de seguridad del vhost y por qué la CSP admite unsafe-eval (BabylonJS)",
+   "url": "docs/security-audit-2026-06-15.md"
+  },
+  {
+   "id": "pagespeed",
+   "autor": "Universo-Arena",
+   "titulo": "docs/pagespeed-2026-06-15.md",
+   "detalle": "PageSpeed de la galería anterior y el token --faint",
+   "url": "docs/pagespeed-2026-06-15.md"
+  },
+  {
+   "id": "despliegue",
+   "autor": "Universo-Arena",
+   "titulo": "docs/deployment.md",
+   "detalle": "Despliegue: Caddy sirve la raíz del repositorio y un webhook hace git pull en cada push",
+   "url": "docs/deployment.md"
+  },
+  {
+   "id": "rediseno",
+   "autor": "Universo-Arena",
+   "titulo": "docs/rediseno-2026-10/README.md",
+   "detalle": "Este rediseño: la galería con el kit, medición y decisiones",
+   "url": "docs/rediseno-2026-10/README.md"
+  },
+  {
+   "id": "kit",
+   "autor": "Pentest C360",
+   "titulo": "Manual de Marca Pentest C360 v1.0",
+   "detalle": "Kit del que se copian los scripts y el CSS (← Isabella EA v2.0 ← Maloca v2.0 ← ENKI v2.0 ← KANSA v6.0)",
+   "url": "/root/pentest-c360/docs/Manual_Marca_PentestC360/v1.0"
+  },
+  {
+   "id": "css-radial",
+   "autor": "W3C",
+   "titulo": "CSS Images Module Level 3, §3.2 radial-gradient()",
+   "detalle": "Sin tamaño explícito, un degradado radial llega a la esquina más lejana (farthest-corner)",
+   "url": "https://www.w3.org/TR/css-images-3/#radial-gradients"
+  },
+  {
+   "id": "inter",
+   "autor": "Rasmus Andersson",
+   "titulo": "Inter",
+   "detalle": "Tipografía de la marca, SIL Open Font License 1.1",
+   "url": "https://rsms.me/inter/"
+  },
+  {
+   "id": "jetbrains",
+   "autor": "JetBrains",
+   "titulo": "JetBrains Mono",
+   "detalle": "Tipografía de las fórmulas y datos, SIL Open Font License 1.1",
+   "url": "https://www.jetbrains.com/lp/mono/"
+  },
+  {
+   "id": "wcag",
+   "autor": "W3C",
+   "titulo": "Web Content Accessibility Guidelines (WCAG) 2.1",
+   "detalle": "Criterio 1.4.3 Contraste (mínimo): 4,5 : 1 texto, 3 : 1 texto grande",
+   "url": "https://www.w3.org/TR/WCAG21/"
+  },
+  {
+   "id": "licencia",
+   "autor": "Universo-Arena",
+   "titulo": "LICENSE",
+   "detalle": "Licencia MIT, © 2026 Alexander Oviedo Fadul",
+   "url": "LICENSE"
+  }
+ ]
+}

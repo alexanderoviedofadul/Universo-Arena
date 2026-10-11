@@ -1,0 +1,143 @@
+{
+ "id": "arena",
+ "num": "02",
+ "titulo": "La arena",
+ "corto": "Arena",
+ "kicker": "Juzgado por ejecución",
+ "paginas": [
+  {
+   "plantilla": "portadilla",
+   "tono": "noche",
+   "fig": "isotipo-oscuro",
+   "bloques": []
+  },
+  {
+   "plantilla": "libre",
+   "tono": "claro",
+   "bloques": [
+    {
+     "t": "eyebrow",
+     "x": "Las tres señales"
+    },
+    {
+     "t": "h2",
+     "x": "Ningún archivo se juzga solo por su código"
+    },
+    {
+     "t": "comp",
+     "n": "senales"
+    },
+    {
+     "t": "eyebrow",
+     "x": "La rúbrica"
+    },
+    {
+     "t": "comp",
+     "n": "rubrica"
+    }
+   ]
+  },
+  {
+   "plantilla": "libre",
+   "tono": "claro",
+   "bloques": [
+    {
+     "t": "eyebrow",
+     "x": "Los tiers"
+    },
+    {
+     "t": "h2",
+     "x": "Cinco tramos, cada uno con su color"
+    },
+    {
+     "t": "comp",
+     "n": "tiers"
+    },
+    {
+     "t": "p",
+     "x": "Los cortes se leen de docs/methodology.md y el número de entregas de cada tramo, de assets/benchmark.json {f:metodologia,benchmark}.",
+     "c": "small muted"
+    },
+    {
+     "t": "eyebrow",
+     "x": "En cifras"
+    },
+    {
+     "t": "comp",
+     "n": "kpis",
+     "items": [
+      {
+       "v": "{d:entregas}",
+       "l": "entregas"
+      },
+      {
+       "v": "{d:limpias}",
+       "l": "sin errores de consola"
+      },
+      {
+       "v": "{d:media}",
+       "l": "nota media"
+      },
+      {
+       "v": "{d:cima}",
+       "l": "nota más alta, {d:empatados} empatadas"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "plantilla": "libre",
+   "tono": "claro",
+   "bloques": [
+    {
+     "t": "cols",
+     "r": "1fr 1fr",
+     "cols": [
+      [
+       {
+        "t": "eyebrow",
+        "x": "Los artefactos"
+       },
+       {
+        "t": "h2",
+        "x": "Una fuente, muchas salidas"
+       },
+       {
+        "t": "comp",
+        "n": "artefactos"
+       }
+      ],
+      [
+       {
+        "t": "eyebrow",
+        "x": "El agente pesa"
+       },
+       {
+        "t": "h2",
+        "x": "El mismo modelo, {d:dispersion} puntos de diferencia"
+       },
+       {
+        "t": "p",
+        "x": "{d:dispersion_modelo} aparece con {d:dispersion_n} agentes distintos y sus notas van de {d:dispersion_rango}: el andamiaje —planificar, consultar la documentación, verificarse— mueve una entrega de tier entero {f:conclusiones,benchmark}."
+       },
+       {
+        "t": "nota",
+        "titulo": "El juez alucina; el runtime corrige",
+        "x": "Una revisión estática declaró «pantalla negra» a una entrega que, al abrirla, tenía 279 objetos y 0 errores. Su nota pasó de 38 a 89 {f:metodologia}.",
+        "tono": "azul"
+       },
+       {
+        "t": "nota",
+        "titulo": "Sin auto-favoritismo",
+        "x": "En los empates de cabeza, las entradas hechas por el mismo sistema que ejecuta el benchmark van por debajo de las demás con la misma nota {f:metodologia}.",
+        "tono": "verde"
+       }
+      ]
+     ]
+    }
+   ]
+  }
+ ],
+ "lead": "Un benchmark abierto: el mismo reto, una sola pasada, y una nota que solo vale si la ejecución real la confirma."
+}

@@ -1,7 +1,7 @@
 # 🌌 Universo-Arena
 
 <p align="center">
-  <img src="assets/universo_arena_banner.png" alt="Universo-Arena Banner" width="100%">
+  <img src="assets/og-universo-arena-v1.png" alt="Universo-Arena: un prompt, muchos universos. El Sol en el foco de una órbita elíptica y un cometa con la cola lejos del Sol" width="100%">
 </p>
 
 ### Un mismo prompt. 36 combinaciones de LLM + agente de código. Una sola pasada. ¿Quién construye el mejor universo 3D?
@@ -254,9 +254,15 @@ Toda la documentación vive en [`docs/`](docs/):
 
 El sitio en vivo está auditado y optimizado con la familia de skills `-100`:
 
-- **PageSpeed/Lighthouse 100/100/100/100** (Performance · Accessibility · Best Practices · SEO; PSI mobile) — LCP 1.1 s, CLS 0, TBT 0 ms.
+- **PageSpeed/Lighthouse**: medición antes/después del rediseño en [`docs/rediseno-2026-10/README.md`](docs/rediseno-2026-10/README.md).
 - **Seguridad:** HTTPS forzado (308), HSTS preload-ready, CSP, COOP/CORP, Permissions-Policy, `security.txt` y bloqueo de paths sensibles. **0 violaciones CSP** verificadas en navegador real.
 - **SEO + IA:** tarjetas sociales por red (Open Graph/Twitter), `robots.txt`, `sitemap.xml`, datos estructurados JSON-LD y `llms.txt`/`llms-full.txt` para LLMs.
+
+### 🎨 Marca y galería (octubre 2026)
+
+- **[Manual de Marca v1.0 «El Sol en el foco»](docs/Manual_Marca_UniversoArena/v1.0/README.md)**: el Sol de la barra pasado a vector sin rediseñarlo, paleta cerrada de 30 colores con su contraste, Inter y JetBrains Mono autoalojadas, recorrido inmersivo, portable sin red y PDF de 40 páginas. Las cifras del manual se leen del benchmark.
+- **La galería se genera**: `python3 -B scripts/generar_galeria.py` escribe `index.html` desde `assets/benchmark.json` (tarjetas, podio, cifras, JSON-LD y metas). Recorrido de cinco paradas por el método, ficha de cada entrega y sin scripts en línea. Las carpetas de las entregas no se tocan.
+- Medición y decisiones: [`docs/rediseno-2026-10/README.md`](docs/rediseno-2026-10/README.md).
 
 Historial de cambios en [`CHANGELOG.md`](CHANGELOG.md).
 
@@ -264,15 +270,20 @@ Historial de cambios en [`CHANGELOG.md`](CHANGELOG.md).
 
 ```
 Universo-Arena/
-├── index.html                  ← 🌐 galería interactiva de resultados (ábrela)
+├── index.html                  ← 🌐 galería interactiva (GENERADA por scripts/generar_galeria.py; ábrela)
+├── scripts/generar_galeria.py  ← genera la galería desde assets/benchmark.json
 ├── README.md                   ← este documento
 ├── CHANGELOG.md · CLAUDE.md · LICENSE
 ├── Prompt-Maestro_v2.txt       ← el reto que todos implementaron
 ├── docs/                       ← metodología, rúbrica, resultados, arnés, conclusiones
+│   └── Manual_Marca_UniversoArena/v1.0/  ← manual de marca (inmersivo, portable, PDF, tokens)
 ├── assets/
 │   ├── benchmark.json          ← fuente de verdad del benchmark (notas, features, runtime)
 │   ├── runtime.json            ← datos objetivos de ejecución (meshes, errores)
-│   ├── universo_arena_banner.png
+│   ├── marca/                  ← tokens, fuentes y logos (los copia el build del manual)
+│   ├── hub/                    ← CSS, JS, carteles, capturas WebP y fichas de la galería
+│   ├── og-universo-arena-v1.png ← imagen para compartir (1200×630)
+│   ├── universo_arena_banner.png · og-image.png  ← imágenes anteriores (las citan artículos publicados)
 │   └── previews/*.png          ← capturas reales de cada simulación
 └── <Modelo>-<Agente>/index.html   ← una carpeta por entrega (36)
 ```

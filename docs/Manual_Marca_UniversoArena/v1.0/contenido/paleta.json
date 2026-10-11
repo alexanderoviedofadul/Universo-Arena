@@ -1,0 +1,223 @@
+{
+ "_nota": "Paleta cerrada de Universo-Arena v1.0. origen: «logo» = leído en el Sol de la barra (radial-gradient de .brand .dot en index.html hasta el 11-oct-2026); «css» = declarado en el :root de esa misma galería; «deriv» = incorporación de esta versión para fondos claros y papel, con su contraste calculado por build_v1.py.",
+ "colores": {
+  "ua-sol": {
+   "nombre": "Sol",
+   "hex": "#FFD24A",
+   "origen": "logo",
+   "uso": "Segunda parada del Sol del logotipo y color del tier S. Sobre oscuro da 14,02 : 1; sobre claro no es texto"
+  },
+  "ua-fulgor": {
+   "nombre": "Fulgor",
+   "hex": "#FF7A3C",
+   "origen": "logo",
+   "uso": "Tercera parada del Sol: la corona encendida. Acento cálido sobre oscuro (7,79 : 1)"
+  },
+  "ua-brasa": {
+   "nombre": "Brasa",
+   "hex": "#7A1D00",
+   "origen": "logo",
+   "uso": "Borde del Sol. Solo dentro del símbolo: sobre oscuro no se lee (1,93 : 1)"
+  },
+  "ua-vacio": {
+   "nombre": "Vacío",
+   "hex": "#05060F",
+   "origen": "css",
+   "uso": "Fondo del sitio y del manual en oscuro (--bg)"
+  },
+  "ua-cosmos": {
+   "nombre": "Cosmos",
+   "hex": "#0A0D1F",
+   "origen": "css",
+   "uso": "Segundo plano: paneles, fichas y pie (--bg2)"
+  },
+  "ua-estelar": {
+   "nombre": "Estelar",
+   "hex": "#EAF0FF",
+   "origen": "css",
+   "uso": "Texto principal sobre oscuro (17,71 : 1 sobre Vacío) (--txt)"
+  },
+  "ua-polvo": {
+   "nombre": "Polvo",
+   "hex": "#9AA8D4",
+   "origen": "css",
+   "uso": "Texto secundario sobre oscuro (8,59 : 1) (--dim)"
+  },
+  "ua-tenue": {
+   "nombre": "Tenue",
+   "hex": "#7884B5",
+   "origen": "css",
+   "uso": "Texto pequeño y notas sobre oscuro (5,55 : 1, AA) (--faint)"
+  },
+  "ua-orbita": {
+   "nombre": "Órbita",
+   "hex": "#7C9CFF",
+   "origen": "css",
+   "uso": "Acento principal: órbitas, enlaces y foco sobre oscuro (7,75 : 1) (--accent)"
+  },
+  "ua-nebulosa": {
+   "nombre": "Nebulosa",
+   "hex": "#C08BFF",
+   "origen": "css",
+   "uso": "Segundo acento y color del tier C (8,06 : 1 sobre Vacío) (--accent2, --C)"
+  },
+  "ua-esmeralda": {
+   "nombre": "Esmeralda",
+   "hex": "#56E0A6",
+   "origen": "css",
+   "uso": "Tier A y «0 errores» (12,13 : 1 sobre Vacío) (--A)"
+  },
+  "ua-celeste": {
+   "nombre": "Celeste",
+   "hex": "#57B6FF",
+   "origen": "css",
+   "uso": "Tier B (9,18 : 1 sobre Vacío) (--B)"
+  },
+  "ua-coral": {
+   "nombre": "Coral",
+   "hex": "#FF7D8A",
+   "origen": "css",
+   "uso": "Tier D y errores de consola (8,23 : 1 sobre Vacío) (--D)"
+  },
+  "ua-tinta": {
+   "nombre": "Tinta",
+   "hex": "#0B1024",
+   "origen": "deriv",
+   "uso": "Texto sobre claro (18,85 : 1 sobre blanco). Del Vacío, con un punto más de azul"
+  },
+  "ua-pizarra": {
+   "nombre": "Pizarra",
+   "hex": "#1E2540",
+   "origen": "deriv",
+   "uso": "Texto de párrafo sobre claro (15,07 : 1)"
+  },
+  "ua-gris-texto": {
+   "nombre": "Gris Texto",
+   "hex": "#535C7E",
+   "origen": "deriv",
+   "uso": "Texto secundario sobre claro (6,56 : 1)"
+  },
+  "ua-borde": {
+   "nombre": "Borde",
+   "hex": "#DDE3F5",
+   "origen": "deriv",
+   "uso": "Filetes y bordes sobre claro"
+  },
+  "ua-niebla": {
+   "nombre": "Niebla",
+   "hex": "#F4F6FD",
+   "origen": "deriv",
+   "uso": "Fondo de las páginas claras del manual"
+  },
+  "ua-hielo": {
+   "nombre": "Hielo",
+   "hex": "#EEF2FF",
+   "origen": "deriv",
+   "uso": "Fondo del código sobre claro"
+  },
+  "ua-lavanda": {
+   "nombre": "Lavanda",
+   "hex": "#F5F0FF",
+   "origen": "deriv",
+   "uso": "Fondo de notas y tarjetas sobre claro"
+  },
+  "ua-orbita-profunda": {
+   "nombre": "Órbita Profunda",
+   "hex": "#3550C4",
+   "origen": "deriv",
+   "uso": "El acento sobre claro: antetítulos y enlaces (6,78 : 1 sobre blanco)"
+  },
+  "ua-nebulosa-profunda": {
+   "nombre": "Nebulosa Profunda",
+   "hex": "#7338C2",
+   "origen": "deriv",
+   "uso": "Segundo acento sobre claro (6,83 : 1)"
+  },
+  "ua-ambar-profundo": {
+   "nombre": "Ámbar Profundo",
+   "hex": "#8A5A00",
+   "origen": "deriv",
+   "uso": "Tier S escrito sobre claro (5,93 : 1)"
+  },
+  "ua-verde-profundo": {
+   "nombre": "Verde Profundo",
+   "hex": "#0B7350",
+   "origen": "deriv",
+   "uso": "Tier A y aciertos sobre claro (5,86 : 1)"
+  },
+  "ua-azul-profundo": {
+   "nombre": "Azul Profundo",
+   "hex": "#1F64B8",
+   "origen": "deriv",
+   "uso": "Tier B sobre claro (5,88 : 1)"
+  },
+  "ua-rojo-texto": {
+   "nombre": "Rojo Texto",
+   "hex": "#B4233A",
+   "origen": "deriv",
+   "uso": "Tier D, errores y usos incorrectos sobre claro (6,48 : 1)"
+  },
+  "ua-fulgor-profundo": {
+   "nombre": "Fulgor Profundo",
+   "hex": "#B4481A",
+   "origen": "deriv",
+   "uso": "Acento cálido sobre claro (5,41 : 1)"
+  },
+  "ua-verde-palido": {
+   "nombre": "Verde Pálido",
+   "hex": "#E9FBF3",
+   "origen": "deriv",
+   "uso": "Fondo de «correcto» sobre claro"
+  },
+  "ua-ambar-palido": {
+   "nombre": "Ámbar Pálido",
+   "hex": "#FFF8E1",
+   "origen": "deriv",
+   "uso": "Fondo de avisos sobre claro"
+  },
+  "ua-rojo-palido": {
+   "nombre": "Rojo Pálido",
+   "hex": "#FFF0F2",
+   "origen": "deriv",
+   "uso": "Fondo de «incorrecto» sobre claro"
+  }
+ },
+ "retirados": [
+  {
+   "hex": "#02030A",
+   "nombre": "Negro del pie (index.html anterior)",
+   "motivo": "Tres negros casi iguales al Vacío para el pie y el modal: no se distinguen a simple vista",
+   "sustituto": "Vacío #05060F"
+  },
+  {
+   "hex": "#06081A",
+   "nombre": "Fondo de tarjeta (index.html anterior)",
+   "motivo": "Variante sin nombre entre el Vacío y el Cosmos",
+   "sustituto": "Cosmos #0A0D1F"
+  },
+  {
+   "hex": "#080A18",
+   "nombre": "Fondo del modal (index.html anterior)",
+   "motivo": "Otra variante sin nombre",
+   "sustituto": "Cosmos #0A0D1F"
+  },
+  {
+   "hex": "#0C1024",
+   "nombre": "Degradado de la ficha (index.html anterior)",
+   "motivo": "Otra variante sin nombre",
+   "sustituto": "Cosmos #0A0D1F"
+  },
+  {
+   "hex": "#FF7A7A",
+   "nombre": "Rojo del aviso (index.html anterior)",
+   "motivo": "Casi el mismo rojo que el tier D, con otro valor",
+   "sustituto": "Coral #FF7D8A"
+  },
+  {
+   "hex": "#BCD0FF",
+   "nombre": "Etiqueta del radar (index.html anterior)",
+   "motivo": "Escrito en el JavaScript, fuera de los tokens",
+   "sustituto": "Polvo #9AA8D4"
+  }
+ ]
+}

@@ -1,0 +1,72 @@
+{
+ "id": "web",
+ "num": "09",
+ "titulo": "Web",
+ "corto": "Web",
+ "kicker": "Reglas de la galería",
+ "paginas": [
+  {
+   "plantilla": "portadilla",
+   "tono": "noche",
+   "fig": "orbita",
+   "bloques": []
+  },
+  {
+   "plantilla": "libre",
+   "tono": "claro",
+   "bloques": [
+    {
+     "t": "cols",
+     "r": "1fr 1fr",
+     "cols": [
+      [
+       {
+        "t": "eyebrow",
+        "x": "Contrato"
+       },
+       {
+        "t": "h2",
+        "x": "Lo que no se negocia"
+       },
+       {
+        "t": "lista",
+        "items": [
+         "<strong>Las carpetas de las entregas no se tocan.</strong> Son los resultados: cambiarlas falsea la comparación {f:claude-md}.",
+         "<strong>Los datos salen de assets/benchmark.json</strong>, y la galería se genera con scripts/generar_galeria.py {f:rediseno}.",
+         "<strong>Abre con doble clic.</strong> Rutas relativas y datos en la página; nada de fetch de un JSON local {f:claude-md}.",
+         "<strong>Sin terceros al cargar.</strong> Fuentes, GSAP y Lenis van en el propio sitio; GSAP y Lenis solo tras la primera interacción."
+        ]
+       }
+      ],
+      [
+       {
+        "t": "eyebrow",
+        "x": "Rendimiento y seguridad"
+       },
+       {
+        "t": "h2",
+        "x": "Medido antes y después"
+       },
+       {
+        "t": "lista",
+        "items": [
+         "La galería no ejecuta scripts en línea: los datos van como application/json y el resto en ficheros, para una CSP sin unsafe-inline en la portada {f:rediseno}.",
+         "Las demos sí necesitan unsafe-eval: BabylonJS compila sus shaders así {f:websec}.",
+         "Las capturas se sirven en WebP a la medida de la tarjeta; los PNG originales siguen en assets/previews/.",
+         "llms.txt y sitemap.xml listan las mismas carpetas que benchmark.json: el audit lo comprueba {f:seo-doc}."
+        ]
+       },
+       {
+        "t": "nota",
+        "titulo": "Despliegue",
+        "x": "Un push a main hace git pull en el servidor: lo commiteado es lo publicado. Fuente y salida generada van en el mismo commit {f:despliegue}.",
+        "tono": "azul"
+       }
+      ]
+     ]
+    }
+   ]
+  }
+ ],
+ "lead": "La galería se genera; las entregas se conservan. Y todo sigue abriendo con doble clic."
+}

@@ -1,0 +1,233 @@
+{
+ "colores": {
+  "ua-ambar-palido": {
+   "hex": "#FFF8E1",
+   "nombre": "Ámbar Pálido",
+   "origen": "deriv",
+   "uso": "Fondo de avisos sobre claro"
+  },
+  "ua-ambar-profundo": {
+   "hex": "#8A5A00",
+   "nombre": "Ámbar Profundo",
+   "origen": "deriv",
+   "uso": "Tier S escrito sobre claro (5,93 : 1)"
+  },
+  "ua-azul-profundo": {
+   "hex": "#1F64B8",
+   "nombre": "Azul Profundo",
+   "origen": "deriv",
+   "uso": "Tier B sobre claro (5,88 : 1)"
+  },
+  "ua-borde": {
+   "hex": "#DDE3F5",
+   "nombre": "Borde",
+   "origen": "deriv",
+   "uso": "Filetes y bordes sobre claro"
+  },
+  "ua-brasa": {
+   "hex": "#7A1D00",
+   "nombre": "Brasa",
+   "origen": "logo",
+   "uso": "Borde del Sol. Solo dentro del símbolo: sobre oscuro no se lee (1,93 : 1)"
+  },
+  "ua-celeste": {
+   "hex": "#57B6FF",
+   "nombre": "Celeste",
+   "origen": "css",
+   "uso": "Tier B (9,18 : 1 sobre Vacío) (--B)"
+  },
+  "ua-coral": {
+   "hex": "#FF7D8A",
+   "nombre": "Coral",
+   "origen": "css",
+   "uso": "Tier D y errores de consola (8,23 : 1 sobre Vacío) (--D)"
+  },
+  "ua-cosmos": {
+   "hex": "#0A0D1F",
+   "nombre": "Cosmos",
+   "origen": "css",
+   "uso": "Segundo plano: paneles, fichas y pie (--bg2)"
+  },
+  "ua-esmeralda": {
+   "hex": "#56E0A6",
+   "nombre": "Esmeralda",
+   "origen": "css",
+   "uso": "Tier A y «0 errores» (12,13 : 1 sobre Vacío) (--A)"
+  },
+  "ua-estelar": {
+   "hex": "#EAF0FF",
+   "nombre": "Estelar",
+   "origen": "css",
+   "uso": "Texto principal sobre oscuro (17,71 : 1 sobre Vacío) (--txt)"
+  },
+  "ua-fulgor": {
+   "hex": "#FF7A3C",
+   "nombre": "Fulgor",
+   "origen": "logo",
+   "uso": "Tercera parada del Sol: la corona encendida. Acento cálido sobre oscuro (7,79 : 1)"
+  },
+  "ua-fulgor-profundo": {
+   "hex": "#B4481A",
+   "nombre": "Fulgor Profundo",
+   "origen": "deriv",
+   "uso": "Acento cálido sobre claro (5,41 : 1)"
+  },
+  "ua-gris-texto": {
+   "hex": "#535C7E",
+   "nombre": "Gris Texto",
+   "origen": "deriv",
+   "uso": "Texto secundario sobre claro (6,56 : 1)"
+  },
+  "ua-hielo": {
+   "hex": "#EEF2FF",
+   "nombre": "Hielo",
+   "origen": "deriv",
+   "uso": "Fondo del código sobre claro"
+  },
+  "ua-lavanda": {
+   "hex": "#F5F0FF",
+   "nombre": "Lavanda",
+   "origen": "deriv",
+   "uso": "Fondo de notas y tarjetas sobre claro"
+  },
+  "ua-nebulosa": {
+   "hex": "#C08BFF",
+   "nombre": "Nebulosa",
+   "origen": "css",
+   "uso": "Segundo acento y color del tier C (8,06 : 1 sobre Vacío) (--accent2, --C)"
+  },
+  "ua-nebulosa-profunda": {
+   "hex": "#7338C2",
+   "nombre": "Nebulosa Profunda",
+   "origen": "deriv",
+   "uso": "Segundo acento sobre claro (6,83 : 1)"
+  },
+  "ua-niebla": {
+   "hex": "#F4F6FD",
+   "nombre": "Niebla",
+   "origen": "deriv",
+   "uso": "Fondo de las páginas claras del manual"
+  },
+  "ua-orbita": {
+   "hex": "#7C9CFF",
+   "nombre": "Órbita",
+   "origen": "css",
+   "uso": "Acento principal: órbitas, enlaces y foco sobre oscuro (7,75 : 1) (--accent)"
+  },
+  "ua-orbita-profunda": {
+   "hex": "#3550C4",
+   "nombre": "Órbita Profunda",
+   "origen": "deriv",
+   "uso": "El acento sobre claro: antetítulos y enlaces (6,78 : 1 sobre blanco)"
+  },
+  "ua-pizarra": {
+   "hex": "#1E2540",
+   "nombre": "Pizarra",
+   "origen": "deriv",
+   "uso": "Texto de párrafo sobre claro (15,07 : 1)"
+  },
+  "ua-polvo": {
+   "hex": "#9AA8D4",
+   "nombre": "Polvo",
+   "origen": "css",
+   "uso": "Texto secundario sobre oscuro (8,59 : 1) (--dim)"
+  },
+  "ua-rojo-palido": {
+   "hex": "#FFF0F2",
+   "nombre": "Rojo Pálido",
+   "origen": "deriv",
+   "uso": "Fondo de «incorrecto» sobre claro"
+  },
+  "ua-rojo-texto": {
+   "hex": "#B4233A",
+   "nombre": "Rojo Texto",
+   "origen": "deriv",
+   "uso": "Tier D, errores y usos incorrectos sobre claro (6,48 : 1)"
+  },
+  "ua-sol": {
+   "hex": "#FFD24A",
+   "nombre": "Sol",
+   "origen": "logo",
+   "uso": "Segunda parada del Sol del logotipo y color del tier S. Sobre oscuro da 14,02 : 1; sobre claro no es texto"
+  },
+  "ua-tenue": {
+   "hex": "#7884B5",
+   "nombre": "Tenue",
+   "origen": "css",
+   "uso": "Texto pequeño y notas sobre oscuro (5,55 : 1, AA) (--faint)"
+  },
+  "ua-tinta": {
+   "hex": "#0B1024",
+   "nombre": "Tinta",
+   "origen": "deriv",
+   "uso": "Texto sobre claro (18,85 : 1 sobre blanco). Del Vacío, con un punto más de azul"
+  },
+  "ua-vacio": {
+   "hex": "#05060F",
+   "nombre": "Vacío",
+   "origen": "css",
+   "uso": "Fondo del sitio y del manual en oscuro (--bg)"
+  },
+  "ua-verde-palido": {
+   "hex": "#E9FBF3",
+   "nombre": "Verde Pálido",
+   "origen": "deriv",
+   "uso": "Fondo de «correcto» sobre claro"
+  },
+  "ua-verde-profundo": {
+   "hex": "#0B7350",
+   "nombre": "Verde Profundo",
+   "origen": "deriv",
+   "uso": "Tier A y aciertos sobre claro (5,86 : 1)"
+  }
+ },
+ "degradado": {
+  "sol": [
+   [
+    "#FFFFFF",
+    0
+   ],
+   [
+    "#FFD24A",
+    0.3
+   ],
+   [
+    "#FF7A3C",
+    0.65
+   ],
+   [
+    "#7A1D00",
+    1
+   ]
+  ]
+ },
+ "marca": "Universo-Arena",
+ "tiers": {
+  "A": {
+   "claro": "#0B7350",
+   "oscuro": "#56E0A6"
+  },
+  "B": {
+   "claro": "#1F64B8",
+   "oscuro": "#57B6FF"
+  },
+  "C": {
+   "claro": "#7338C2",
+   "oscuro": "#C08BFF"
+  },
+  "D": {
+   "claro": "#B4233A",
+   "oscuro": "#FF7D8A"
+  },
+  "S": {
+   "claro": "#8A5A00",
+   "oscuro": "#FFD24A"
+  }
+ },
+ "tipografia": {
+  "codigo": "JetBrains Mono",
+  "display": "Inter",
+  "texto": "Inter"
+ },
+ "version": "1.0.0"
+}

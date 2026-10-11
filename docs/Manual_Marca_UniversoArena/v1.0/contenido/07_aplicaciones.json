@@ -1,0 +1,89 @@
+{
+ "id": "aplicaciones",
+ "num": "07",
+ "titulo": "Aplicaciones",
+ "corto": "Aplicaciones",
+ "kicker": "Donde aparece",
+ "paginas": [
+  {
+   "plantilla": "portadilla",
+   "tono": "noche",
+   "fig": "isotipo-oscuro",
+   "bloques": []
+  },
+  {
+   "plantilla": "libre",
+   "tono": "claro",
+   "bloques": [
+    {
+     "t": "cols",
+     "r": "1fr 1fr",
+     "cols": [
+      [
+       {
+        "t": "eyebrow",
+        "x": "Órbita viva"
+       },
+       {
+        "t": "h2",
+        "x": "La metáfora en movimiento"
+       },
+       {
+        "t": "comp",
+        "n": "orbita"
+       },
+       {
+        "t": "p",
+        "x": "Un planeta recorre su elipse con la ecuación de Kepler —más rápido cerca del Sol— y el cometa lleva la cola en el sentido cometa − Sol en cada fotograma {f:rubrica}. Con movimiento reducido queda la imagen fija.",
+        "c": "small"
+       }
+      ],
+      [
+       {
+        "t": "eyebrow",
+        "x": "Imagen para compartir"
+       },
+       {
+        "t": "h2",
+        "x": "1200 × 630"
+       },
+       {
+        "t": "comp",
+        "n": "og"
+       },
+       {
+        "t": "p",
+        "x": "La imagen anterior mostraba el Sol en el centro de órbitas concéntricas y un lema en inglés sin fuente {f:galeria-anterior}. La nueva sale de este manual y cambia de nombre con cada versión, porque las redes la guardan por URL {f:rediseno}.",
+        "c": "small"
+       }
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "plantilla": "libre",
+   "tono": "claro",
+   "bloques": [
+    {
+     "t": "eyebrow",
+     "x": "Ficha de una entrega"
+    },
+    {
+     "t": "h2",
+     "x": "Cabecera de la ficha"
+    },
+    {
+     "t": "comp",
+     "n": "ficha"
+    },
+    {
+     "t": "p",
+     "x": "La ficha que abre cada tarjeta lleva el nombre del modelo y del agente, la nota, el puesto y los datos medidos al abrirla. Los del ejemplo son los reales del primer puesto {f:benchmark}.",
+     "c": "small muted"
+    }
+   ]
+  }
+ ],
+ "lead": "La galería, la imagen para compartir y la ficha de cada entrega: tres aplicaciones, la misma órbita."
+}

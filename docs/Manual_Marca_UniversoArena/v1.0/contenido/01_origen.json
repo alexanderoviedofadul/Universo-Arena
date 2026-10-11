@@ -1,0 +1,102 @@
+{
+ "id": "origen",
+ "num": "01",
+ "titulo": "Origen y nombre",
+ "corto": "Origen",
+ "kicker": "Un prompt, muchos universos",
+ "paginas": [
+  {
+   "plantilla": "portadilla",
+   "tono": "noche",
+   "fig": "orbita",
+   "bloques": []
+  },
+  {
+   "plantilla": "libre",
+   "tono": "claro",
+   "bloques": [
+    {
+     "t": "cols",
+     "r": "1fr 1fr",
+     "cols": [
+      [
+       {
+        "t": "eyebrow",
+        "x": "El nombre"
+       },
+       {
+        "t": "h2",
+        "x": "Universo + Arena"
+       },
+       {
+        "t": "p",
+        "x": "«Universo» es lo que cada entrega construye: una simulación 3D del Sistema Solar con BabylonJS, en un único index.html que se abre con doble clic {f:prompt}. «Arena» es el sitio donde se comparan: todas reciben el mismo reto, en una sola pasada, y se puntúan con la misma rúbrica {f:readme}."
+       },
+       {
+        "t": "p",
+        "x": "El nombre se escribe con guion, como en el repositorio y en la barra de la galería: <strong>Universo-Arena</strong> {f:claude-md,galeria-anterior}."
+       },
+       {
+        "t": "nota",
+        "titulo": "Cada carpeta es una identidad",
+        "x": "El nombre de cada carpeta dice el modelo y el agente que la hicieron (por ejemplo, codex-gpt-5.5 = GPT-5.5 con Codex). No se renombran: son resultados del experimento {f:claude-md}.",
+        "tono": "azul"
+       }
+      ],
+      [
+       {
+        "t": "eyebrow",
+        "x": "La metáfora"
+       },
+       {
+        "t": "h2",
+        "x": "El Sol en el foco"
+       },
+       {
+        "t": "p",
+        "x": "Casi todas las entregas «se ven bien». Lo que separó a las mejores fueron dos detalles que solo resuelve quien entiende la física {f:conclusiones}:"
+       },
+       {
+        "t": "lista",
+        "items": [
+         "<strong>El Sol en el foco de la elipse</strong>, no en el centro: <code>x = a·cosθ − a·e</code>.",
+         "<strong>La cola del cometa lejos del Sol</strong>: el vector es <code>cometa − Sol</code>, recalculado en cada fotograma."
+        ]
+       },
+       {
+        "t": "nota",
+        "titulo": "La marca lo dibuja bien",
+        "x": "El recurso gráfico de Universo-Arena es esa misma órbita: una elipse con el Sol en un foco y el centro vacío, y un cometa con la cola hacia fuera. Dibujarla mal sería dar la razón a las entregas que perdieron puntos {f:rubrica}.",
+        "tono": "verde"
+       }
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "plantilla": "libre",
+   "tono": "claro",
+   "bloques": [
+    {
+     "t": "eyebrow",
+     "x": "Cronología"
+    },
+    {
+     "t": "h2",
+     "x": "De la primera entrega al manual"
+    },
+    {
+     "t": "comp",
+     "n": "cronologia"
+    },
+    {
+     "t": "p",
+     "x": "Las fechas salen del historial del repositorio y del registro de cada tanda; ninguna se estimó {f:changelog}.",
+     "c": "small muted"
+    }
+   ]
+  }
+ ],
+ "lead": "Universo-Arena nació el 15 de junio de 2026 con una pregunta: si muchos modelos y agentes reciben el mismo reto, ¿quién construye el mejor universo?"
+}
