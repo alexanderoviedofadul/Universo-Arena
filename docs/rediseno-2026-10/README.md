@@ -69,7 +69,15 @@ Caddy local en `127.0.0.1:8197` sirviendo el árbol de trabajo con la CSP propue
 | | Rendimiento | Accesibilidad | Buenas prácticas | SEO | LCP | TBT | Peso |
 |---|---|---|---|---|---|---|---|
 | Antes | 100 · 100 · 100 | 100 | 96 (error de consola) | 100 | 1,1–1,3 s | 0–50 ms | 615 KiB |
-| Después | _ver §8_ | | | | | | |
+| Primer despliegue (`262d64d`) | 99 · 99 · 98 | 100 | 100 | 100 | 1,7 s | 120–150 ms | 228–230 KiB |
+| **Después** (`perf(galeria)`) | **100 · 100 · 100** | **100** | **100** | **100** | 1,5–1,6 s | 0–30 ms | 201–205 KiB |
+
+El primer despliegue perdía un punto: 220 estrellas como nodos `<circle>` (1.476 elementos en el DOM) y una
+tarea larga de 173 ms al arrancar (`getBoundingClientRect` en cada bloque y reordenar las 36 tarjetas sin
+necesidad). Arreglo: las estrellas en cinco trazados (uno por brillo), el revelado con la primera entrega del
+`IntersectionObserver` y cada pieza del arranque en su propia tarea. El peso baja de 615 a ~203 KiB y «Buenas
+prácticas» sube de 96 a 100 (ya no hay error de consola). El LCP sube algo (1,1–1,3 → 1,5–1,6 s) porque el
+titular ahora espera a Inter, que antes no se cargaba; sigue en verde.
 
 ## 5. Seguridad
 
@@ -108,3 +116,13 @@ de BabylonJS):
   del encuadre y se ven solo las órbitas. Es decorativo; el titular es el LCP.
 
 ## 8. Producción
+
+Desplegado con el webhook (firmado) en `262d64d` y la optimización a continuación. Comprobado el 11-oct-2026:
+
+- `/`, `assets/hub/*`, `assets/marca/*`, la imagen para compartir, el manual (`index.html`, portable y PDF):
+  **200**. `scripts/*.py`, `docs/**/*.md` y `docs/**/*.json`: **404** (los tapa `bloquear-sensibles`).
+- Las 36 demos: **36 × 200**.
+- Playwright contra producción a 1440 y 390 px, recorriendo la página, ordenando, filtrando y abriendo una
+  ficha: **0** errores y avisos de consola, **0** peticiones a terceros, sin desborde horizontal.
+- Manual en producción (inmersivo y portable): **0** avisos (antes «SplitText called before fonts loaded»,
+  heredado del kit: ahora espera a `document.fonts.ready`) y el portable lleva su favicon en línea.

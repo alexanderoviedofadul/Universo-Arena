@@ -254,7 +254,7 @@ Toda la documentación vive en [`docs/`](docs/):
 
 El sitio en vivo está auditado y optimizado con la familia de skills `-100`:
 
-- **PageSpeed/Lighthouse**: medición antes/después del rediseño en [`docs/rediseno-2026-10/README.md`](docs/rediseno-2026-10/README.md).
+- **PageSpeed/Lighthouse 100/100/100/100** (móvil, 3 corridas, 11-oct-2026, tras el rediseño) — LCP 1,5–1,6 s, CLS 0, TBT 0–30 ms, ~203 KiB. Medición antes/después en [`docs/rediseno-2026-10/README.md`](docs/rediseno-2026-10/README.md).
 - **Seguridad:** HTTPS forzado (308), HSTS preload-ready, CSP, COOP/CORP, Permissions-Policy, `security.txt` y bloqueo de paths sensibles. **0 violaciones CSP** verificadas en navegador real.
 - **SEO + IA:** tarjetas sociales por red (Open Graph/Twitter), `robots.txt`, `sitemap.xml`, datos estructurados JSON-LD y `llms.txt`/`llms-full.txt` para LLMs.
 
