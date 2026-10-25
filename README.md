@@ -249,6 +249,7 @@ Toda la documentación vive en [`docs/`](docs/):
 | [docs/seo-geo-2026-06-15.md](docs/seo-geo-2026-06-15.md) | SEO + GEO/AEO: Open Graph/Twitter, `llms.txt`, `sitemap.xml`, JSON-LD. |
 | [docs/security-audit-2026-06-15.md](docs/security-audit-2026-06-15.md) | Auditoría de ciberseguridad (websec-100): headers OWASP, CSP, `security.txt`. |
 | [docs/pagespeed-2026-06-15.md](docs/pagespeed-2026-06-15.md) | PageSpeed/Lighthouse **100/100/100/100**. |
+| [docs/seguridad-comprobada-y-recorrido-2026-10-25.md](docs/seguridad-comprobada-y-recorrido-2026-10-25.md) | Recorrido guiado (`/conozca/`) y «Seguridad comprobada» (kit «confianza y recorrido»): qué se corrigió y qué queda. |
 
 ### 🏅 Calidad de producción
 
@@ -263,6 +264,7 @@ El sitio en vivo está auditado y optimizado con la familia de skills `-100`:
 - **[Manual de Marca v1.0 «El Sol en el foco»](docs/Manual_Marca_UniversoArena/v1.0/README.md)**: el Sol de la barra pasado a vector sin rediseñarlo, paleta cerrada de 30 colores con su contraste, Inter y JetBrains Mono autoalojadas, recorrido inmersivo, portable sin red y PDF de 40 páginas. Las cifras del manual se leen del benchmark.
 - **La galería se genera**: `python3 -B scripts/generar_galeria.py` escribe `index.html` desde `assets/benchmark.json` (tarjetas, podio, cifras, JSON-LD y metas). Recorrido de cinco paradas por el método, ficha de cada entrega y sin scripts en línea. Las carpetas de las entregas no se tocan.
 - Medición y decisiones: [`docs/rediseno-2026-10/README.md`](docs/rediseno-2026-10/README.md).
+- **Recorrido guiado** en [`/conozca/`](https://universo-arena.alexanderoviedofadul.dev/conozca/) y **Seguridad comprobada** al final de la portada (lo que dicen herramientas públicas, leído del medidor del VPS): [`docs/seguridad-comprobada-y-recorrido-2026-10-25.md`](docs/seguridad-comprobada-y-recorrido-2026-10-25.md).
 
 Historial de cambios en [`CHANGELOG.md`](CHANGELOG.md).
 

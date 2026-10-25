@@ -151,6 +151,7 @@ def imagen_og():
 # ─────────────────────────────────────────────────────────────────────────────
 
 TIER_VAR = {t: f"var(--{M.TIER_COLOR[t]})" for t in "SABCD"}
+PIXEL = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
 
 
 def img_preview(b, clase, sizes, eager=False):
@@ -172,7 +173,7 @@ def tarjeta(b):
     return (f'<article class="tarjeta" style="--c:{esc(b["color"])};--tc:{TIER_VAR[b["tier"]]}" data-folder="{esc(f)}" data-tier="{b["tier"]}" '
             f'data-total="{b["total"]}" data-rank="{b["rank"]}" {attrs}>'
             f'<div class="t-foto">{img_preview(b, "t-img", "(min-width: 1100px) 380px, (min-width: 700px) 46vw, 92vw")}'
-            f'<span class="t-rank" aria-label="Puesto {b["rank"]}">{b["rank"]}</span><span class="t-tier">Tier {b["tier"]}</span>'
+            f'<span class="t-rank"><span class="sr">Puesto </span>{b["rank"]}</span><span class="t-tier">Tier {b["tier"]}</span>'
             f'<span class="t-nota" style="--p:{b["total"]}"><b>{b["total"]}</b><small>/100</small></span></div>'
             f'<div class="t-cuerpo"><h3 class="t-modelo">{esc(b["modelo"])}</h3><p class="t-agente"><span class="t-punto" aria-hidden="true"></span>{esc(b["agente"])}</p>'
             f'<p class="t-meta"><span><b>{b["runtime"]["meshes"]}</b> objetos</span><span><b>{b["lineas"]}</b> líneas</span>{errores(b)}</p>'
@@ -201,7 +202,9 @@ def stats_hero():
 
 def cartel(nombre, primero=False):
     srcset = ", ".join(f"assets/hub/carteles/{nombre}-{w}.webp {w}w" for w in (640, 960, 1280))
-    img = (f'<img data-src="assets/hub/carteles/{nombre}-1280.webp" data-srcset="{srcset}" sizes="(min-aspect-ratio: 16/9) 100vw, 178vh" '
+    # src = GIF transparente de 1 px (W3C exige src; galeria.js pone el real al acercarse) y data-sizes (sizes sin
+    # srcset tampoco es válido). Kit «confianza y recorrido», 25-oct-2026.
+    img = (f'<img src="{PIXEL}" data-src="assets/hub/carteles/{nombre}-1280.webp" data-srcset="{srcset}" data-sizes="(min-aspect-ratio: 16/9) 100vw, 178vh" '
            'alt="" width="1280" height="720" decoding="async">')
     ns = (f'<noscript><img src="assets/hub/carteles/{nombre}-1280.webp" alt="" width="1280" height="720"></noscript>' if primero else "")
     clase = "frame" if primero else "frame frame-diferido"
@@ -212,10 +215,10 @@ def cartel(nombre, primero=False):
 PARADAS = [
     ("reto", "El reto", "50", "01", "Un prompt, una sola pasada",
      f'<p>Cada combinación de modelo y agente recibe el mismo <a href="Prompt-Maestro_v2.txt">Prompt-Maestro_v2.txt</a>: una simulación 3D del Sistema Solar con BabylonJS, en un único <code>index.html</code> que se abre con doble clic, sin servidor ni assets locales.</p>'
-     '<p class="chips" aria-label="Lo que pide"><span>Sol con corona</span><span>8 planetas + Plutón</span><span>Cometa Halley</span><span>Cinturón 200+</span><span>3000+ estrellas</span><span>Panel de 4 secciones</span></p>'),
+     '<p class="chips"><span class="sr">Lo que pide: </span><span>Sol con corona</span><span>8 planetas + Plutón</span><span>Cometa Halley</span><span>Cinturón 200+</span><span>3000+ estrellas</span><span>Panel de 4 secciones</span></p>'),
     ("rubrica", "La rúbrica", "50", "02", f"{DATOS['puntos']} puntos en {len(RUBRICA)} categorías",
      '<p>Un jurado por entrega lee el archivo completo y el reto, y puntúa verificando el código, no los comentarios.</p>'
-     '<p class="chips" aria-label="Categorías">' + "".join(f'<span>{esc(n)} <b>{m}</b></span>' for _, n, m in CATS) + "</p>"),
+     '<p class="chips"><span class="sr">Categorías: </span>' + "".join(f'<span>{esc(n)} <b>{m}</b></span>' for _, n, m in CATS) + "</p>"),
     ("ejecucion", "La ejecución", "70", "03", "Juzgado por lo que hace al abrirse",
      f'<p>Cada entrega se abre en Chrome sin pantalla (WebGL por SwiftShader): se captura lo que se ve y se cuentan los objetos en escena, los FPS y los errores de consola. <b>{esc(DATOS["limpias"])}</b> abren sin un solo error.</p>'),
     ("trampas", "Las dos trampas", "75", "04", "El Sol en el foco y la cola lejos del Sol",
@@ -252,7 +255,8 @@ def hero():
             f'<h1 id="hero-tit">Un prompt.<br><span class="sol-texto">{N} universos.</span></h1>'
             '<p class="hero-sub">Distintos modelos y agentes de código recibieron el mismo reto: construir, en una sola pasada, el Sistema Solar en 3D con BabylonJS. '
             'Aquí está lo que entregaron, y cómo se midió.</p>'
-            f'{stats_hero()}<p class="hero-acciones"><a class="btn btn-sol" href="#podio">Ver el ranking</a><a class="btn btn-borde" href="#galeria">Explorar las {N} entregas</a></p></div>'
+            f'{stats_hero()}<p class="hero-acciones"><a class="btn btn-sol" href="#podio">Ver el ranking</a><a class="btn btn-borde" href="#galeria">Explorar las {N} entregas</a></p>'
+            '<p class="hero-guia"><a href="conozca/">¿Primera vez aquí? Haz el recorrido guiado</a></p></div>'
             '<p class="hero-sigue" aria-hidden="true" data-hint>Desliza</p></section>')
 
 
@@ -295,7 +299,8 @@ def metodo():
                     f'<td class="num">{sum(1 for b in BENCH if b["tier"] == t)}</td></tr>' for t, r in TIERS)
     docs = [("methodology.md", "Metodología"), ("rubric.md", "Rúbrica"), ("harness.md", "El arnés"), ("results.md", "Fichas por entrega"),
             ("conclusions.md", "Conclusiones"), ("contributing.md", "Cómo añadir una entrega")]
-    enlaces = "".join(f'<li><a href="{GITHUB}/blob/main/docs/{d}" target="_blank" rel="noopener">{esc(n)}<span class="sr"> (GitHub, nueva pestaña)</span></a></li>' for d, n in docs)
+    enlaces = ('<li><a href="conozca/">Recorrido guiado</a></li>'
+               + "".join(f'<li><a href="{GITHUB}/blob/main/docs/{d}" target="_blank" rel="noopener">{esc(n)}<span class="sr"> (GitHub, nueva pestaña)</span></a></li>' for d, n in docs))
     return (f'<ol class="senales">{senales}</ol>'
             '<div class="tabla-envoltura" tabindex="0" role="region" aria-label="Tabla de tiers, desplazable" data-reveal><table class="tiers"><caption class="sr">Tiers y número de entregas</caption>'
             f'<thead><tr><th scope="col">Tier</th><th scope="col">Nota</th><th scope="col">Lectura</th><th scope="col" class="num">Entregas</th></tr></thead><tbody>{filas}</tbody></table></div>'
@@ -312,6 +317,20 @@ PREGUNTAS = [
 
 def faq():
     return '<div class="faq">' + "".join(f'<details data-reveal><summary>{esc(q)}</summary><p>{esc(a)}</p></details>' for q, a in PREGUNTAS) + "</div>"
+
+
+def seguridad():
+    """«Seguridad comprobada» (kit «confianza y recorrido», 25-oct-2026). Sin cifras: sc-seguridad.js pinta lo que lee de
+    /salud-publica/publico.json (solo lo publicable que mide el servidor). Sin nada publicable, la sección se quita sola
+    (data-sc-quitar); por file:// tampoco aparece."""
+    return ('<section id="seguridad-comprobada" class="bloque sc" data-sc data-sc-quitar aria-labelledby="sc-titulo">'
+            '<div class="envoltura"><p class="eyebrow">Seguridad comprobada</p><h2 id="sc-titulo">No te pedimos que nos creas: compruébalo</h2>'
+            '<p class="entrada">Herramientas públicas e independientes revisan este sitio: el cifrado de la conexión, las protecciones del navegador, '
+            'el código y la accesibilidad. Aquí está lo que dicen, con la fecha de la medición, una captura real del informe y el enlace para que lo verifiques en la fuente.</p>'
+            '<div class="sc-resumen" data-sc-resumen hidden></div><div data-sc-lista></div>'
+            '<p class="sc-nota-pie">Aquí solo aparecen las verificaciones con la calificación más alta. Se vuelven a medir de forma automática; '
+            'si un resultado deja de cumplir, sale de esta sección hasta que se corrige. En las capturas se omite la dirección del servidor. '
+            'Para reportar una vulnerabilidad: <a href="/.well-known/security.txt">security.txt</a>.</p></div></section>')
 
 
 def json_ld():
@@ -386,8 +405,10 @@ def pagina():
 <link rel="preload" href="assets/marca/fuentes/inter-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/marca/tokens-v1.css">
 <link rel="stylesheet" href="assets/hub/galeria.css">
+<link rel="stylesheet" href="kit-confianza/sc-seguridad.css">
 <script type="application/ld+json">{json_ld()}</script>
 <script src="assets/hub/galeria.js" defer></script>
+<script src="kit-confianza/sc-seguridad.js" defer></script>
 </head>
 <body>
 <a class="saltar" href="#principal">Saltar al contenido</a>
@@ -424,6 +445,7 @@ def pagina():
   <h3 class="sub" data-reveal>Preguntas frecuentes</h3>
   {faq()}</div>
 </section>
+{seguridad()}
 </main>
 <footer class="pie">
   <div class="envoltura">
@@ -434,10 +456,13 @@ def pagina():
       <li><a href="{GITHUB}" target="_blank" rel="noopener">Repositorio<span class="sr"> (nueva pestaña)</span></a></li>
       <li><a href="llms.txt">llms.txt</a></li>
       <li><a href="docs/Manual_Marca_UniversoArena/v1.0/index.html">Manual de marca</a></li>
+      <li><a href="conozca/">Recorrido guiado</a></li>
+      <li><a href="#seguridad-comprobada">Seguridad comprobada</a></li>
+      <li><a href="/.well-known/security.txt">Reportar una vulnerabilidad</a></li>
     </ul>
   </div>
 </footer>
-<dialog class="ficha" data-ficha-dialogo aria-labelledby="ficha-tit"></dialog>
+<dialog class="ficha" data-ficha-dialogo aria-label="Ficha de la entrega"></dialog>
 </body>
 </html>
 """

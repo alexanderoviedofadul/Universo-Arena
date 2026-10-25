@@ -1,0 +1,7 @@
+/* tema.css — Universo-Arena: colores y fuentes del manual de marca para el recorrido. Lo escribe generar-conozca.mjs
+   (kit 1.0.4) desde el «tema» de conozca.json: no editar a mano. */
+.rc-pagina, html.rc-raiz {
+  --rc-fondo: #05060F; --rc-panel: #0A0D1F; --rc-acento: #FFD24A; --rc-acento-rgb: 255, 210, 74;
+  --rc-sobre-acento: #05060F; --rc-texto: #EAF0FF;
+  --rc-fuente: 'Inter', system-ui, sans-serif;
+}

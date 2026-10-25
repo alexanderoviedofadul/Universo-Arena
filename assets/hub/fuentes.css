@@ -1,0 +1,3 @@
+/* Inter de la marca para las páginas fuera de la galería (el recorrido /conozca/ del kit «confianza y recorrido»).
+   Misma declaración que galeria.css; el woff2 lo copia el build del manual a assets/marca/fuentes/. */
+@font-face { font-family: 'Inter'; font-style: normal; font-weight: 400 800; font-display: swap; src: url('../marca/fuentes/inter-var.woff2') format('woff2'); }

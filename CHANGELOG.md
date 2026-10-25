@@ -6,6 +6,20 @@ Todos los cambios notables de **Universo-Arena**. El formato sigue
 
 ## [Unreleased]
 
+### Añadido — «Seguridad comprobada» y recorrido guiado (kit «confianza y recorrido», 2026-10-25)
+
+**Doc**: [`docs/seguridad-comprobada-y-recorrido-2026-10-25.md`](docs/seguridad-comprobada-y-recorrido-2026-10-25.md).
+
+- **Recorrido guiado** en `/conozca/` (kit 1.0.4): siete capítulos —el reto, la rúbrica, la ejecución, las dos trampas,
+  la calibración, la galería y lo abierto— en escenas, diapositivas y mapa, con los carteles de las paradas. Fuente:
+  `docs/recorrido/conozca.json`. CSP estricta propia en Caddy (`@conozca`).
+- **Seguridad comprobada** al final de la portada (generada por `scripts/generar_galeria.py`): lee
+  `/salud-publica/publico.json` del medidor del VPS; ninguna cifra escrita a mano.
+- Entradas al recorrido desde la portada, el Método y el pie; enlace a `security.txt` en el pie.
+- **W3C 48 → 0**: `aria-label` en `<span>`/`<p>` sin rol → texto oculto; carteles diferidos con `src` de 1 px y
+  `data-sizes`. **WAVE**: CORP por tipo en Caddy (los 710 «contrastes» eran el CSS bloqueado a WAVE) y el `<dialog>` de
+  la ficha sin referencia ARIA rota.
+
 - **Caddy** (aplicado el 11-oct): CSP estricta solo para la portada (`script-src 'self'`); las demos conservan la suya con `@demos`. Durante el ensayo, un `caddy reload` de prueba desactivó la API de administración del Caddy de producción: se recuperó con un reinicio (ver `docs/rediseno-2026-10/README.md` §7).
 
 ### Cambiado — Manual de Marca v1.0 y galería generada con el kit (2026-10-11)

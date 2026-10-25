@@ -104,4 +104,11 @@ galería, las metas o el ranking, mantén la coherencia con estos artefactos:
 - Commit/push only when the user asks. End commit messages with the required `Co-Authored-By` trailer.
 - **Despliegue y CD:** El sitio web se expone en `https://universo-arena.alexanderoviedofadul.dev`. Cuenta con un auto-despliegue continuo (CD) mediante un webhook en Node.js que escucha en el puerto `3020` del VPS y actualiza automáticamente los archivos locales en la rama `main` tras recibir el evento push de GitHub. **No compila**: lo que está commiteado es lo publicado, así que fuente y salidas generadas (galería, manual, `assets/marca/`, `assets/hub/`) van en el mismo commit. Desde el 11-oct-2026 el webhook **exige la firma** de GitHub (antes un POST sin firma lanzaba el `git pull`).
 
-- 🔴 **CSP en Caddy en dos matchers** (desde el 11-oct-2026): `@portada` (`/`, `/index.html`) estricta, sin scripts en línea; `@demos` (todo lo demás) con `unsafe-eval` y los CDN de BabylonJS. Un script en línea en la galería no se ejecuta, y una demo nueva que pida otro CDN hay que añadirlo a `@demos`.
+- 🔴 **Recorrido y «Seguridad comprobada»** (kit «confianza y recorrido», 25-oct-2026): `conozca/` y `kit-confianza/` son
+  SALIDAS (de `docs/recorrido/conozca.json` con `generar-conozca.mjs`, y de `sincronizar-kit.sh`): no se editan a mano.
+  La sección «Seguridad comprobada» la escribe `generar_galeria.py` y la pinta `kit-confianza/sc-seguridad.js` con lo que
+  lee de `/salud-publica/publico.json`: **nunca escribir una nota a mano**. El recorrido no escribe el número de entregas.
+  Doc: [`docs/seguridad-comprobada-y-recorrido-2026-10-25.md`](docs/seguridad-comprobada-y-recorrido-2026-10-25.md).
+- 🔴 **CORP por tipo** en Caddy: los estáticos (`*.css`, `*.js`, fuentes e imágenes) van `cross-origin` (con
+  `Access-Control-Allow-Origin *`) para que WAVE los cargue desde su dominio; el resto, `same-origin`.
+- 🔴 **CSP en Caddy en tres matchers**: `@portada` (`/`, `/index.html`, desde el 11-oct-2026) estricta, sin scripts en línea; `@conozca` (`/conozca/*`, desde el 25-oct) sin `unsafe-inline` tampoco en estilos; `@demos` (todo lo demás) con `unsafe-eval` y los CDN de BabylonJS. Un script en línea en la galería no se ejecuta, y una demo nueva que pida otro CDN hay que añadirlo a `@demos`.

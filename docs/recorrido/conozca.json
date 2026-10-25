@@ -1,0 +1,232 @@
+{
+  "clave": "universo-arena",
+  "producto": "Universo-Arena",
+  "sitio": "universo-arena.alexanderoviedofadul.dev",
+  "idioma": "es",
+  "tratamiento": "tu",
+  "salida": "../../conozca",
+  "base_kit": "/kit-confianza/",
+  "titulo_pagina": "Conoce Universo-Arena · Recorrido",
+  "descripcion": "Recorrido por Universo-Arena: cómo se mide a cada combinación de LLM y agente de código, del reto común a la galería, juzgando por lo que hace al abrirse.",
+  "favicon": "/assets/marca/logos/ua-simbolo.svg",
+  "inicio_url": "/",
+  "logo": {
+    "src": "/assets/marca/logos/ua-simbolo.svg",
+    "ancho": 28,
+    "alto": 28
+  },
+  "estilos_extra": [
+    "/assets/hub/fuentes.css"
+  ],
+  "tema": {
+    "fondo": "#05060F",
+    "panel": "#0A0D1F",
+    "acento": "#FFD24A",
+    "sobre_acento": "#05060F",
+    "texto": "#EAF0FF",
+    "fuente": "'Inter', system-ui, sans-serif"
+  },
+  "entrar": {
+    "texto": "Ir a la galería",
+    "url": "/#galeria"
+  },
+  "portada": {
+    "antetitulo": "Universo-Arena · Benchmark abierto de LLM + agente de código",
+    "titulo": "Un prompt, muchos universos, juzgados por lo que hacen",
+    "sub": "Siete capítulos para entender cómo se mide cada entrega: el reto común, la rúbrica, la ejecución en un navegador real, las dos trampas que separan a las mejores, la calibración, la galería con su ficha y por qué todo es abierto y reproducible.",
+    "flotantes": [
+      {
+        "img": "/assets/hub/carteles/reto-960.webp",
+        "ancho": 960,
+        "alto": 540
+      },
+      {
+        "img": "/assets/hub/carteles/trampas-960.webp",
+        "ancho": 960,
+        "alto": 540
+      },
+      {
+        "img": "/assets/hub/carteles/ejecucion-960.webp",
+        "ancho": 960,
+        "alto": 540
+      }
+    ]
+  },
+  "capitulos": [
+    {
+      "clave": "reto",
+      "titulo": "El mismo reto para todos",
+      "rol": "Quien compara modelos",
+      "necesidad": "Comparar modelos de IA de programación por opiniones o por benchmarks de texto no dice qué pasa cuando abres lo que entregan.",
+      "como": "Cada combinación de modelo y agente de código recibe el mismo prompt y lo resuelve en una sola pasada: una simulación 3D del Sistema Solar con BabylonJS, en un único index.html que se abre con doble clic, sin servidor ni recursos locales.",
+      "resumen": "Un prompt común y una sola pasada para cada combinación de modelo y agente.",
+      "figuras": [
+        {
+          "titulo": "El reto",
+          "camino": "universo-arena…/Prompt-Maestro_v2.txt",
+          "img": "/assets/hub/carteles/reto-1280.webp",
+          "ancho": 1280,
+          "alto": 720,
+          "alt": "Cartel de la parada «El reto»: un punto de luz que se abre en hilos hacia planetas de colores",
+          "pasos": [
+            { "titulo": "El mismo prompt.", "texto": "Prompt-Maestro_v2.txt, igual para todas las entregas.", "marca": null },
+            { "titulo": "Una sola pasada.", "texto": "Sin ir corrigiendo a mano lo que entrega el agente.", "marca": null },
+            { "titulo": "Un único archivo.", "texto": "Un index.html autocontenido que se abre con doble clic.", "marca": null }
+          ]
+        }
+      ],
+      "beneficio": "Todas las entregas se comparan sobre la misma tarea.",
+      "cifra": "Sol con corona, ocho planetas y Plutón, el cometa Halley, el cinturón de asteroides, las estrellas y un panel de control: lo que pide el reto.",
+      "enlace": { "texto": "Leer el prompt", "url": "/Prompt-Maestro_v2.txt" }
+    },
+    {
+      "clave": "rubrica",
+      "titulo": "Una rúbrica de 100 puntos",
+      "rol": "Quien compara modelos",
+      "necesidad": "Una impresión general («se ve bien») no distingue una simulación correcta de una que solo lo parece.",
+      "como": "Un jurado por entrega lee el archivo completo y el reto, y puntúa por categorías verificando el código, no los comentarios: la escena, las órbitas, el cometa, la estética, el panel, la cámara, el posprocesado, el rendimiento, la robustez y la calidad del código.",
+      "resumen": "Nota sobre 100, desglosada por categorías, con el código como prueba.",
+      "figuras": [
+        {
+          "titulo": "La rúbrica",
+          "camino": "universo-arena…/#metodo",
+          "img": "/assets/hub/carteles/rubrica-1280.webp",
+          "ancho": 1280,
+          "alto": 720,
+          "alt": "Cartel de la parada «La rúbrica»: un astrolabio y un planetario de latón",
+          "pasos": [
+            { "titulo": "Por categorías.", "texto": "Cada categoría tiene su máximo y la suma es la nota sobre 100.", "marca": null },
+            { "titulo": "El código manda.", "texto": "Se verifica lo que hace el código, no lo que dicen sus comentarios.", "marca": null },
+            { "titulo": "Tiers.", "texto": "La nota se lee también como un tier, de la S a la D.", "marca": null }
+          ]
+        }
+      ],
+      "beneficio": "Sabes en qué acierta y en qué falla cada entrega, no solo su nota.",
+      "cifra": "La rúbrica completa y la metodología están en el repositorio.",
+      "enlace": { "texto": "Ver el método", "url": "/#metodo" }
+    },
+    {
+      "clave": "ejecucion",
+      "titulo": "Juzgado por lo que hace al abrirse",
+      "rol": "Quien compara modelos",
+      "necesidad": "Leer el código no basta: un programa puede parecer correcto y fallar al ejecutarse, o parecer roto y funcionar.",
+      "como": "Cada entrega se abre en Chrome sin pantalla, con WebGL por SwiftShader. Se captura lo que se ve y se cuentan los objetos en escena, los fotogramas por segundo y los errores de consola.",
+      "resumen": "Ejecución real en un navegador: captura, objetos, FPS y errores de consola.",
+      "figuras": [
+        {
+          "titulo": "La ejecución",
+          "camino": "universo-arena…/#recorrido",
+          "img": "/assets/hub/carteles/ejecucion-1280.webp",
+          "ancho": 1280,
+          "alto": 720,
+          "alt": "Cartel de la parada «La ejecución»: un observatorio con la cúpula abierta bajo la Vía Láctea",
+          "pasos": [
+            { "titulo": "Se abre en un navegador real.", "texto": "Chrome sin pantalla, con WebGL.", "marca": null },
+            { "titulo": "Se cuenta.", "texto": "Objetos en escena, fotogramas por segundo y errores de consola.", "marca": null },
+            { "titulo": "Se captura.", "texto": "La imagen de cada tarjeta es lo que se ve al abrir la entrega.", "marca": null }
+          ]
+        }
+      ],
+      "beneficio": "La nota refleja lo que ve quien abre la simulación, no lo que promete el código.",
+      "cifra": "Los datos de cada ejecución están en assets/runtime.json."
+    },
+    {
+      "clave": "trampas",
+      "titulo": "Las dos trampas",
+      "rol": "Quien busca los detalles difíciles",
+      "necesidad": "Casi todas las simulaciones se ven bien a primera vista. Lo que separa a las mejores son dos detalles de física que es fácil equivocar.",
+      "como": "El Sol va en el foco de la elipse, no en el centro (x = a·cosθ − a·e, z = b·sinθ), y la cola del cometa apunta en el sentido cometa − Sol, recalculada en cada fotograma. La figura es la órbita del manual de marca, dibujada por código para que la física sea la correcta.",
+      "resumen": "El Sol en el foco de la elipse y la cola del cometa lejos del Sol.",
+      "figuras": [
+        {
+          "titulo": "Las dos trampas",
+          "camino": "universo-arena…/#trampas",
+          "img": "/assets/hub/carteles/trampas-1280.webp",
+          "ancho": 1280,
+          "alto": 720,
+          "alt": "La órbita de la marca: el Sol en el foco de una elipse y un cometa con la cola apuntando lejos del Sol",
+          "pasos": [
+            { "titulo": "El Sol en el foco.", "texto": "Una elipse con el Sol centrado parece correcta, pero es física falsa.", "marca": null },
+            { "titulo": "La cola, lejos del Sol.", "texto": "El vector es cometa − Sol; invertirlo pone la cola hacia el Sol.", "marca": null },
+            { "titulo": "En cada fotograma.", "texto": "La dirección de la cola se recalcula mientras el cometa se mueve.", "marca": null }
+          ]
+        }
+      ],
+      "beneficio": "Ves qué entregas aciertan los detalles difíciles, no solo cuáles se ven bonitas.",
+      "cifra": "En cada ficha, los requisitos cumplidos: órbitas elípticas, cola lejos del Sol, instancing y más."
+    },
+    {
+      "clave": "calibracion",
+      "titulo": "La calibración",
+      "rol": "Quien desconfía de los jueces",
+      "necesidad": "Distintos jurados puntúan con distinta generosidad, y un juez que solo lee el código se puede equivocar.",
+      "como": "Un juez normaliza las notas entre jurados. Cuando la lectura del código y la ejecución discrepan, manda la ejecución: una revisión estática declaró «pantalla negra» a una entrega que, al abrirla, funcionaba sin errores. En los empates de cabeza, las entradas del mismo sistema que ejecuta el benchmark van por debajo.",
+      "resumen": "Notas normalizadas, la ejecución como árbitro y una regla contra el auto-favoritismo.",
+      "figuras": [
+        {
+          "titulo": "La calibración",
+          "camino": "universo-arena…/#calibracion",
+          "img": "/assets/hub/carteles/calibracion-1280.webp",
+          "ancho": 1280,
+          "alto": 720,
+          "alt": "Cartel de la parada «La calibración»: una balanza de vidrio en equilibrio",
+          "pasos": [
+            { "titulo": "Se normaliza.", "texto": "Un juez ajusta las notas entre jurados.", "marca": null },
+            { "titulo": "Manda la ejecución.", "texto": "Si el código y lo que se ve discrepan, se queda lo que se ve.", "marca": null },
+            { "titulo": "Sin auto-favoritismo.", "texto": "En los empates, las entradas del sistema que ejecuta el benchmark van por debajo.", "marca": null }
+          ]
+        }
+      ],
+      "beneficio": "Un ranking que no depende de la generosidad de un jurado ni de quién organiza la prueba.",
+      "cifra": "Cada tanda de entregas tiene su registro en el repositorio."
+    },
+    {
+      "clave": "galeria",
+      "titulo": "La galería y la ficha",
+      "rol": "Quien explora las entregas",
+      "necesidad": "Una tabla de notas no deja ver qué entregó cada combinación ni por qué sacó esa nota.",
+      "como": "Cada tarjeta es una combinación de modelo y agente, con la captura real de lo que se ve al abrirla. Puedes ordenar por categoría, filtrar por tier, abrir la demo en vivo y abrir la ficha: el desglose por categoría, los requisitos, lo que hizo bien y lo que falló.",
+      "resumen": "Tarjetas con captura real, orden y filtro, demo en vivo y ficha detallada.",
+      "figuras": [
+        {
+          "titulo": "Una entrega, tal como se ve al abrirla",
+          "camino": "universo-arena…/#galeria",
+          "img": "/assets/hub/previews/codex-gpt-5.5-800.webp",
+          "ancho": 800,
+          "alto": 504,
+          "alt": "Captura de una de las entregas: la simulación 3D del Sistema Solar con su panel de control",
+          "pasos": [
+            { "titulo": "La captura.", "texto": "Lo que se ve al abrir la entrega en un navegador real.", "marca": null },
+            { "titulo": "La ficha.", "texto": "El desglose por categoría, lo que hizo bien y lo que falló.", "marca": null },
+            { "titulo": "La demo.", "texto": "Cada tarjeta abre la simulación en vivo.", "marca": null }
+          ]
+        }
+      ],
+      "beneficio": "Compruebas tú mismo cada nota abriendo la entrega.",
+      "cifra": "El podio, la galería completa y los hallazgos, en la portada.",
+      "enlace": { "texto": "Explorar la galería", "url": "/#galeria" }
+    },
+    {
+      "clave": "abierto",
+      "titulo": "Abierto y reproducible",
+      "rol": "Quien quiere verificarlo",
+      "necesidad": "Un ranking que no publica sus datos ni su método obliga a creerle.",
+      "como": "Todo está en GitHub con licencia MIT: el código de cada entrega, los datos crudos (benchmark.json y runtime.json), la rúbrica, la metodología, las conclusiones y cómo añadir una entrega. El arnés de captura está documentado en docs/harness.md; su script no vive en el repositorio.",
+      "resumen": "Código, datos y método públicos, con licencia MIT.",
+      "beneficio": "Puedes revisar cada nota y repetir la medición.",
+      "cifra": "Datos crudos en assets/benchmark.json y assets/runtime.json.",
+      "enlace": { "texto": "Ver el repositorio", "url": "https://github.com/alexanderoviedofadul/Universo-Arena" }
+    }
+  ],
+  "cierre": {
+    "titulo": "Eso es Universo-Arena",
+    "texto": "Un reto común, una rúbrica, la ejecución como árbitro y todos los datos a la vista. Abre las entregas y compruébalo.",
+    "acciones": [
+      { "texto": "Ver el podio", "url": "/#podio", "acento": true },
+      { "texto": "Explorar la galería", "url": "/#galeria" }
+    ]
+  },
+  "seguridad": true,
+  "contacto_seguridad": "/.well-known/security.txt",
+  "ruta_publica": "/conozca/"
+}

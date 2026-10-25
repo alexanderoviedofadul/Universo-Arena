@@ -39,6 +39,7 @@
   /* ── Recorrido ─────────────────────────────────────────────────────────── */
   function cargarImg(img) {
     if (!img || !img.dataset.src) return;
+    if (img.dataset.sizes) img.sizes = img.dataset.sizes;
     if (img.dataset.srcset) img.srcset = img.dataset.srcset;
     img.src = img.dataset.src;
     delete img.dataset.src;
@@ -223,7 +224,7 @@
       cerrar.addEventListener('click', function () { dlg.close(); });
       cab.appendChild(img); cab.appendChild(cerrar);
       var tit = el('div', 'f-titulo');
-      var izq = el('div'); var h = el('h2', '', e.modelo); h.id = 'ficha-tit';
+      var izq = el('div'); var h = el('h2', '', e.modelo); h.id = 'ficha-tit'; dlg.setAttribute('aria-labelledby', 'ficha-tit');
       izq.appendChild(h); izq.appendChild(el('p', 'f-sub', e.agente + ' · tier ' + e.tier + ' · puesto ' + e.rank));
       var nota = el('div', 'f-nota'); nota.appendChild(el('b', '', String(e.total))); nota.appendChild(el('span', '', 'de 100'));
       tit.appendChild(izq); tit.appendChild(nota);

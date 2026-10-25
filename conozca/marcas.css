@@ -1,0 +1,7 @@
+/* marcas.css — Universo-Arena: dónde va cada marca sobre cada captura (x, y, ancho y alto en %). Lo escribe
+   generar-conozca.mjs (kit 1.0.4) desde conozca.json: no editar a mano. */
+#cap-reto [data-rc-marco="0"] .rc-vista { aspect-ratio: 1280 / 720; }
+#cap-rubrica [data-rc-marco="0"] .rc-vista { aspect-ratio: 1280 / 720; }
+#cap-ejecucion [data-rc-marco="0"] .rc-vista { aspect-ratio: 1280 / 720; }
+#cap-trampas [data-rc-marco="0"] .rc-vista { aspect-ratio: 1280 / 720; }
+#cap-calibracion [data-rc-marco="0"] .rc-vista { aspect-ratio: 1280 / 720; }
