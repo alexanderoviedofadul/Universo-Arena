@@ -59,9 +59,19 @@ teclado; reducir movimiento; sin JS; almacenamiento bloqueado; 390/360/320 px si
 en `/` con 2 verificaciones, axe 0 y captura ampliable). W3C del `index.html` y de `conozca/index.html`: 0 errores y 0
 avisos. `audit_v1.py`: 0 fallos. Revisión visual de las capturas en escritorio y celular.
 
-## Después
+## Después (24-oct, 22:02, misma herramienta pública; commit `c8b9b70`)
 
-(Se completa tras el despliegue con la misma herramienta pública.)
+| Herramienta | Antes | Después | Se publica |
+|---|---|---|---|
+| Mozilla Observatory | A+ (135/100) | A+ (135/100) | ✔ |
+| securityheaders | A+ | A+ (la ronda de después agotó su espera; se publica la medición de las 21:43) | ✔ |
+| Validador del W3C | 48 errores | **0 errores y 0 avisos** | ✔ |
+| WAVE | 1 error y 710 de contraste | **0 errores** y 18 de contraste | — |
+
+Los 18 «contrastes» de WAVE son **falsos positivos**: son los textos de las paradas del recorrido «Cómo se mide» que no
+están activas y los bloques con `data-reveal` antes de revelarse (`opacity: 0` en el instante de la captura). axe da 0 y
+el contraste real es el de la marca (Estelar sobre Vacío, Polvo sobre Vacío ≥ 7:1). Igual que en Enki y Cédula 360.
+e2e del kit contra producción en verde; barrido de dominios con 0 desviaciones.
 
 ## Pendiente
 
